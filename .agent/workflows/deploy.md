@@ -20,7 +20,15 @@ Railway is excellent for NestJS and integrates perfectly with GitHub.
    - **CRITICAL**: Provide a 32-character `ENCRYPTION_KEY`.
 5. Railway will automatically detect the NestJS app and run `npm run build` and `npm run start:prod`.
 
-### 3. Database Sync (Supabase)
+### 3. Alternative Backend (Render.com)
+If using Render:
+1. Create **New Web Service**.
+2. Settings:
+   - **Build Command**: `npm install && npm run build`
+   - **Start Command**: `npm run start:prod`
+3. Add environment variables from `backend/.env`.
+
+### 4. Database Sync (Supabase)
 1. Ensure your `DATABASE_URL` in Railway points to your Supabase instance.
 2. In your local terminal, run the final schema push to make sure Supabase is up to date:
    ```bash
@@ -28,16 +36,16 @@ Railway is excellent for NestJS and integrates perfectly with GitHub.
    npx prisma db push
    ```
 
-### 4. Frontend Deployment (Vercel recommended)
+### 5. Frontend Deployment (Vercel recommended)
 Vercel is the gold standard for Vite/React apps.
 1. Sign up for [Vercel](https://vercel.com).
 2. Click **Add New** > **Project**.
 3. Import your GitHub repository.
 4. In **Project Settings > Environment Variables**, add:
-   - `VITE_API_URL`: The URL of your deployed Railway backend (e.g., `https://your-backend.up.railway.app/api/v1`).
+   - `VITE_API_URL`: The URL of your deployed backend (e.g., `https://ecommerce-admin-panel-yhjs.onrender.com/api/v1`).
 5. Click **Deploy**.
 
-### 5. Final Verification
+### 6. Final Verification
 1. Open your Vercel URL.
 2. Log in with your admin credentials.
 3. Go to **Settings > Payments** and verify you can save a store's Stripe keys (which tests the `SecurityService` encryption).
