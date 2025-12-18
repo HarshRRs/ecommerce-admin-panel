@@ -13,7 +13,7 @@ export class StoresService {
 
   async create(createStoreDto: CreateStoreDto, userId: string) {
     // Check if slug already exists
-    const existingStore = await this.prisma.store.findUnique({
+    const existingStore = await this.prisma.prisma.store.findUnique({
       where: { slug: createStoreDto.slug },
     });
 
@@ -22,7 +22,7 @@ export class StoresService {
     }
 
     // Create store and assign user as owner
-    const store = await this.prisma.store.create({
+    const store = await this.prisma.prisma.store.create({
       data: {
         ...createStoreDto,
         ownerId: userId,
@@ -31,7 +31,7 @@ export class StoresService {
     });
 
     // Update user's storeId
-    await this.prisma.user.update({
+    await this.prisma.prisma.user.update({
       where: { id: userId },
       data: { storeId: store.id },
     });
@@ -42,7 +42,7 @@ export class StoresService {
   async findAll(userId: string, userRole: Role) {
     // Super admin can see all stores
     if (userRole === 'SUPER_ADMIN') {
-      return this.prisma.store.findMany({
+      return this.prisma.prisma.store.findMany({
         include: {
           users: {
             select: {
@@ -58,7 +58,7 @@ export class StoresService {
     }
 
     // Other users can only see their store
-    const user = await this.prisma.user.findUnique({
+    const user = await this.prisma.prisma.user.findUnique({
       where: { id: userId },
       select: { storeId: true },
     });
@@ -67,7 +67,7 @@ export class StoresService {
       return [];
     }
 
-    const store = await this.prisma.store.findUnique({
+    const store = await this.prisma.prisma.store.findUnique({
       where: { id: user.storeId },
       include: {
         users: {
@@ -86,7 +86,7 @@ export class StoresService {
   }
 
   async findOne(id: string, userId: string, userRole: Role) {
-    const store = await this.prisma.store.findUnique({
+    const store = await this.prisma.prisma.store.findUnique({
       where: { id },
       include: {
         users: {
@@ -112,7 +112,7 @@ export class StoresService {
   }
 
   async update(id: string, updateStoreDto: UpdateStoreDto, userId: string, userRole: Role) {
-    const store = await this.prisma.store.findUnique({
+    const store = await this.prisma.prisma.store.findUnique({
       where: { id },
     });
 
@@ -126,7 +126,7 @@ export class StoresService {
 
     // Check slug uniqueness if updating slug
     if (updateStoreDto.slug && updateStoreDto.slug !== store.slug) {
-      const existingStore = await this.prisma.store.findUnique({
+      const existingStore = await this.prisma.prisma.store.findUnique({
         where: { slug: updateStoreDto.slug },
       });
 
@@ -143,14 +143,14 @@ export class StoresService {
       data.stripeWebhookSecret = this.securityService.encrypt(data.stripeWebhookSecret);
     }
 
-    return this.prisma.store.update({
+    return this.prisma.prisma.store.update({
       where: { id },
       data,
     });
   }
 
   async remove(id: string, userId: string, userRole: Role) {
-    const store = await this.prisma.store.findUnique({
+    const store = await this.prisma.prisma.store.findUnique({
       where: { id },
     });
 
@@ -163,7 +163,7 @@ export class StoresService {
       throw new ForbiddenException('Only super admins can delete stores');
     }
 
-    return this.prisma.store.delete({
+    return this.prisma.prisma.store.delete({
       where: { id },
     });
   }
@@ -175,7 +175,7 @@ export class StoresService {
     }
 
     // Check if user belongs to this store
-    const user = await this.prisma.user.findUnique({
+    const user = await this.prisma.prisma.user.findUnique({
       where: { id: userId },
       select: { storeId: true },
     });
@@ -186,7 +186,7 @@ export class StoresService {
   }
 
   async updateStatus(id: string, status: 'ACTIVE' | 'SUSPENDED') {
-    return this.prisma.store.update({
+    return this.prisma.prisma.store.update({
       where: { id },
       data: { status },
     });
@@ -195,7 +195,7 @@ export class StoresService {
   async confirmStripeOwnership(id: string, userId: string, userRole: Role) {
     await this.checkStoreAccess(id, userId, userRole);
 
-    return this.prisma.store.update({
+    return this.prisma.prisma.store.update({
       where: { id },
       data: {
         stripeOwnershipConfirmed: true,

@@ -22,7 +22,7 @@ export class SystemService {
       if (filters.endDate) where.createdAt.lte = new Date(filters.endDate);
     }
 
-    return this.prisma.auditLog.findMany({
+    return this.prisma.prisma.auditLog.findMany({
       where,
       include: {
         user: {
@@ -52,16 +52,16 @@ export class SystemService {
       totalRevenue,
       recentLogs,
     ] = await Promise.all([
-      this.prisma.store.count(),
-      this.prisma.user.count({ where: storeId ? where : undefined }),
-      this.prisma.product.count({ where }),
-      this.prisma.order.count({ where }),
-      this.prisma.customer.count({ where }),
-      this.prisma.order.aggregate({
+      this.prisma.prisma.store.count(),
+      this.prisma.prisma.user.count({ where: storeId ? where : undefined }),
+      this.prisma.prisma.product.count({ where }),
+      this.prisma.prisma.order.count({ where }),
+      this.prisma.prisma.customer.count({ where }),
+      this.prisma.prisma.order.aggregate({
         where: { ...where, status: 'DELIVERED' },
         _sum: { total: true },
       }),
-      this.prisma.auditLog.findMany({
+      this.prisma.prisma.auditLog.findMany({
         where: storeId ? { storeId } : {},
         include: {
           user: {
@@ -88,7 +88,7 @@ export class SystemService {
     const where: any = { userId };
     if (storeId) where.storeId = storeId;
 
-    const logs = await this.prisma.auditLog.findMany({
+    const logs = await this.prisma.prisma.auditLog.findMany({
       where,
       orderBy: { createdAt: 'desc' },
       take: 50,
@@ -116,7 +116,7 @@ export class SystemService {
     resourceId?: string;
     changes?: any;
   }) {
-    return this.prisma.auditLog.create({
+    return this.prisma.prisma.auditLog.create({
       data: {
         userId: data.userId,
         storeId: data.storeId,
@@ -131,13 +131,13 @@ export class SystemService {
   async getSystemHealth() {
     try {
       // Check database connection
-      await this.prisma.$queryRaw`SELECT 1`;
+      await this.prisma.prisma.$queryRaw`SELECT 1`;
 
       // Get database stats
       const [userCount, storeCount, orderCount] = await Promise.all([
-        this.prisma.user.count(),
-        this.prisma.store.count(),
-        this.prisma.order.count(),
+        this.prisma.prisma.user.count(),
+        this.prisma.prisma.store.count(),
+        this.prisma.prisma.order.count(),
       ]);
 
       return {

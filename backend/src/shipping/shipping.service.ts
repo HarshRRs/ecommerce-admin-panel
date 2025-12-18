@@ -90,7 +90,7 @@ export class ShippingService {
     const { orderId, carrier } = createShipmentDto;
 
     // Verify order belongs to store
-    const order = await this.prisma.order.findFirst({
+    const order = await this.prisma.prisma.order.findFirst({
       where: { id: orderId, storeId },
     });
 
@@ -110,7 +110,7 @@ export class ShippingService {
     }
 
     // Create shipment record
-    const shipment = await this.prisma.shipment.create({
+    const shipment = await this.prisma.prisma.shipment.create({
       data: {
         orderId,
         carrier,
@@ -121,7 +121,7 @@ export class ShippingService {
     });
 
     // Update order status
-    await this.prisma.order.update({
+    await this.prisma.prisma.order.update({
       where: { id: orderId },
       data: { status: 'PROCESSING' },
     });
@@ -136,7 +136,7 @@ export class ShippingService {
     if (filters?.carrier) where.carrier = filters.carrier;
     if (filters?.orderId) where.orderId = filters.orderId;
 
-    return this.prisma.shipment.findMany({
+    return this.prisma.prisma.shipment.findMany({
       where,
       include: {
         order: {
@@ -157,7 +157,7 @@ export class ShippingService {
   }
 
   async findOne(id: string, storeId: string) {
-    const shipment = await this.prisma.shipment.findFirst({
+    const shipment = await this.prisma.prisma.shipment.findFirst({
       where: {
         id,
         order: { storeId },
@@ -182,7 +182,7 @@ export class ShippingService {
   }
 
   async update(id: string, updateShipmentDto: UpdateShipmentDto, storeId: string) {
-    const shipment = await this.prisma.shipment.findFirst({
+    const shipment = await this.prisma.prisma.shipment.findFirst({
       where: {
         id,
         order: { storeId },
@@ -193,7 +193,7 @@ export class ShippingService {
       throw new NotFoundException('Shipment not found');
     }
 
-    const updatedShipment = await this.prisma.shipment.update({
+    const updatedShipment = await this.prisma.prisma.shipment.update({
       where: { id },
       data: {
         ...updateShipmentDto,
@@ -218,7 +218,7 @@ export class ShippingService {
       }
 
       if (orderStatus) {
-        await this.prisma.order.update({
+        await this.prisma.prisma.order.update({
           where: { id: shipment.orderId },
           data: { status: orderStatus },
         });
@@ -229,7 +229,7 @@ export class ShippingService {
   }
 
   async track(trackingNumber: string, storeId: string) {
-    const shipment = await this.prisma.shipment.findFirst({
+    const shipment = await this.prisma.prisma.shipment.findFirst({
       where: {
         trackingNumber,
         order: { storeId },
@@ -266,7 +266,7 @@ export class ShippingService {
   async updateTracking(trackingUpdateDto: TrackingUpdateDto, storeId: string) {
     const { trackingNumber, status, location, notes } = trackingUpdateDto;
 
-    const shipment = await this.prisma.shipment.findFirst({
+    const shipment = await this.prisma.prisma.shipment.findFirst({
       where: {
         trackingNumber,
         order: { storeId },
@@ -288,7 +288,7 @@ export class ShippingService {
   }
 
   async cancel(id: string, storeId: string) {
-    const shipment = await this.prisma.shipment.findFirst({
+    const shipment = await this.prisma.prisma.shipment.findFirst({
       where: {
         id,
         order: { storeId },
@@ -310,7 +310,7 @@ export class ShippingService {
       await provider.cancelShipment(shipment.trackingNumber);
     }
 
-    return this.prisma.shipment.update({
+    return this.prisma.prisma.shipment.update({
       where: { id },
       data: { status: 'PENDING' }, // No CANCELLED in ShipmentStatus, using PENDING or just deleting?
     });

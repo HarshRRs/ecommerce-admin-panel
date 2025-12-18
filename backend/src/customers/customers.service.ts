@@ -9,7 +9,7 @@ export class CustomersService {
   async create(createCustomerDto: CreateCustomerDto, storeId: string) {
     const { addresses, ...customerData } = createCustomerDto;
 
-    const existing = await this.prisma.customer.findFirst({
+    const existing = await this.prisma.prisma.customer.findFirst({
       where: { email: createCustomerDto.email, storeId },
     });
 
@@ -17,7 +17,7 @@ export class CustomersService {
       throw new ConflictException('Customer with this email already exists');
     }
 
-    return this.prisma.customer.create({
+    return this.prisma.prisma.customer.create({
       data: {
         ...customerData,
         storeId,
@@ -55,7 +55,7 @@ export class CustomersService {
       ];
     }
 
-    return this.prisma.customer.findMany({
+    return this.prisma.prisma.customer.findMany({
       where,
       include: {
         addresses: true,
@@ -68,7 +68,7 @@ export class CustomersService {
   }
 
   async findOne(id: string, storeId: string) {
-    const customer = await this.prisma.customer.findFirst({
+    const customer = await this.prisma.prisma.customer.findFirst({
       where: { id, storeId },
       include: {
         addresses: true,
@@ -93,7 +93,7 @@ export class CustomersService {
   }
 
   async update(id: string, updateCustomerDto: UpdateCustomerDto, storeId: string) {
-    const customer = await this.prisma.customer.findFirst({
+    const customer = await this.prisma.prisma.customer.findFirst({
       where: { id, storeId },
     });
 
@@ -101,7 +101,7 @@ export class CustomersService {
       throw new NotFoundException('Customer not found');
     }
 
-    return this.prisma.customer.update({
+    return this.prisma.prisma.customer.update({
       where: { id },
       data: {
         ...updateCustomerDto,
@@ -114,7 +114,7 @@ export class CustomersService {
   }
 
   async remove(id: string, storeId: string) {
-    const customer = await this.prisma.customer.findFirst({
+    const customer = await this.prisma.prisma.customer.findFirst({
       where: { id, storeId },
     });
 
@@ -122,11 +122,11 @@ export class CustomersService {
       throw new NotFoundException('Customer not found');
     }
 
-    return this.prisma.customer.delete({ where: { id } });
+    return this.prisma.prisma.customer.delete({ where: { id } });
   }
 
   async addAddress(customerId: string, createAddressDto: CreateAddressDto, storeId: string) {
-    const customer = await this.prisma.customer.findFirst({
+    const customer = await this.prisma.prisma.customer.findFirst({
       where: { id: customerId, storeId },
     });
 
@@ -134,7 +134,7 @@ export class CustomersService {
       throw new NotFoundException('Customer not found');
     }
 
-    return this.prisma.address.create({
+    return this.prisma.prisma.address.create({
       data: {
         ...createAddressDto,
         phone: createAddressDto.phone || '',

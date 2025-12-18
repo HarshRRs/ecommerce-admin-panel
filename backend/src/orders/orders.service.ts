@@ -10,7 +10,7 @@ export class OrdersService {
     const { items, couponId, ...orderData } = createOrderDto;
 
     // Validate customer belongs to store
-    const customer = await this.prisma.customer.findFirst({
+    const customer = await this.prisma.prisma.customer.findFirst({
       where: { id: createOrderDto.customerId, storeId },
     });
 
@@ -23,7 +23,7 @@ export class OrdersService {
     const orderItems: any[] = [];
 
     for (const item of items) {
-      const product = await this.prisma.product.findFirst({
+      const product = await this.prisma.prisma.product.findFirst({
         where: { id: item.productId, storeId },
       });
 
@@ -51,7 +51,7 @@ export class OrdersService {
 
     // Apply coupon if provided
     if (couponId) {
-      const coupon = await this.prisma.coupon.findFirst({
+      const coupon = await this.prisma.prisma.coupon.findFirst({
         where: { id: couponId, storeId, status: 'ACTIVE' },
       });
 
@@ -67,7 +67,7 @@ export class OrdersService {
     const total = subtotal + shipping + tax - discount;
     const orderNumber = `ORD-${Date.now()}`;
 
-    return this.prisma.order.create({
+    return this.prisma.prisma.order.create({
       data: {
         ...orderData,
         orderNumber,
@@ -106,7 +106,7 @@ export class OrdersService {
       ];
     }
 
-    return this.prisma.order.findMany({
+    return this.prisma.prisma.order.findMany({
       where,
       include: {
         items: {
@@ -121,7 +121,7 @@ export class OrdersService {
   }
 
   async findOne(id: string, storeId: string) {
-    const order = await this.prisma.order.findFirst({
+    const order = await this.prisma.prisma.order.findFirst({
       where: { id, storeId },
       include: {
         items: {
@@ -144,7 +144,7 @@ export class OrdersService {
   }
 
   async update(id: string, updateOrderDto: UpdateOrderDto, storeId: string) {
-    const order = await this.prisma.order.findFirst({
+    const order = await this.prisma.prisma.order.findFirst({
       where: { id, storeId },
     });
 
@@ -152,7 +152,7 @@ export class OrdersService {
       throw new NotFoundException('Order not found');
     }
 
-    return this.prisma.order.update({
+    return this.prisma.prisma.order.update({
       where: { id },
       data: {
         ...updateOrderDto,
@@ -171,7 +171,7 @@ export class OrdersService {
   }
 
   async cancel(id: string, storeId: string) {
-    const order = await this.prisma.order.findFirst({
+    const order = await this.prisma.prisma.order.findFirst({
       where: { id, storeId },
     });
 
@@ -183,7 +183,7 @@ export class OrdersService {
       throw new BadRequestException('Cannot cancel this order');
     }
 
-    return this.prisma.order.update({
+    return this.prisma.prisma.order.update({
       where: { id },
       data: { status: 'CANCELLED' },
     });

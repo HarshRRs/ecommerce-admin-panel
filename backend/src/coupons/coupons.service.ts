@@ -7,7 +7,7 @@ export class CouponsService {
   constructor(private prisma: PrismaService) { }
 
   async create(createCouponDto: CreateCouponDto, storeId: string) {
-    const existing = await this.prisma.coupon.findFirst({
+    const existing = await this.prisma.prisma.coupon.findFirst({
       where: { code: createCouponDto.code, storeId },
     });
 
@@ -15,7 +15,7 @@ export class CouponsService {
       throw new ConflictException('Coupon with this code already exists');
     }
 
-    return this.prisma.coupon.create({
+    return this.prisma.prisma.coupon.create({
       data: {
         ...createCouponDto,
         storeId,
@@ -30,14 +30,14 @@ export class CouponsService {
       where.status = status;
     }
 
-    return this.prisma.coupon.findMany({
+    return this.prisma.prisma.coupon.findMany({
       where,
       orderBy: { createdAt: 'desc' },
     });
   }
 
   async findOne(id: string, storeId: string) {
-    const coupon = await this.prisma.coupon.findFirst({
+    const coupon = await this.prisma.prisma.coupon.findFirst({
       where: { id, storeId },
     });
 
@@ -49,7 +49,7 @@ export class CouponsService {
   }
 
   async findByCode(code: string, storeId: string) {
-    const coupon = await this.prisma.coupon.findFirst({
+    const coupon = await this.prisma.prisma.coupon.findFirst({
       where: { code, storeId, status: 'ACTIVE' },
     });
 
@@ -74,7 +74,7 @@ export class CouponsService {
   }
 
   async update(id: string, updateCouponDto: UpdateCouponDto, storeId: string) {
-    const coupon = await this.prisma.coupon.findFirst({
+    const coupon = await this.prisma.prisma.coupon.findFirst({
       where: { id, storeId },
     });
 
@@ -82,7 +82,7 @@ export class CouponsService {
       throw new NotFoundException('Coupon not found');
     }
 
-    return this.prisma.coupon.update({
+    return this.prisma.prisma.coupon.update({
       where: { id },
       data: {
         ...updateCouponDto,
@@ -92,7 +92,7 @@ export class CouponsService {
   }
 
   async remove(id: string, storeId: string) {
-    const coupon = await this.prisma.coupon.findFirst({
+    const coupon = await this.prisma.prisma.coupon.findFirst({
       where: { id, storeId },
     });
 
@@ -100,11 +100,11 @@ export class CouponsService {
       throw new NotFoundException('Coupon not found');
     }
 
-    return this.prisma.coupon.delete({ where: { id } });
+    return this.prisma.prisma.coupon.delete({ where: { id } });
   }
 
   async incrementUsage(id: string) {
-    return this.prisma.coupon.update({
+    return this.prisma.prisma.coupon.update({
       where: { id },
       data: {
         usageCount: { increment: 1 },

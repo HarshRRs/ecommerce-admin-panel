@@ -66,7 +66,7 @@ export class PaymentsService {
 
   async create(createPaymentDto: CreatePaymentDto, storeId: string) {
     // Verify order belongs to store
-    const order = await this.prisma.order.findFirst({
+    const order = await this.prisma.prisma.order.findFirst({
       where: { id: createPaymentDto.orderId, storeId },
     });
 
@@ -74,7 +74,7 @@ export class PaymentsService {
       throw new NotFoundException('Order not found');
     }
 
-    return this.prisma.payment.create({
+    return this.prisma.prisma.payment.create({
       data: {
         orderId: createPaymentDto.orderId,
         storeId,
@@ -91,7 +91,7 @@ export class PaymentsService {
     const { orderId, gateway: gatewayName, token } = processPaymentDto;
 
     // Verify order
-    const order = await this.prisma.order.findFirst({
+    const order = await this.prisma.prisma.order.findFirst({
       where: { id: orderId, storeId },
       include: { payments: true },
     });
@@ -118,7 +118,7 @@ export class PaymentsService {
 
       if (result.success) {
         // Create payment record
-        const payment = await this.prisma.payment.create({
+        const payment = await this.prisma.prisma.payment.create({
           data: {
             orderId,
             storeId,
@@ -131,7 +131,7 @@ export class PaymentsService {
         });
 
         // Update order payment status
-        await this.prisma.order.update({
+        await this.prisma.prisma.order.update({
           where: { id: orderId },
           data: { paymentStatus: 'PAID' },
         });
@@ -142,7 +142,7 @@ export class PaymentsService {
       }
     } catch (error) {
       // Create failed payment record
-      await this.prisma.payment.create({
+      await this.prisma.prisma.payment.create({
         data: {
           orderId,
           storeId,
@@ -165,7 +165,7 @@ export class PaymentsService {
     if (filters?.gateway) where.gateway = filters.gateway;
     if (filters?.orderId) where.orderId = filters.orderId;
 
-    return this.prisma.payment.findMany({
+    return this.prisma.prisma.payment.findMany({
       where,
       include: {
         order: {
@@ -184,7 +184,7 @@ export class PaymentsService {
   }
 
   async findOne(id: string, storeId: string) {
-    const payment = await this.prisma.payment.findFirst({
+    const payment = await this.prisma.prisma.payment.findFirst({
       where: {
         id,
         order: { storeId },
@@ -209,7 +209,7 @@ export class PaymentsService {
   }
 
   async refund(id: string, refundPaymentDto: RefundPaymentDto, storeId: string) {
-    const payment = await this.prisma.payment.findFirst({
+    const payment = await this.prisma.prisma.payment.findFirst({
       where: {
         id,
         order: { storeId },
@@ -240,7 +240,7 @@ export class PaymentsService {
 
       if (result.success) {
         // Update payment status
-        const updatedPayment = await this.prisma.payment.update({
+        const updatedPayment = await this.prisma.prisma.payment.update({
           where: { id },
           data: {
             status: 'REFUNDED',
@@ -249,7 +249,7 @@ export class PaymentsService {
         });
 
         // Update order payment status
-        await this.prisma.order.update({
+        await this.prisma.prisma.order.update({
           where: { id: payment.orderId },
           data: { paymentStatus: 'REFUNDED' },
         });

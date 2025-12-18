@@ -9,7 +9,7 @@ export class CmsService {
   // Pages
   async createPage(createPageDto: CreatePageDto, storeId: string) {
     const slug = this.generateSlug(createPageDto.title);
-    return this.prisma.page.create({
+    return this.prisma.prisma.page.create({
       data: {
         ...createPageDto,
         slug,
@@ -22,14 +22,14 @@ export class CmsService {
     const where: any = { storeId };
     if (status) where.status = status;
 
-    return this.prisma.page.findMany({
+    return this.prisma.prisma.page.findMany({
       where,
       orderBy: { createdAt: 'desc' },
     });
   }
 
   async findOnePage(id: string, storeId: string) {
-    const page = await this.prisma.page.findFirst({
+    const page = await this.prisma.prisma.page.findFirst({
       where: { id, storeId },
     });
 
@@ -41,7 +41,7 @@ export class CmsService {
   }
 
   async updatePage(id: string, updatePageDto: UpdatePageDto, storeId: string) {
-    const page = await this.prisma.page.findFirst({
+    const page = await this.prisma.prisma.page.findFirst({
       where: { id, storeId },
     });
 
@@ -49,7 +49,7 @@ export class CmsService {
       throw new NotFoundException('Page not found');
     }
 
-    return this.prisma.page.update({
+    return this.prisma.prisma.page.update({
       where: { id },
       data: {
         ...updatePageDto,
@@ -59,7 +59,7 @@ export class CmsService {
   }
 
   async removePage(id: string, storeId: string) {
-    const page = await this.prisma.page.findFirst({
+    const page = await this.prisma.prisma.page.findFirst({
       where: { id, storeId },
     });
 
@@ -67,12 +67,12 @@ export class CmsService {
       throw new NotFoundException('Page not found');
     }
 
-    return this.prisma.page.delete({ where: { id } });
+    return this.prisma.prisma.page.delete({ where: { id } });
   }
 
   // Banners
   async createBanner(createBannerDto: CreateBannerDto, storeId: string) {
-    return this.prisma.banner.create({
+    return this.prisma.prisma.banner.create({
       data: {
         ...createBannerDto,
         storeId,
@@ -84,14 +84,14 @@ export class CmsService {
     const where: any = { storeId };
     if (status) where.status = status;
 
-    return this.prisma.banner.findMany({
+    return this.prisma.prisma.banner.findMany({
       where,
       orderBy: { createdAt: 'desc' },
     });
   }
 
   async updateBanner(id: string, updateBannerDto: UpdateBannerDto, storeId: string) {
-    const banner = await this.prisma.banner.findFirst({
+    const banner = await this.prisma.prisma.banner.findFirst({
       where: { id, storeId },
     });
 
@@ -99,7 +99,7 @@ export class CmsService {
       throw new NotFoundException('Banner not found');
     }
 
-    return this.prisma.banner.update({
+    return this.prisma.prisma.banner.update({
       where: { id },
       data: {
         ...updateBannerDto,
@@ -109,7 +109,7 @@ export class CmsService {
   }
 
   async removeBanner(id: string, storeId: string) {
-    const banner = await this.prisma.banner.findFirst({
+    const banner = await this.prisma.prisma.banner.findFirst({
       where: { id, storeId },
     });
 
@@ -117,13 +117,13 @@ export class CmsService {
       throw new NotFoundException('Banner not found');
     }
 
-    return this.prisma.banner.delete({ where: { id } });
+    return this.prisma.prisma.banner.delete({ where: { id } });
   }
 
   // Blog Posts
   async createBlog(createBlogDto: CreateBlogDto, storeId: string, authorId: string) {
     const slug = this.generateSlug(createBlogDto.title);
-    return this.prisma.blogPost.create({
+    return this.prisma.prisma.blogPost.create({
       data: {
         ...createBlogDto,
         slug,
@@ -137,14 +137,14 @@ export class CmsService {
     const where: any = { storeId };
     if (status) where.status = status;
 
-    return this.prisma.blogPost.findMany({
+    return this.prisma.prisma.blogPost.findMany({
       where,
       orderBy: { createdAt: 'desc' },
     });
   }
 
   async findOneBlog(id: string, storeId: string) {
-    const blog = await this.prisma.blogPost.findFirst({
+    const blog = await this.prisma.prisma.blogPost.findFirst({
       where: { id, storeId },
     });
 
@@ -156,7 +156,7 @@ export class CmsService {
   }
 
   async updateBlog(id: string, updateBlogDto: UpdateBlogDto, storeId: string) {
-    const blog = await this.prisma.blogPost.findFirst({
+    const blog = await this.prisma.prisma.blogPost.findFirst({
       where: { id, storeId },
     });
 
@@ -164,7 +164,7 @@ export class CmsService {
       throw new NotFoundException('Blog post not found');
     }
 
-    return this.prisma.blogPost.update({
+    return this.prisma.prisma.blogPost.update({
       where: { id },
       data: {
         ...updateBlogDto,
@@ -174,7 +174,7 @@ export class CmsService {
   }
 
   async removeBlog(id: string, storeId: string) {
-    const blog = await this.prisma.blogPost.findFirst({
+    const blog = await this.prisma.prisma.blogPost.findFirst({
       where: { id, storeId },
     });
 
@@ -182,7 +182,7 @@ export class CmsService {
       throw new NotFoundException('Blog post not found');
     }
 
-    return this.prisma.blogPost.delete({ where: { id } });
+    return this.prisma.prisma.blogPost.delete({ where: { id } });
   }
 
   private generateSlug(title: string): string {

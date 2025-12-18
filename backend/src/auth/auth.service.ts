@@ -19,7 +19,7 @@ export class AuthService {
   ) { }
 
   async forgotPassword(email: string) {
-    const user = await this.prisma.user.findUnique({
+    const user = await this.prisma.prisma.user.findUnique({
       where: { email },
     });
 
@@ -31,7 +31,7 @@ export class AuthService {
     const resetToken = randomBytes(32).toString('hex');
     const resetTokenExpires = new Date(Date.now() + 3600000); // 1 hour
 
-    await this.prisma.user.update({
+    await this.prisma.prisma.user.update({
       where: { id: user.id },
       data: {
         resetToken,
@@ -45,7 +45,7 @@ export class AuthService {
   }
 
   async resetPassword(resetToken: string, newPassword: any) {
-    const user = await this.prisma.user.findFirst({
+    const user = await this.prisma.prisma.user.findFirst({
       where: {
         resetToken,
         resetTokenExpires: {
@@ -60,7 +60,7 @@ export class AuthService {
 
     const hashedPassword = await bcrypt.hash(newPassword, 12);
 
-    await this.prisma.user.update({
+    await this.prisma.prisma.user.update({
       where: { id: user.id },
       data: {
         password: hashedPassword,
@@ -74,7 +74,7 @@ export class AuthService {
   }
 
   async login(loginDto: LoginDto) {
-    const user = await this.prisma.user.findUnique({
+    const user = await this.prisma.prisma.user.findUnique({
       where: { email: loginDto.email },
       include: {
         store: true,
@@ -99,7 +99,7 @@ export class AuthService {
     }
 
     // Update last login
-    await this.prisma.user.update({
+    await this.prisma.prisma.user.update({
       where: { id: user.id },
       data: { lastLoginAt: new Date() },
     });
@@ -127,7 +127,7 @@ export class AuthService {
 
   async register(registerDto: RegisterDto) {
     // Check if user already exists
-    const existingUser = await this.prisma.user.findUnique({
+    const existingUser = await this.prisma.prisma.user.findUnique({
       where: { email: registerDto.email },
     });
 
@@ -137,7 +137,7 @@ export class AuthService {
 
     const hashedPassword = await bcrypt.hash(registerDto.password, 12);
 
-    const user = await this.prisma.user.create({
+    const user = await this.prisma.prisma.user.create({
       data: {
         email: registerDto.email,
         password: hashedPassword,
@@ -170,7 +170,7 @@ export class AuthService {
   }
 
   async validateUser(userId: string) {
-    const user = await this.prisma.user.findUnique({
+    const user = await this.prisma.prisma.user.findUnique({
       where: { id: userId },
       select: {
         id: true,
@@ -239,7 +239,7 @@ export class AuthService {
   }
 
   async getProfile(userId: string) {
-    const user = await this.prisma.user.findUnique({
+    const user = await this.prisma.prisma.user.findUnique({
       where: { id: userId },
       select: {
         id: true,

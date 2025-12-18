@@ -32,7 +32,7 @@ export class StoreSuspensionGuard implements CanActivate {
 
         // 4. Check store status
         if (user.storeId) {
-            const store = await this.prisma.store.findUnique({
+            const store = await this.prisma.prisma.store.findUnique({
                 where: { id: user.storeId },
                 select: { status: true },
             });

@@ -27,7 +27,7 @@ export class CategoriesService {
     const slug = createDto.slug || this.generateSlug(createDto.name);
 
     // Check slug uniqueness within store
-    const existing = await this.prisma.category.findFirst({
+    const existing = await this.prisma.prisma.category.findFirst({
       where: { storeId, slug },
     });
 
@@ -37,7 +37,7 @@ export class CategoriesService {
 
     // Validate parent category if provided
     if (createDto.parentId) {
-      const parent = await this.prisma.category.findFirst({
+      const parent = await this.prisma.prisma.category.findFirst({
         where: { id: createDto.parentId, storeId },
       });
 
@@ -46,7 +46,7 @@ export class CategoriesService {
       }
     }
 
-    return this.prisma.category.create({
+    return this.prisma.prisma.category.create({
       data: {
         ...createDto,
         slug,
@@ -60,7 +60,7 @@ export class CategoriesService {
   }
 
   async findAll(storeId: string) {
-    return this.prisma.category.findMany({
+    return this.prisma.prisma.category.findMany({
       where: { storeId },
       include: {
         parent: true,
@@ -74,7 +74,7 @@ export class CategoriesService {
   }
 
   async findOne(id: string, storeId: string) {
-    const category = await this.prisma.category.findFirst({
+    const category = await this.prisma.prisma.category.findFirst({
       where: { id, storeId },
       include: {
         parent: true,
@@ -97,7 +97,7 @@ export class CategoriesService {
   }
 
   async update(id: string, updateDto: UpdateCategoryDto, storeId: string) {
-    const category = await this.prisma.category.findFirst({
+    const category = await this.prisma.prisma.category.findFirst({
       where: { id, storeId },
     });
 
@@ -122,7 +122,7 @@ export class CategoriesService {
       }
     }
 
-    return this.prisma.category.update({
+    return this.prisma.prisma.category.update({
       where: { id },
       data: updateDto,
       include: {
@@ -133,7 +133,7 @@ export class CategoriesService {
   }
 
   async remove(id: string, storeId: string) {
-    const category = await this.prisma.category.findFirst({
+    const category = await this.prisma.prisma.category.findFirst({
       where: { id, storeId },
       include: {
         children: true,
@@ -155,11 +155,11 @@ export class CategoriesService {
       throw new BadRequestException('Cannot delete category with products');
     }
 
-    return this.prisma.category.delete({ where: { id } });
+    return this.prisma.prisma.category.delete({ where: { id } });
   }
 
   async getCategoryTree(storeId: string) {
-    const categories = await this.prisma.category.findMany({
+    const categories = await this.prisma.prisma.category.findMany({
       where: { storeId, parentId: null },
       include: {
         children: {
@@ -200,7 +200,7 @@ export class CategoriesService {
 
       visited.add(currentId);
 
-      const parent = await this.prisma.category.findFirst({
+      const parent = await this.prisma.prisma.category.findFirst({
         where: { id: currentId, storeId },
         select: { parentId: true },
       });

@@ -15,7 +15,7 @@ export class StripeService {
     ) { }
 
     private async getStripeInstance(storeId: string): Promise<{ stripe: Stripe, webhookSecret: string }> {
-        const store = await this.prisma.store.findUnique({
+        const store = await this.prisma.prisma.store.findUnique({
             where: { id: storeId },
             select: {
                 stripeApiKey: true,
@@ -55,7 +55,7 @@ export class StripeService {
     }
 
     async createPaymentIntent(orderId: string, amount: number, currency: string = 'usd') {
-        const order = await this.prisma.order.findUnique({ where: { id: orderId } });
+        const order = await this.prisma.prisma.order.findUnique({ where: { id: orderId } });
         if (!order) throw new NotFoundException('Order not found');
 
         const { stripe } = await this.getStripeInstance(order.storeId);
@@ -67,7 +67,7 @@ export class StripeService {
                 metadata: { orderId, storeId: order.storeId },
             });
 
-            await this.prisma.payment.create({
+            await this.prisma.prisma.payment.create({
                 data: {
                     orderId,
                     storeId: order.storeId,
@@ -127,13 +127,13 @@ export class StripeService {
         this.logger.log(`Payment succeeded for order ${orderId}`);
 
         // Update payment record
-        await this.prisma.payment.updateMany({
+        await this.prisma.prisma.payment.updateMany({
             where: { gatewayTransactionId: paymentIntent.id },
             data: { status: 'PAID', paidAt: new Date() },
         });
 
         // Update order status
-        await this.prisma.order.update({
+        await this.prisma.prisma.order.update({
             where: { id: orderId },
             data: { status: 'PROCESSING' },
         });
@@ -146,13 +146,13 @@ export class StripeService {
         this.logger.warn(`Payment failed for order ${orderId}`);
 
         // Update payment record
-        await this.prisma.payment.updateMany({
+        await this.prisma.prisma.payment.updateMany({
             where: { gatewayTransactionId: paymentIntent.id },
             data: { status: 'FAILED' },
         });
 
         // Update order status
-        await this.prisma.order.update({
+        await this.prisma.prisma.order.update({
             where: { id: orderId },
             data: { status: 'FAILED' },
         });

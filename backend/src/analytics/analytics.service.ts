@@ -13,14 +13,14 @@ export class AnalyticsService {
       totalProducts,
       recentOrders,
     ] = await Promise.all([
-      this.prisma.order.count({ where: { storeId } }),
-      this.prisma.order.aggregate({
+      this.prisma.prisma.order.count({ where: { storeId } }),
+      this.prisma.prisma.order.aggregate({
         where: { storeId, status: 'DELIVERED' },
         _sum: { total: true },
       }),
-      this.prisma.customer.count({ where: { storeId } }),
-      this.prisma.product.count({ where: { storeId } }),
-      this.prisma.order.findMany({
+      this.prisma.prisma.customer.count({ where: { storeId } }),
+      this.prisma.prisma.product.count({ where: { storeId } }),
+      this.prisma.prisma.order.findMany({
         where: { storeId },
         take: 10,
         orderBy: { createdAt: 'desc' },
@@ -51,12 +51,12 @@ export class AnalyticsService {
     }
 
     const [orders, revenue, ordersByDay] = await Promise.all([
-      this.prisma.order.count({ where }),
-      this.prisma.order.aggregate({
+      this.prisma.prisma.order.count({ where }),
+      this.prisma.prisma.order.aggregate({
         where,
         _sum: { total: true, subtotal: true, tax: true, shipping: true },
       }),
-      this.prisma.order.groupBy({
+      this.prisma.prisma.order.groupBy({
         by: ['createdAt'],
         where,
         _sum: { total: true },
@@ -75,7 +75,7 @@ export class AnalyticsService {
   }
 
   async getTopProducts(storeId: string, limit: number = 10) {
-    const topProducts = await this.prisma.orderItem.groupBy({
+    const topProducts = await this.prisma.prisma.orderItem.groupBy({
       by: ['productId'],
       where: {
         order: { storeId, status: 'DELIVERED' },
@@ -93,7 +93,7 @@ export class AnalyticsService {
     });
 
     const productIds = topProducts.map((item) => item.productId);
-    const products = await this.prisma.product.findMany({
+    const products = await this.prisma.prisma.product.findMany({
       where: { id: { in: productIds } },
       select: { id: true, name: true, sku: true, basePrice: true },
     });
@@ -110,14 +110,14 @@ export class AnalyticsService {
 
   async getCustomerStats(storeId: string) {
     const [totalCustomers, customersWithOrders, topCustomers] = await Promise.all([
-      this.prisma.customer.count({ where: { storeId } }),
-      this.prisma.customer.count({
+      this.prisma.prisma.customer.count({ where: { storeId } }),
+      this.prisma.prisma.customer.count({
         where: {
           storeId,
           orders: { some: {} },
         },
       }),
-      this.prisma.customer.findMany({
+      this.prisma.prisma.customer.findMany({
         where: { storeId },
         include: {
           orders: {

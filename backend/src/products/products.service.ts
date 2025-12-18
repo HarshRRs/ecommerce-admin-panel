@@ -16,7 +16,7 @@ export class ProductsService {
 
   async create(createProductDto: CreateProductDto, storeId: string) {
     // Check SKU uniqueness within store
-    const existing = await this.prisma.product.findFirst({
+    const existing = await this.prisma.prisma.product.findFirst({
       where: { storeId, sku: createProductDto.sku },
     });
 
@@ -26,7 +26,7 @@ export class ProductsService {
 
     const { images, tags, ...productData } = createProductDto;
 
-    return this.prisma.product.create({
+    return this.prisma.prisma.product.create({
       data: {
         ...productData,
         storeId,
@@ -53,7 +53,7 @@ export class ProductsService {
       ];
     }
 
-    return this.prisma.product.findMany({
+    return this.prisma.prisma.product.findMany({
       where,
       include: {
         category: true,
@@ -67,7 +67,7 @@ export class ProductsService {
   }
 
   async findOne(id: string, storeId: string) {
-    const product = await this.prisma.product.findFirst({
+    const product = await this.prisma.prisma.product.findFirst({
       where: { id, storeId },
       include: {
         category: true,
@@ -88,7 +88,7 @@ export class ProductsService {
   }
 
   async update(id: string, updateProductDto: UpdateProductDto, storeId: string) {
-    const product = await this.prisma.product.findFirst({
+    const product = await this.prisma.prisma.product.findFirst({
       where: { id, storeId },
     });
 
@@ -98,7 +98,7 @@ export class ProductsService {
 
     const { images, tags, ...productData } = updateProductDto;
 
-    return this.prisma.product.update({
+    return this.prisma.prisma.product.update({
       where: { id },
       data: {
         ...productData,
@@ -114,7 +114,7 @@ export class ProductsService {
   }
 
   async remove(id: string, storeId: string) {
-    const product = await this.prisma.product.findFirst({
+    const product = await this.prisma.prisma.product.findFirst({
       where: { id, storeId },
     });
 
@@ -122,11 +122,11 @@ export class ProductsService {
       throw new NotFoundException('Product not found');
     }
 
-    return this.prisma.product.delete({ where: { id } });
+    return this.prisma.prisma.product.delete({ where: { id } });
   }
 
   async createVariant(productId: string, createVariantDto: CreateVariantDto, storeId: string) {
-    const product = await this.prisma.product.findFirst({
+    const product = await this.prisma.prisma.product.findFirst({
       where: { id: productId, storeId, type: 'VARIABLE' },
     });
 
@@ -135,7 +135,7 @@ export class ProductsService {
     }
 
     // Check SKU uniqueness
-    const existing = await this.prisma.productVariant.findUnique({
+    const existing = await this.prisma.prisma.productVariant.findUnique({
       where: { sku: createVariantDto.sku },
     });
 
@@ -143,7 +143,7 @@ export class ProductsService {
       throw new ConflictException('Variant SKU already exists');
     }
 
-    return this.prisma.productVariant.create({
+    return this.prisma.prisma.productVariant.create({
       data: {
         ...createVariantDto,
         productId,
@@ -152,7 +152,7 @@ export class ProductsService {
   }
 
   async updateStock(id: string, quantity: number, storeId: string) {
-    const product = await this.prisma.product.findFirst({
+    const product = await this.prisma.prisma.product.findFirst({
       where: { id, storeId },
     });
 
@@ -164,7 +164,7 @@ export class ProductsService {
       throw new BadRequestException('Stock quantity cannot be negative');
     }
 
-    return this.prisma.product.update({
+    return this.prisma.prisma.product.update({
       where: { id },
       data: {
         stock: quantity,
@@ -174,7 +174,7 @@ export class ProductsService {
   }
 
   async adjustStock(id: string, adjustment: number, storeId: string, reason?: string) {
-    const product = await this.prisma.product.findFirst({
+    const product = await this.prisma.prisma.product.findFirst({
       where: { id, storeId },
     });
 
@@ -187,7 +187,7 @@ export class ProductsService {
       throw new BadRequestException('Insufficient stock for adjustment');
     }
 
-    return this.prisma.product.update({
+    return this.prisma.prisma.product.update({
       where: { id },
       data: {
         stock: newStock,
@@ -197,7 +197,7 @@ export class ProductsService {
   }
 
   async updateVariantStock(variantId: string, quantity: number, storeId: string) {
-    const variant = await this.prisma.productVariant.findUnique({
+    const variant = await this.prisma.prisma.productVariant.findUnique({
       where: { id: variantId },
       include: { product: true },
     });
@@ -210,7 +210,7 @@ export class ProductsService {
       throw new BadRequestException('Stock quantity cannot be negative');
     }
 
-    return this.prisma.productVariant.update({
+    return this.prisma.prisma.productVariant.update({
       where: { id: variantId },
       data: {
         stock: quantity,
@@ -220,7 +220,7 @@ export class ProductsService {
   }
 
   async getLowStockProducts(storeId: string) {
-    const products = await this.prisma.product.findMany({
+    const products = await this.prisma.prisma.product.findMany({
       where: {
         storeId,
         status: 'ACTIVE',
@@ -228,7 +228,7 @@ export class ProductsService {
           {
             AND: [
               { lowStockThreshold: { not: null } },
-              { stock: { lte: this.prisma.product.fields.lowStockThreshold } },
+              { stock: { lte: this.prisma.prisma.product.fields.lowStockThreshold } },
             ],
           },
         ],
@@ -284,12 +284,12 @@ export class ProductsService {
                   tags: row.tags ? row.tags.split(',') : [],
                 };
 
-                const existing = await this.prisma.product.findFirst({
+                const existing = await this.prisma.prisma.product.findFirst({
                   where: { storeId, sku: productData.sku },
                 });
 
                 if (existing) {
-                  await this.prisma.product.update({
+                  await this.prisma.prisma.product.update({
                     where: { id: existing.id },
                     data: {
                       name: productData.name,
