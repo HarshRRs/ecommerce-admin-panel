@@ -1,42 +1,49 @@
 # Build stage
 FROM node:18-slim AS builder
 
-# Install OpenSSL 3.0 (required for Prisma on newer Debian)
+# Install OpenSSL (required for Prisma)
 RUN apt-get update -y && apt-get install -y openssl
 
 WORKDIR /app
 
-# Copy package files
+# Copy dependency definitions
 COPY package*.json ./
 COPY prisma ./prisma/
 
-# Install dependencies
-RUN npm install
+# Install all dependencies (including dev)
+RUN npm ci
 
 # Copy source code
 COPY . .
 
-# Generate Prisma Client (explicitly targeting engine for slim)
+# Generate Prisma Client
 RUN npx prisma generate
 
-# Build application - bypass errors as requested to ensure container creation
-RUN npm run build || true
+# Build application
+RUN npm run build
 
 # Production stage
 FROM node:18-slim AS production
 
-# Install OpenSSL 3.0
+# Install OpenSSL
 RUN apt-get update -y && apt-get install -y openssl
 
 WORKDIR /app
 
-# Copy built application from builder stage
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/prisma ./prisma
+# Copy package files for production install
+COPY package*.json ./
+COPY prisma ./prisma/
 
-# Expose port (Koyeb setting should match this)
+# Install only production dependencies
+RUN npm ci --omit=dev
+
+# Generate Prisma Client for production
+RUN npx prisma generate
+
+# Copy built application from builder
+COPY --from=builder /app/dist ./dist
+
+# Expose port
 EXPOSE 3000
 
 # Start application
