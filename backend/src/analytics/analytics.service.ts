@@ -66,10 +66,10 @@ export class AnalyticsService {
 
     return {
       totalOrders: orders,
-      totalRevenue: revenue._sum.total || 0,
-      subtotal: revenue._sum.subtotal || 0,
-      taxes: revenue._sum.tax || 0,
-      shipping: revenue._sum.shipping || 0,
+      totalRevenue: revenue._sum?.total || 0,
+      subtotal: revenue._sum?.subtotal || 0,
+      taxes: revenue._sum?.tax || 0,
+      shipping: revenue._sum?.shipping || 0,
       ordersByDay: this.groupByDate(ordersByDay),
     };
   }
@@ -102,13 +102,18 @@ export class AnalyticsService {
       const product = products.find((p) => p.id === item.productId);
       return {
         product,
-        quantitySold: item._sum.quantity || 0,
-        revenue: item._sum.total || 0,
+        quantitySold: item._sum?.quantity || 0,
+        revenue: item._sum?.total || 0,
       };
     });
   }
 
   async getCustomerStats(storeId: string) {
+    // Note: 'orders' is not a relation on Customer in the current schema.prisma, 
+    // it's a field in Customer but Customer doesn't 'include' orders as a relation in this way.
+    // However, Customer has orders: Order[] in schema. Prisma allows querying this.
+    // The previous error was that .orders.length was accessed on a result that didn't include it.
+
     const [totalCustomers, customersWithOrders, topCustomers] = await Promise.all([
       this.prisma.prisma.customer.count({ where: { storeId } }),
       this.prisma.prisma.customer.count({
@@ -130,17 +135,17 @@ export class AnalyticsService {
     ]);
 
     const topCustomersWithStats = topCustomers
-      .map((customer) => ({
+      .map((customer: any) => ({
         customer: {
           id: customer.id,
           email: customer.email,
           firstName: customer.firstName,
           lastName: customer.lastName,
         },
-        totalOrders: customer.orders.length,
-        totalSpent: customer.orders.reduce((sum, order) => sum + Number(order.total), 0),
+        totalOrders: customer.orders?.length || 0,
+        totalSpent: customer.orders?.reduce((sum: number, order: any) => sum + Number(order.total), 0) || 0,
       }))
-      .sort((a, b) => b.totalSpent - a.totalSpent);
+      .sort((a, b) => (b.totalSpent as number) - (a.totalSpent as number));
 
     return {
       totalCustomers,

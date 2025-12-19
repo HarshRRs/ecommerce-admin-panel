@@ -19,6 +19,7 @@ export class CouponsService {
       data: {
         ...createCouponDto,
         storeId,
+        status: createCouponDto.status || 'ACTIVE',
       },
     });
   }
