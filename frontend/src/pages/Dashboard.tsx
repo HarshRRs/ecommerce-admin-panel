@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import api from '../services/api';
-import { ShoppingBag, TrendingUp, Users, DollarSign, Package } from 'lucide-react';
+import { ShoppingBag, TrendingUp, Users, DollarSign, Package, ExternalLink, Globe } from 'lucide-react';
 
 const Dashboard: React.FC = () => {
     const { user } = useAuth();
@@ -28,9 +28,22 @@ const Dashboard: React.FC = () => {
 
     return (
         <div className="animate-fade-in">
-            <div style={{ marginBottom: '2rem' }}>
-                <h1 style={{ fontSize: '2rem' }}>Dashboard Overview</h1>
-                <p style={{ color: 'var(--text-secondary)' }}>Welcome back to {user?.storeName || 'System Management'}</p>
+            <div style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                <div>
+                    <h1 style={{ fontSize: '2rem' }}>Dashboard Overview</h1>
+                    <p style={{ color: 'var(--text-secondary)' }}>Welcome back to {user?.storeName || 'System Management'}</p>
+                </div>
+                {user?.storeId && (
+                    <a
+                        href={`https://${user.storeName?.toLowerCase().replace(/\s+/g, '-')}.ordernest.com`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-primary"
+                        style={{ padding: '0.6rem 1.2rem', gap: '0.6rem' }}
+                    >
+                        <Globe size={18} /> Visit My Website <ExternalLink size={16} />
+                    </a>
+                )}
             </div>
 
             <div style={{

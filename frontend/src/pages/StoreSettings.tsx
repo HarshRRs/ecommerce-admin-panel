@@ -6,7 +6,9 @@ import {
     AlertTriangle,
     CreditCard,
     Building,
-    Info
+    Info,
+    Globe,
+    ExternalLink
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -20,14 +22,15 @@ const StoreSettings: React.FC = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
-    // Form state
     const [formData, setFormData] = useState({
         name: '',
         currency: 'EUR',
         timezone: 'Europe/Paris',
         stripeApiKey: '',
         stripeWebhookSecret: '',
-        logo: ''
+        logo: '',
+        customDomain: '',
+        websiteUrl: ''
     });
 
     const [confirmed, setConfirmed] = useState(false);
@@ -48,7 +51,9 @@ const StoreSettings: React.FC = () => {
                 timezone: response.data.timezone || 'Europe/Paris',
                 stripeApiKey: '', // Never show existing keys for security
                 stripeWebhookSecret: '',
-                logo: response.data.logo || ''
+                logo: response.data.logo || '',
+                customDomain: response.data.customDomain || '',
+                websiteUrl: response.data.websiteUrl || ''
             });
             setConfirmed(response.data.stripeOwnershipConfirmed || false);
         } catch (err) {
@@ -166,6 +171,56 @@ const StoreSettings: React.FC = () => {
                                 <option value="USD">US Dollar ($)</option>
                                 <option value="GBP">British Pound (£)</option>
                             </select>
+                        </div>
+                    </div>
+                </div>
+                {/* Section: Website & Domain */}
+                <div className="glass-card" style={{ marginTop: '1.5rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '1.5rem' }}>
+                        <Globe className="text-secondary" />
+                        <h2 style={{ fontSize: '1.25rem' }}>Website & Domain</h2>
+                    </div>
+
+                    <div className="space-y-4">
+                        <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+                            <label>Your OrderNest URL (Live)</label>
+                            <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', marginTop: '0.5rem' }}>
+                                <div className="form-control" style={{ background: 'rgba(255,255,255,0.05)', color: 'var(--text-secondary)', flex: 1, padding: '0.8rem' }}>
+                                    https://{store?.slug}.ordernest.com
+                                </div>
+                                <a
+                                    href={`https://${store?.slug}.ordernest.com`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn btn-secondary"
+                                    style={{ height: '100%', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+                                >
+                                    <ExternalLink size={16} /> Visit
+                                </a>
+                            </div>
+                        </div>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                            <div className="form-group">
+                                <label>Custom Domain (e.g. www.mystore.com)</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Enter your own domain"
+                                    value={formData.customDomain}
+                                    onChange={e => setFormData({ ...formData, customDomain: e.target.value })}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>External Website Link (Portfolio/Social)</label>
+                                <input
+                                    type="url"
+                                    className="form-control"
+                                    placeholder="https://..."
+                                    value={formData.websiteUrl}
+                                    onChange={e => setFormData({ ...formData, websiteUrl: e.target.value })}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

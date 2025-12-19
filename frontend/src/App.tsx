@@ -8,6 +8,7 @@ import ProductForm from './pages/ProductForm';
 import StoreList from './pages/StoreList';
 import StoreForm from './pages/StoreForm';
 import StoreSettings from './pages/StoreSettings';
+import RegisterPage from './pages/RegisterPage';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode; roles?: string[] }> = ({ children, roles }) => {
   const { user, loading } = useAuth();
@@ -28,6 +29,7 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
 
           <Route path="/" element={
             <ProtectedRoute>

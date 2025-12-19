@@ -161,7 +161,9 @@ model Store {
   ownerId       String
   taxConfig     Json?         // Tax rates, inclusion settings
   shippingConfig Json?        // Shipping zones, methods
-  domainConfig            Json?         // Domain settings
+  domainConfig            Json?         // Is now legacy, using fields below
+  customDomain            String?       @unique
+  websiteUrl              String?       // External website link
   stripeOwnershipConfirmed Boolean      @default(false)
   stripeConfirmedAt       DateTime?
   stripeConfirmedBy       String?

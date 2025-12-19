@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { Link } from 'react-router-dom';
 import api from '../services/api';
 import { LogIn, Loader2 } from 'lucide-react';
 
@@ -102,6 +103,15 @@ const LoginPage: React.FC = () => {
                         {loading ? <Loader2 className="animate-spin" /> : 'Sign In'}
                     </button>
                 </form>
+
+                <div style={{ marginTop: '1.5rem', textAlign: 'center' }}>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                        Don't have a store yet?{' '}
+                        <Link to="/register" style={{ color: 'var(--accent-primary)', textDecoration: 'none', fontWeight: 600 }}>
+                            Start your free trial
+                        </Link>
+                    </p>
+                </div>
             </div>
         </div>
     );

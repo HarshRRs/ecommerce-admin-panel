@@ -47,3 +47,30 @@ export class RefreshTokenDto {
   @IsNotEmpty()
   refreshToken: string;
 }
+
+export class RegisterWithStoreDto {
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(6)
+  password: string;
+
+  @IsString()
+  @IsNotEmpty()
+  firstName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  lastName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  storeName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  storeSlug: string;
+}

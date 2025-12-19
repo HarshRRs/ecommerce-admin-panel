@@ -75,4 +75,12 @@ export class UpdateStoreDto {
   @IsString()
   @IsOptional()
   stripeWebhookSecret?: string;
+
+  @IsString()
+  @IsOptional()
+  customDomain?: string;
+
+  @IsString()
+  @IsOptional()
+  websiteUrl?: string;
 }

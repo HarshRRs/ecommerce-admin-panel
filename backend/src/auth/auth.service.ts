@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { PrismaService } from '../prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
-import { LoginDto, RegisterDto } from './dto/auth.dto';
+import { LoginDto, RegisterDto, RegisterWithStoreDto } from './dto/auth.dto';
 import { randomBytes } from 'crypto';
 import { Role } from '@prisma/client';
 
@@ -123,6 +123,74 @@ export class AuthService {
         forcePasswordChange: user.forcePasswordChange,
       },
     };
+  }
+
+  async registerWithStore(dto: RegisterWithStoreDto) {
+    // Check if user already exists
+    const existingUser = await this.prisma.prisma.user.findUnique({
+      where: { email: dto.email },
+    });
+
+    if (existingUser) {
+      throw new ConflictException('User with this email already exists');
+    }
+
+    // Check if store slug already exists
+    const existingStore = await this.prisma.prisma.store.findUnique({
+      where: { slug: dto.storeSlug },
+    });
+
+    if (existingStore) {
+      throw new ConflictException('Store with this slug already exists');
+    }
+
+    const hashedPassword = await bcrypt.hash(dto.password, 12);
+
+    // Create store and user in a transaction
+    return this.prisma.prisma.$transaction(async (tx) => {
+      // 1. Create User first (Owner)
+      const user = await tx.user.create({
+        data: {
+          email: dto.email,
+          password: hashedPassword,
+          firstName: dto.firstName,
+          lastName: dto.lastName,
+          role: 'OWNER',
+        },
+      });
+
+      // 2. Create Store with user as owner
+      const store = await tx.store.create({
+        data: {
+          name: dto.storeName,
+          slug: dto.storeSlug,
+          status: 'ACTIVE',
+          ownerId: user.id,
+        },
+      });
+
+      // 3. Link User back to Store
+      await tx.user.update({
+        where: { id: user.id },
+        data: { storeId: store.id },
+      });
+
+      const { accessToken, refreshToken } = await this.generateTokens(user);
+
+      return {
+        access_token: accessToken,
+        refresh_token: refreshToken,
+        user: {
+          id: user.id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          role: user.role,
+          storeId: store.id,
+          storeName: store.name,
+        },
+      };
+    });
   }
 
   async register(registerDto: RegisterDto) {

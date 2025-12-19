@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "npx nest build",
+    "build": "cross-env NODE_OPTIONS=--max-old-space-size=450 npx nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -22,9 +22,6 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "ts-node prisma/seed.ts",
     "prisma:studio": "prisma studio"
-  },
-  "prisma": {
-    "seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -53,7 +50,10 @@
     "stripe": "^20.1.0",
     "uuid": "^13.0.0",
     "dotenv": "^17.2.3",
-    "@nestjs/cli": "^11.0.0"
+    "@nestjs/cli": "^11.0.0",
+    "@swc/core": "^1.10.1",
+    "@swc/cli": "^0.6.0",
+    "cross-env": "^7.0.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
