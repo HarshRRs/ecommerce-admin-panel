@@ -1,0 +1,2125 @@
+﻿
+> backend@0.0.1 build
+> nest build
+
+node.exe : [96msrc/a
+nalytics/analytics.se
+rvice.ts[0m:[93m18
+[0m:[93m27[0m - 
+[91merror[0m[90m 
+TS2322: [0mType 
+'"COMPLETED"' is not 
+assignable to type 
+'OrderStatus | EnumOr
+derStatusFilter<"Orde
+r"> | undefined'.
+At line:1 char:1
++ & "C:\Program Files
+\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: ([96msr   
+ c/analyt...> | u    
+ndefined'.:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+
+[7m18[0m         
+where: { storeId, 
+status: 'COMPLETED' 
+},
+[7m  [0m [91m     
+                     
+~~~~~~[0m
+[96msrc/analytics/an
+alytics.service.ts[0
+m:[93m37[0m:[93m21
+[0m - 
+[91merror[0m[90m 
+TS18048: [0m'totalRe
+venue._sum' is 
+possibly 'undefined'.
+
+[7m37[0m       
+totalRevenue: totalRe
+venue._sum.total || 
+0,
+[7m  [0m [91m     
+               
+~~~~~~~~~~~~~~~~~[0m
+[96msrc/analytics/an
+alytics.service.ts[0
+m:[93m57[0m:[93m46
+[0m - 
+[91merror[0m[90m 
+TS2353: [0mObject 
+literal may only 
+specify known 
+properties, and 
+'taxAmount' does not 
+exist in type 'OrderS
+umAggregateInputType'
+.
+
+[7m57[0m         
+_sum: { total: true, 
+subtotal: true, 
+taxAmount: true, 
+shippingCost: true },
+[7m  [0m [91m     
+                     
+                   
+~~~~~~~~~[0m
+
+  [96mnode_modules/.
+prisma/client/index.d
+.ts[0m:[93m14630[0
+m:[93m5[0m
+    [7m14630[0m    
+ _sum?: OrderSumAggre
+gateInputType
+    [7m     [0m 
+[96m    ~~~~[0m
+    The expected 
+type comes from 
+property '_sum' 
+which is declared 
+here on type 'Subset<
+OrderAggregateArgs<De
+faultArgs>, OrderAggr
+egateArgs<DefaultArgs
+>>'
+[96msrc/analytics/an
+alytics.service.ts[0
+m:[93m69[0m:[93m21
+[0m - 
+[91merror[0m[90m 
+TS18048: 
+[0m'revenue._sum' 
+is possibly 
+'undefined'.
+
+[7m69[0m       
+totalRevenue: 
+revenue._sum.total 
+|| 0,
+[7m  [0m [91m     
+               
+~~~~~~~~~~~~[0m
+[96msrc/analytics/an
+alytics.service.ts[0
+m:[93m70[0m:[93m17
+[0m - 
+[91merror[0m[90m 
+TS18048: 
+[0m'revenue._sum' 
+is possibly 
+'undefined'.
+
+[7m70[0m       
+subtotal: revenue._su
+m.subtotal || 0,
+[7m  [0m [91m     
+           
+~~~~~~~~~~~~[0m
+[96msrc/analytics/an
+alytics.service.ts[0
+m:[93m71[0m:[93m14
+[0m - 
+[91merror[0m[90m 
+TS18048: 
+[0m'revenue._sum' 
+is possibly 
+'undefined'.
+
+[7m71[0m       
+taxes: revenue._sum.t
+axAmount || 0,
+[7m  [0m [91m     
+        
+~~~~~~~~~~~~[0m
+[96msrc/analytics/an
+alytics.service.ts[0
+m:[93m71[0m:[93m27
+[0m - 
+[91merror[0m[90m 
+TS2339: [0mProperty 
+'taxAmount' does not 
+exist on type '{ 
+subtotal?: Decimal | 
+null | undefined; 
+tax?: Decimal | null 
+| undefined; 
+shipping?: Decimal | 
+null | undefined; 
+discount?: Decimal | 
+null | undefined; 
+total?: Decimal | 
+... 1 more ... | 
+undefined; }'.
+
+[7m71[0m       
+taxes: revenue._sum.t
+axAmount || 0,
+[7m  [0m [91m     
+                     
+~~~~~~~~~[0m
+[96msrc/analytics/an
+alytics.service.ts[0
+m:[93m72[0m:[93m17
+[0m - 
+[91merror[0m[90m 
+TS18048: 
+[0m'revenue._sum' 
+is possibly 
+'undefined'.
+
+[7m72[0m       
+shipping: revenue._su
+m.shippingCost || 0,
+[7m  [0m [91m     
+           
+~~~~~~~~~~~~[0m
+[96msrc/analytics/an
+alytics.service.ts[0
+m:[93m72[0m:[93m30
+[0m - 
+[91merror[0m[90m 
+TS2551: [0mProperty 
+'shippingCost' does 
+not exist on type '{ 
+subtotal?: Decimal | 
+null | undefined; 
+tax?: Decimal | null 
+| undefined; 
+shipping?: Decimal | 
+null | undefined; 
+discount?: Decimal | 
+null | undefined; 
+total?: Decimal | 
+... 1 more ... | 
+undefined; }'. Did 
+you mean 'shipping'?
+
+[7m72[0m       
+shipping: revenue._su
+m.shippingCost || 0,
+[7m  [0m [91m     
+                     
+   ~~~~~~~~~~~~[0m
+[96msrc/analytics/an
+alytics.service.ts[0
+m:[93m81[0m:[93m27
+[0m - 
+[91merror[0m[90m 
+TS2322: [0mType 
+'"COMPLETED"' is not 
+assignable to type 
+'OrderStatus | EnumOr
+derStatusFilter<"Orde
+r"> | undefined'.
+
+[7m81[0m         
+order: { storeId, 
+status: 'COMPLETED' 
+},
+[7m  [0m [91m     
+                     
+~~~~~~[0m
+[96msrc/analytics/an
+alytics.service.ts[0
+m:[93m105[0m:[93m2
+3[0m - 
+[91merror[0m[90m 
+TS18048: 
+[0m'item._sum' is 
+possibly 'undefined'.
+
+[7m105[0m         
+quantitySold: 
+item._sum.quantity 
+|| 0,
+[7m   [0m [91m    
+                  
+~~~~~~~~~[0m
+[96msrc/analytics/an
+alytics.service.ts[0
+m:[93m106[0m:[93m1
+8[0m - 
+[91merror[0m[90m 
+TS18048: 
+[0m'item._sum' is 
+possibly 'undefined'.
+
+[7m106[0m         
+revenue: 
+item._sum.total || 0,
+[7m   [0m [91m    
+             
+~~~~~~~~~[0m
+[96msrc/analytics/an
+alytics.service.ts[0
+m:[93m124[0m:[93m2
+2[0m - 
+[91merror[0m[90m 
+TS2322: [0mType 
+'"COMPLETED"' is not 
+assignable to type 
+'OrderStatus | EnumOr
+derStatusFilter<"Orde
+r"> | undefined'.
+
+[7m124[0m          
+   where: { status: 
+'COMPLETED' },
+[7m   [0m [91m    
+                 
+~~~~~~[0m
+[96msrc/analytics/an
+alytics.service.ts[0
+m:[93m140[0m:[93m3
+1[0m - 
+[91merror[0m[90m 
+TS2339: [0mProperty 
+'orders' does not 
+exist on type '{ id: 
+string; email: 
+string; firstName: 
+string; lastName: 
+string; storeId: 
+string; createdAt: 
+Date; updatedAt: 
+Date; status: 
+CustomerStatus; 
+phone: string | 
+null; totalOrders: 
+number; totalSpent: 
+Decimal; 
+lastOrderAt: Date | 
+null; notes: string 
+| null; }'.
+
+[7m140[0m         
+totalOrders: customer
+.orders.length,
+[7m   [0m [91m    
+                     
+     ~~~~~~[0m
+[96msrc/analytics/an
+alytics.service.ts[0
+m:[93m141[0m:[93m3
+0[0m - 
+[91merror[0m[90m 
+TS2339: [0mProperty 
+'orders' does not 
+exist on type '{ id: 
+string; email: 
+string; firstName: 
+string; lastName: 
+string; storeId: 
+string; createdAt: 
+Date; updatedAt: 
+Date; status: 
+CustomerStatus; 
+phone: string | 
+null; totalOrders: 
+number; totalSpent: 
+Decimal; 
+lastOrderAt: Date | 
+null; notes: string 
+| null; }'.
+
+[7m141[0m         
+totalSpent: customer.
+orders.reduce((sum, 
+order) => sum + 
+order.total, 0),
+[7m   [0m [91m    
+                     
+    ~~~~~~[0m
+[96msrc/auth/auth.co
+ntroller.ts[0m:[93m
+6[0m:[93m30[0m - 
+[91merror[0m[90m 
+TS2307: [0mCannot 
+find module './strate
+gies/jwt-auth.guard' 
+or its corresponding 
+type declarations.
+
+[7m6[0m import { 
+JwtAuthGuard } from '
+./strategies/jwt-auth
+.guard';
+[7m [0m [91m      
+                     
+  ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~[0m
+[96msrc/cms/cms.serv
+ice.ts[0m:[93m134[
+0m:[93m9[0m - 
+[91merror[0m[90m 
+TS2353: [0mObject 
+literal may only 
+specify known 
+properties, and 
+'author' does not 
+exist in type 'BlogPo
+stInclude<DefaultArgs
+>'.
+
+[7m134[0m         
+author: {
+[7m   [0m [91m    
+    ~~~~~~[0m
+
+  [96mnode_modules/.
+prisma/client/index.d
+.ts[0m:[93m26118[0
+m:[93m5[0m
+    [7m26118[0m    
+ include?: BlogPostIn
+clude<ExtArgs> | null
+    [7m     [0m 
+[96m    ~~~~~~~[0m
+    The expected 
+type comes from 
+property 'include' 
+which is declared 
+here on type '{ 
+select?: BlogPostSele
+ct<DefaultArgs> | 
+null | undefined; 
+omit?: BlogPostOmit<D
+efaultArgs> | null | 
+undefined; include?: 
+BlogPostInclude<...> 
+| ... 1 more ... | 
+undefined; data: 
+(Without<...> & BlogP
+ostUncheckedCreateInp
+ut) | (Without<...> 
+& BlogPostCreateInput
+); }'
+[96msrc/cms/cms.serv
+ice.ts[0m:[93m148[
+0m:[93m9[0m - 
+[91merror[0m[90m 
+TS2353: [0mObject 
+literal may only 
+specify known 
+properties, and 
+'author' does not 
+exist in type 'BlogPo
+stInclude<DefaultArgs
+>'.
+
+[7m148[0m         
+author: {
+[7m   [0m [91m    
+    ~~~~~~[0m
+[96msrc/cms/cms.serv
+ice.ts[0m:[93m160[
+0m:[93m9[0m - 
+[91merror[0m[90m 
+TS2353: [0mObject 
+literal may only 
+specify known 
+properties, and 
+'author' does not 
+exist in type 'BlogPo
+stInclude<DefaultArgs
+>'.
+
+[7m160[0m         
+author: {
+[7m   [0m [91m    
+    ~~~~~~[0m
+[96msrc/cms/cms.serv
+ice.ts[0m:[93m189[
+0m:[93m9[0m - 
+[91merror[0m[90m 
+TS2353: [0mObject 
+literal may only 
+specify known 
+properties, and 
+'author' does not 
+exist in type 'BlogPo
+stInclude<DefaultArgs
+>'.
+
+[7m189[0m         
+author: {
+[7m   [0m [91m    
+    ~~~~~~[0m
+
+  [96mnode_modules/.
+prisma/client/index.d
+.ts[0m:[93m26174[0
+m:[93m5[0m
+    [7m26174[0m    
+ include?: BlogPostIn
+clude<ExtArgs> | null
+    [7m     [0m 
+[96m    ~~~~~~~[0m
+    The expected 
+type comes from 
+property 'include' 
+which is declared 
+here on type '{ 
+select?: BlogPostSele
+ct<DefaultArgs> | 
+null | undefined; 
+omit?: BlogPostOmit<D
+efaultArgs> | null | 
+undefined; include?: 
+BlogPostInclude<...> 
+| ... 1 more ... | 
+undefined; data: 
+(Without<...> & BlogP
+ostUncheckedUpdateInp
+ut) | (Without<...> 
+& BlogPostUpdateInput
+); where: BlogPostWhe
+reUniqueInput; }'
+[96msrc/coupons/coup
+ons.service.ts[0m:[
+93m19[0m:[93m7[0m 
+- 
+[91merror[0m[90m 
+TS2322: [0mType '{ 
+storeId: string; 
+code: string; 
+description?: 
+string; 
+discountType: 
+DiscountType; 
+discountValue: 
+number; 
+minPurchaseAmount?: 
+number; 
+maxDiscountAmount?: 
+number; usageLimit?: 
+number; startDate?: 
+Date; endDate?: 
+Date; isActive?: 
+boolean; }' is not 
+assignable to type '(
+Without<CouponCreateI
+nput, CouponUnchecked
+CreateInput> & Coupon
+UncheckedCreateInput)
+ | (Without<...> & 
+CouponCreateInput)'.
+  Type '{ storeId: 
+string; code: 
+string; 
+description?: 
+string; 
+discountType: 
+DiscountType; 
+discountValue: 
+number; 
+minPurchaseAmount?: 
+number; 
+maxDiscountAmount?: 
+number; usageLimit?: 
+number; startDate?: 
+Date; endDate?: 
+Date; isActive?: 
+boolean; }' is not 
+assignable to type 'W
+ithout<CouponCreateIn
+put, CouponUncheckedC
+reateInput> & CouponU
+ncheckedCreateInput'.
+    Type '{ storeId: 
+string; code: 
+string; 
+description?: string 
+| undefined; 
+discountType: 
+DiscountType; 
+discountValue: 
+number; 
+minPurchaseAmount?: 
+number | undefined; 
+maxDiscountAmount?: 
+number | undefined; 
+usageLimit?: number 
+| undefined; 
+startDate?: Date | 
+undefined; endDate?: 
+Date | undefined; 
+isActive?: boolean | 
+undefin...' is 
+missing the 
+following properties 
+from type 'CouponUnch
+eckedCreateInput': 
+type, value
+
+[7m19[0m       
+data: {
+[7m  [0m [91m     
+ ~~~~[0m
+
+  [96mnode_modules/.
+prisma/client/index.d
+.ts[0m:[93m22610[0
+m:[93m5[0m
+    [7m22610[0m    
+ data: XOR<CouponCrea
+teInput, CouponUnchec
+kedCreateInput>
+    [7m     [0m 
+[96m    ~~~~[0m
+    The expected 
+type comes from 
+property 'data' 
+which is declared 
+here on type '{ 
+select?: CouponSelect
+<DefaultArgs> | null 
+| undefined; omit?: C
+ouponOmit<DefaultArgs
+> | null | 
+undefined; include?: 
+CouponInclude<Default
+Args> | null | 
+undefined; data: 
+(Without<...> & Coupo
+nUncheckedCreateInput
+) | (Without<...> & 
+CouponCreateInput); 
+}'
+[96msrc/coupons/coup
+ons.service.ts[0m:[
+93m53[0m:[93m31[0m
+ - 
+[91merror[0m[90m 
+TS2353: [0mObject 
+literal may only 
+specify known 
+properties, and 
+'isActive' does not 
+exist in type 
+'CouponWhereInput'.
+
+[7m53[0m       
+where: { code, 
+storeId, isActive: 
+true },
+[7m  [0m [91m     
+                     
+    ~~~~~~~~[0m
+[96msrc/coupons/coup
+ons.service.ts[0m:[
+93m61[0m:[93m16[0m
+ - 
+[91merror[0m[90m 
+TS2339: [0mProperty 
+'startDate' does not 
+exist on type '{ id: 
+string; storeId: 
+string; createdAt: 
+Date; updatedAt: 
+Date; status: 
+CouponStatus; type: 
+CouponType; code: 
+string; value: 
+Decimal; 
+minOrderValue: 
+Decimal | null; ... 
+6 more ...; 
+restrictions: 
+JsonValue; }'.
+
+[7m61[0m     if 
+(coupon.startDate && 
+now < 
+coupon.startDate) {
+[7m  [0m [91m     
+          
+~~~~~~~~~[0m
+[96msrc/coupons/coup
+ons.service.ts[0m:[
+93m61[0m:[93m42[0m
+ - 
+[91merror[0m[90m 
+TS2339: [0mProperty 
+'startDate' does not 
+exist on type '{ id: 
+string; storeId: 
+string; createdAt: 
+Date; updatedAt: 
+Date; status: 
+CouponStatus; type: 
+CouponType; code: 
+string; value: 
+Decimal; 
+minOrderValue: 
+Decimal | null; ... 
+6 more ...; 
+restrictions: 
+JsonValue; }'.
+
+[7m61[0m     if 
+(coupon.startDate && 
+now < 
+coupon.startDate) {
+[7m  [0m [91m     
+                     
+               
+~~~~~~~~~[0m
+[96msrc/coupons/coup
+ons.service.ts[0m:[
+93m65[0m:[93m16[0m
+ - 
+[91merror[0m[90m 
+TS2339: [0mProperty 
+'endDate' does not 
+exist on type '{ id: 
+string; storeId: 
+string; createdAt: 
+Date; updatedAt: 
+Date; status: 
+CouponStatus; type: 
+CouponType; code: 
+string; value: 
+Decimal; 
+minOrderValue: 
+Decimal | null; ... 
+6 more ...; 
+restrictions: 
+JsonValue; }'.
+
+[7m65[0m     if 
+(coupon.endDate && 
+now > 
+coupon.endDate) {
+[7m  [0m [91m     
+          ~~~~~~~[0m
+[96msrc/coupons/coup
+ons.service.ts[0m:[
+93m65[0m:[93m40[0m
+ - 
+[91merror[0m[90m 
+TS2339: [0mProperty 
+'endDate' does not 
+exist on type '{ id: 
+string; storeId: 
+string; createdAt: 
+Date; updatedAt: 
+Date; status: 
+CouponStatus; type: 
+CouponType; code: 
+string; value: 
+Decimal; 
+minOrderValue: 
+Decimal | null; ... 
+6 more ...; 
+restrictions: 
+JsonValue; }'.
+
+[7m65[0m     if 
+(coupon.endDate && 
+now > 
+coupon.endDate) {
+[7m  [0m [91m     
+                     
+             
+~~~~~~~[0m
+[96msrc/coupons/coup
+ons.service.ts[0m:[
+93m69[0m:[93m37[0m
+ - 
+[91merror[0m[90m 
+TS2551: [0mProperty 
+'usedCount' does not 
+exist on type '{ id: 
+string; storeId: 
+string; createdAt: 
+Date; updatedAt: 
+Date; status: 
+CouponStatus; type: 
+CouponType; code: 
+string; value: 
+Decimal; 
+minOrderValue: 
+Decimal | null; ... 
+6 more ...; 
+restrictions: 
+JsonValue; }'. Did 
+you mean 
+'usageCount'?
+
+[7m69[0m     if 
+(coupon.usageLimit 
+&& coupon.usedCount 
+>= 
+coupon.usageLimit) {
+[7m  [0m [91m     
+                     
+          
+~~~~~~~~~[0m
+[96msrc/coupons/coup
+ons.service.ts[0m:[
+93m110[0m:[93m9[0m
+ - 
+[91merror[0m[90m 
+TS2561: [0mObject 
+literal may only 
+specify known 
+properties, but 
+'usedCount' does not 
+exist in type '(Witho
+ut<CouponUpdateInput,
+ CouponUncheckedUpdat
+eInput> & CouponUnche
+ckedUpdateInput) | 
+(Without<...> & 
+CouponUpdateInput)'. 
+Did you mean to 
+write 'usageCount'?
+
+[7m110[0m         
+usedCount: { 
+increment: 1 },
+[7m   [0m [91m    
+    ~~~~~~~~~[0m
+
+  [96mnode_modules/.
+prisma/client/index.d
+.ts[0m:[93m22666[0
+m:[93m5[0m
+    [7m22666[0m    
+ data: XOR<CouponUpda
+teInput, CouponUnchec
+kedUpdateInput>
+    [7m     [0m 
+[96m    ~~~~[0m
+    The expected 
+type comes from 
+property 'data' 
+which is declared 
+here on type '{ 
+select?: CouponSelect
+<DefaultArgs> | null 
+| undefined; omit?: C
+ouponOmit<DefaultArgs
+> | null | 
+undefined; include?: 
+CouponInclude<Default
+Args> | null | 
+undefined; data: 
+(Without<...> & Coupo
+nUncheckedUpdateInput
+) | (Without<...> & 
+CouponUpdateInput); 
+where: CouponWhereUni
+queInput; }'
+[96msrc/coupons/dto/
+coupon.dto.ts[0m:[9
+3m3[0m:[93m10[0m 
+- 
+[91merror[0m[90m 
+TS2305: [0mModule 
+'"@prisma/client"' 
+has no exported 
+member 
+'DiscountType'.
+
+[7m3[0m import { 
+DiscountType } from 
+'@prisma/client';
+[7m [0m [91m      
+   ~~~~~~~~~~~~[0m
+[96msrc/customers/cu
+stomers.service.ts[0
+m:[93m24[0m:[93m9
+[0m - 
+[91merror[0m[90m 
+TS2322: [0mType '{ 
+create: { 
+customerId: 
+undefined; 
+firstName: string; 
+lastName: string; 
+addressLine1: 
+string; 
+addressLine2?: 
+string; city: 
+string; state: 
+string; postalCode: 
+string; country: 
+string; phone?: 
+string; isDefault?: 
+boolean; }[]; }' is 
+not assignable to 
+type 'AddressUnchecke
+dCreateNestedManyWith
+outCustomerInput | Ad
+dressCreateNestedMany
+WithoutCustomerInput 
+| undefined'.
+  Types of property 
+'create' are 
+incompatible.
+    Type '{ 
+customerId: 
+undefined; 
+firstName: string; 
+lastName: string; 
+addressLine1: 
+string; 
+addressLine2?: 
+string | undefined; 
+city: string; state: 
+string; postalCode: 
+string; country: 
+string; phone?: 
+string | undefined; 
+isDefault?: boolean 
+| undefined; }[]' is 
+not assignable to 
+type '(Without<Addres
+sCreateWithoutCustome
+rInput, AddressUnchec
+kedCreateWithoutCusto
+merInput> & AddressUn
+checkedCreateWithoutC
+ustomerInput) | 
+(Without<...> & Addre
+ssCreateWithoutCustom
+erInput) | AddressCre
+ateWithoutCustomerInp
+ut[] | AddressUncheck
+edCreateWithoutCustom
+erInput[] | 
+undefined'.
+      Type '{ 
+customerId: 
+undefined; 
+firstName: string; 
+lastName: string; 
+addressLine1: 
+string; 
+addressLine2?: 
+string | undefined; 
+city: string; state: 
+string; postalCode: 
+string; country: 
+string; phone?: 
+string | undefined; 
+isDefault?: boolean 
+| undefined; }[]' is 
+not assignable to 
+type 'AddressCreateWi
+thoutCustomerInput[]'
+.
+        Type '{ 
+customerId: 
+undefined; 
+firstName: string; 
+lastName: string; 
+addressLine1: 
+string; 
+addressLine2?: 
+string; city: 
+string; state: 
+string; postalCode: 
+string; country: 
+string; phone?: 
+string; isDefault?: 
+boolean; }' is not 
+assignable to type 'A
+ddressCreateWithoutCu
+stomerInput'.
+          Types of 
+property 'phone' are 
+incompatible.
+            Type 
+'string | undefined' 
+is not assignable to 
+type 'string'.
+              Type 
+'undefined' is not 
+assignable to type 
+'string'.
+
+[7m24[0m         
+addresses: addresses
+[7m  [0m [91m     
+   ~~~~~~~~~[0m
+
+  [96mnode_modules/.
+prisma/client/index.d
+.ts[0m:[93m30955[0
+m:[93m5[0m
+    [7m30955[0m    
+ addresses?: AddressU
+ncheckedCreateNestedM
+anyWithoutCustomerInp
+ut
+    [7m     [0m 
+[96m    
+~~~~~~~~~[0m
+    The expected 
+type comes from 
+property 'addresses' 
+which is declared 
+here on type '(Withou
+t<CustomerCreateInput
+, CustomerUncheckedCr
+eateInput> & Customer
+UncheckedCreateInput)
+ | (Without<...> & 
+CustomerCreateInput)'
+[96msrc/customers/cu
+stomers.service.ts[0
+m:[93m130[0m:[93m7
+[0m - 
+[91merror[0m[90m 
+TS2322: [0mType '{ 
+customerId: string; 
+firstName: string; 
+lastName: string; 
+addressLine1: 
+string; 
+addressLine2?: 
+string; city: 
+string; state: 
+string; postalCode: 
+string; country: 
+string; phone?: 
+string; isDefault?: 
+boolean; }' is not 
+assignable to type '(
+Without<AddressCreate
+Input, AddressUncheck
+edCreateInput> & Addr
+essUncheckedCreateInp
+ut) | (Without<...> 
+& 
+AddressCreateInput)'.
+  Type '{ 
+customerId: string; 
+firstName: string; 
+lastName: string; 
+addressLine1: 
+string; 
+addressLine2?: 
+string; city: 
+string; state: 
+string; postalCode: 
+string; country: 
+string; phone?: 
+string; isDefault?: 
+boolean; }' is not 
+assignable to type 'W
+ithout<AddressCreateI
+nput, AddressUnchecke
+dCreateInput> & Addre
+ssUncheckedCreateInpu
+t'.
+    Type '{ 
+customerId: string; 
+firstName: string; 
+lastName: string; 
+addressLine1: 
+string; 
+addressLine2?: 
+string; city: 
+string; state: 
+string; postalCode: 
+string; country: 
+string; phone?: 
+string; isDefault?: 
+boolean; }' is not 
+assignable to type 'A
+ddressUncheckedCreate
+Input'.
+      Types of 
+property 'phone' are 
+incompatible.
+        Type 'string 
+| undefined' is not 
+assignable to type 
+'string'.
+          Type 
+'undefined' is not 
+assignable to type 
+'string'.
+
+[7m130[0m       
+data: {
+[7m   [0m [91m    
+  ~~~~[0m
+
+  [96mnode_modules/.
+prisma/client/index.d
+.ts[0m:[93m14217[0
+m:[93m5[0m
+    [7m14217[0m    
+ data: XOR<AddressCre
+ateInput, AddressUnch
+eckedCreateInput>
+    [7m     [0m 
+[96m    ~~~~[0m
+    The expected 
+type comes from 
+property 'data' 
+which is declared 
+here on type '{ 
+select?: AddressSelec
+t<DefaultArgs> | 
+null | undefined; 
+omit?: AddressOmit<De
+faultArgs> | null | 
+undefined; include?: 
+AddressInclude<...> 
+| ... 1 more ... | 
+undefined; data: 
+(Without<...> & Addre
+ssUncheckedCreateInpu
+t) | (Without<...> & 
+AddressCreateInput); 
+}'
+[96msrc/orders/dto/o
+rder.dto.ts[0m:[93m
+3[0m:[93m38[0m - 
+[91merror[0m[90m 
+TS2305: [0mModule 
+'"@prisma/client"' 
+has no exported 
+member 
+'FulfillmentStatus'.
+
+[7m3[0m import { 
+OrderStatus, 
+PaymentStatus, 
+FulfillmentStatus } 
+from 
+'@prisma/client';
+[7m [0m [91m      
+                     
+          
+~~~~~~~~~~~~~~~~~[0m
+[96msrc/orders/order
+s.service.ts[0m:[93
+m37[0m:[93m23[0m 
+- 
+[91merror[0m[90m 
+TS2345: [0mArgument 
+of type '{ 
+productId: string; 
+variantId: string | 
+undefined; quantity: 
+number; price: 
+number; total: 
+number; }' is not 
+assignable to 
+parameter of type 
+'never'.
+
+[7m 37[0m       
+orderItems.push({
+[7m   [0m [91m    
+                  
+~[0m
+[7m 38[0m         
+productId: 
+item.productId,
+[7m   [0m [91m~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~[0m
+[7m...[0m 
+[7m 42[0m         
+total: itemTotal,
+[7m   [0m [91m~~~~
+~~~~~~~~~~~~~~~~~~~~~
+[0m
+[7m 43[0m       });
+[7m   [0m 
+[91m~~~~~~~[0m
+[96msrc/orders/order
+s.service.ts[0m:[93
+m53[0m:[93m41[0m 
+- 
+[91merror[0m[90m 
+TS2353: [0mObject 
+literal may only 
+specify known 
+properties, and 
+'isActive' does not 
+exist in type 
+'CouponWhereInput'.
+
+[7m53[0m         
+where: { id: 
+couponId, storeId, 
+isActive: true },
+[7m  [0m [91m     
+                     
+              
+~~~~~~~~[0m
+[96msrc/orders/order
+s.service.ts[0m:[93
+m57[0m:[93m20[0m 
+- 
+[91merror[0m[90m 
+TS2339: [0mProperty 
+'discountType' does 
+not exist on type '{ 
+id: string; storeId: 
+string; createdAt: 
+Date; updatedAt: 
+Date; status: 
+CouponStatus; type: 
+CouponType; code: 
+string; value: 
+Decimal; 
+minOrderValue: 
+Decimal | null; ... 
+6 more ...; 
+restrictions: 
+JsonValue; }'.
+
+[7m57[0m         
+if 
+(coupon.discountType 
+=== 'PERCENTAGE') {
+[7m  [0m [91m     
+              
+~~~~~~~~~~~~[0m
+[96msrc/orders/order
+s.service.ts[0m:[93
+m58[0m:[93m41[0m 
+- 
+[91merror[0m[90m 
+TS2339: [0mProperty 
+'discountValue' does 
+not exist on type '{ 
+id: string; storeId: 
+string; createdAt: 
+Date; updatedAt: 
+Date; status: 
+CouponStatus; type: 
+CouponType; code: 
+string; value: 
+Decimal; 
+minOrderValue: 
+Decimal | null; ... 
+6 more ...; 
+restrictions: 
+JsonValue; }'.
+
+[7m58[0m           
+discount = (subtotal 
+* coupon.discountValu
+e) / 100;
+[7m  [0m [91m     
+                     
+              
+~~~~~~~~~~~~~[0m
+[96msrc/orders/order
+s.service.ts[0m:[93
+m60[0m:[93m29[0m 
+- 
+[91merror[0m[90m 
+TS2339: [0mProperty 
+'discountValue' does 
+not exist on type '{ 
+id: string; storeId: 
+string; createdAt: 
+Date; updatedAt: 
+Date; status: 
+CouponStatus; type: 
+CouponType; code: 
+string; value: 
+Decimal; 
+minOrderValue: 
+Decimal | null; ... 
+6 more ...; 
+restrictions: 
+JsonValue; }'.
+
+[7m60[0m           
+discount = 
+coupon.discountValue;
+[7m  [0m [91m     
+                     
+  ~~~~~~~~~~~~~[0m
+[96msrc/orders/order
+s.service.ts[0m:[93
+m74[0m:[93m9[0m - 
+[91merror[0m[90m 
+TS2561: [0mObject 
+literal may only 
+specify known 
+properties, but 
+'shippingCost' does 
+not exist in type 'Wi
+thout<OrderCreateInpu
+t, OrderUncheckedCrea
+teInput> & OrderUnche
+ckedCreateInput'. 
+Did you mean to 
+write 'shipping'?
+
+[7m74[0m         
+shippingCost,
+[7m  [0m [91m     
+   ~~~~~~~~~~~~[0m
+
+  [96mnode_modules/.
+prisma/client/index.d
+.ts[0m:[93m15521[0
+m:[93m5[0m
+    [7m15521[0m    
+ data: XOR<OrderCreat
+eInput, OrderUnchecke
+dCreateInput>
+    [7m     [0m 
+[96m    ~~~~[0m
+    The expected 
+type comes from 
+property 'data' 
+which is declared 
+here on type '{ 
+select?: OrderSelect<
+DefaultArgs> | null 
+| undefined; omit?: O
+rderOmit<DefaultArgs>
+ | null | undefined; 
+include?: OrderInclud
+e<DefaultArgs> | 
+null | undefined; 
+data: (Without<...> 
+& OrderUncheckedCreat
+eInput) | 
+(Without<...> & 
+OrderCreateInput); }'
+[96msrc/orders/order
+s.service.ts[0m:[93
+m92[0m:[93m9[0m - 
+[91merror[0m[90m 
+TS2353: [0mObject 
+literal may only 
+specify known 
+properties, and 
+'shippingAddress' 
+does not exist in 
+type 'OrderInclude<De
+faultArgs>'.
+
+[7m92[0m         
+shippingAddress: 
+true,
+[7m  [0m [91m     
+   
+~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/.
+prisma/client/index.d
+.ts[0m:[93m15517[0
+m:[93m5[0m
+    [7m15517[0m    
+ include?: OrderInclu
+de<ExtArgs> | null
+    [7m     [0m 
+[96m    ~~~~~~~[0m
+    The expected 
+type comes from 
+property 'include' 
+which is declared 
+here on type '{ 
+select?: OrderSelect<
+DefaultArgs> | null 
+| undefined; omit?: O
+rderOmit<DefaultArgs>
+ | null | undefined; 
+include?: OrderInclud
+e<DefaultArgs> | 
+null | undefined; 
+data: (Without<...> 
+& OrderUncheckedCreat
+eInput) | 
+(Without<...> & 
+OrderCreateInput); }'
+[96msrc/orders/order
+s.service.ts[0m:[93
+m137[0m:[93m9[0m 
+- 
+[91merror[0m[90m 
+TS2353: [0mObject 
+literal may only 
+specify known 
+properties, and 
+'shippingAddress' 
+does not exist in 
+type 'OrderInclude<De
+faultArgs>'.
+
+[7m137[0m         
+shippingAddress: 
+true,
+[7m   [0m [91m    
+    
+~~~~~~~~~~~~~~~[0m
+[96msrc/orders/order
+s.service.ts[0m:[93
+m187[0m:[93m41[0m 
+- 
+[91merror[0m[90m 
+TS2367: [0mThis 
+comparison appears 
+to be unintentional 
+because the types 
+'"PENDING" | 
+"PROCESSING" | 
+"SHIPPED" | 
+"DELIVERED" | 
+"FAILED" | 
+"RETURNED" | 
+"REFUNDED"' and 
+'"COMPLETED"' have 
+no overlap.
+
+[7m187[0m     if 
+(order.status === 
+'CANCELLED' || 
+order.status === 
+'COMPLETED') {
+[7m   [0m [91m    
+                     
+               ~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~[0m
+[96msrc/payments/dto
+/payment.dto.ts[0m:
+[93m2[0m:[93m10[0m
+ - 
+[91merror[0m[90m 
+TS2305: [0mModule 
+'"@prisma/client"' 
+has no exported 
+member 
+'PaymentMethod'.
+
+[7m2[0m import { 
+PaymentMethod } from 
+'@prisma/client';
+[7m [0m [91m      
+   ~~~~~~~~~~~~~[0m
+[96msrc/payments/pay
+ments.service.ts[0m:
+[93m4[0m:[93m10[0
+m - 
+[91merror[0m[90m 
+TS2305: [0mModule 
+'"@prisma/client"' 
+has no exported 
+member 
+'PaymentMethod'.
+
+[7m4[0m import { 
+PaymentMethod, 
+PaymentStatus } from 
+'@prisma/client';
+[7m [0m [91m      
+   ~~~~~~~~~~~~~[0m
+[96msrc/payments/pay
+ments.service.ts[0m:
+[93m84[0m:[93m7[0
+m - 
+[91merror[0m[90m 
+TS2322: [0mType '{ 
+status: "PENDING"; 
+orderId: string; 
+amount: number; 
+method: 
+PaymentMethod; 
+transactionId?: 
+string; notes?: 
+string; }' is not 
+assignable to type '(
+Without<PaymentCreate
+Input, PaymentUncheck
+edCreateInput> & Paym
+entUncheckedCreateInp
+ut) | (Without<...> 
+& 
+PaymentCreateInput)'.
+  Type '{ status: 
+"PENDING"; orderId: 
+string; amount: 
+number; method: 
+PaymentMethod; 
+transactionId?: 
+string; notes?: 
+string; }' is not 
+assignable to type 'W
+ithout<PaymentCreateI
+nput, PaymentUnchecke
+dCreateInput> & Payme
+ntUncheckedCreateInpu
+t'.
+    Type '{ status: 
+"PENDING"; orderId: 
+string; amount: 
+number; method: 
+PaymentMethod; 
+transactionId?: 
+string | undefined; 
+notes?: string | 
+undefined; }' is 
+missing the 
+following properties 
+from type 'PaymentUnc
+heckedCreateInput': 
+storeId, gateway, 
+currency
+
+[7m84[0m       
+data: {
+[7m  [0m [91m     
+ ~~~~[0m
+
+  [96mnode_modules/.
+prisma/client/index.d
+.ts[0m:[93m17968[0
+m:[93m5[0m
+    [7m17968[0m    
+ data: XOR<PaymentCre
+ateInput, PaymentUnch
+eckedCreateInput>
+    [7m     [0m 
+[96m    ~~~~[0m
+    The expected 
+type comes from 
+property 'data' 
+which is declared 
+here on type '{ 
+select?: PaymentSelec
+t<DefaultArgs> | 
+null | undefined; 
+omit?: PaymentOmit<De
+faultArgs> | null | 
+undefined; include?: 
+PaymentInclude<...> 
+| ... 1 more ... | 
+undefined; data: 
+(Without<...> & Payme
+ntUncheckedCreateInpu
+t) | (Without<...> & 
+PaymentCreateInput); 
+}'
+[96msrc/payments/pay
+ments.service.ts[0m:
+[93m105[0m:[93m56
+[0m - 
+[91merror[0m[90m 
+TS2367: [0mThis 
+comparison appears 
+to be unintentional 
+because the types 
+'PaymentStatus' and 
+'"COMPLETED"' have 
+no overlap.
+
+[7m105[0m     
+const 
+existingPayment = ord
+er.payments.find((p) 
+=> p.status === 
+'COMPLETED');
+[7m   [0m [91m    
+                     
+                     
+         ~~~~~~~~~~~~
+~~~~~~~~~~~~[0m
+[96msrc/payments/pay
+ments.service.ts[0m:
+[93m118[0m:[93m51
+[0m - 
+[91merror[0m[90m 
+TS2345: [0mArgument 
+of type 'Decimal' is 
+not assignable to 
+parameter of type 
+'number'.
+
+[7m118[0m       
+const result = await 
+gateway.processPaymen
+t(order.total, 
+token);
+[7m   [0m [91m    
+                     
+                     
+    ~~~~~~~~~~~[0m
+[96msrc/payments/pay
+ments.service.ts[0m:
+[93m128[0m:[93m13
+[0m - 
+[91merror[0m[90m 
+TS2322: [0mType 
+'"COMPLETED"' is not 
+assignable to type 
+'PaymentStatus | 
+undefined'.
+
+[7m128[0m          
+   status: 
+'COMPLETED',
+[7m   [0m [91m    
+        ~~~~~~[0m
+
+  [96mnode_modules/.
+prisma/client/index.d
+.ts[0m:[93m31448[0
+m:[93m5[0m
+    [7m31448[0m    
+ status?: 
+$Enums.PaymentStatus
+    [7m     [0m 
+[96m    ~~~~~~[0m
+    The expected 
+type comes from 
+property 'status' 
+which is declared 
+here on type '(Withou
+t<PaymentCreateInput,
+ PaymentUncheckedCrea
+teInput> & PaymentUnc
+heckedCreateInput) | 
+(Without<...> & 
+PaymentCreateInput)'
+[96msrc/payments/pay
+ments.service.ts[0m:
+[93m148[0m:[93m11
+[0m - 
+[91merror[0m[90m 
+TS2353: [0mObject 
+literal may only 
+specify known 
+properties, and 
+'method' does not 
+exist in type 'Withou
+t<PaymentCreateInput,
+ PaymentUncheckedCrea
+teInput> & PaymentUnc
+heckedCreateInput'.
+
+[7m148[0m          
+ method: 
+paymentMethod,
+[7m   [0m [91m    
+      ~~~~~~[0m
+
+  [96mnode_modules/.
+prisma/client/index.d
+.ts[0m:[93m17968[0
+m:[93m5[0m
+    [7m17968[0m    
+ data: XOR<PaymentCre
+ateInput, PaymentUnch
+eckedCreateInput>
+    [7m     [0m 
+[96m    ~~~~[0m
+    The expected 
+type comes from 
+property 'data' 
+which is declared 
+here on type '{ 
+select?: PaymentSelec
+t<DefaultArgs> | 
+null | undefined; 
+omit?: PaymentOmit<De
+faultArgs> | null | 
+undefined; include?: 
+PaymentInclude<...> 
+| ... 1 more ... | 
+undefined; data: 
+(Without<...> & Payme
+ntUncheckedCreateInpu
+t) | (Without<...> & 
+PaymentCreateInput); 
+}'
+[96msrc/payments/pay
+ments.service.ts[0m:
+[93m220[0m:[93m9[
+0m - 
+[91merror[0m[90m 
+TS2367: [0mThis 
+comparison appears 
+to be unintentional 
+because the types 
+'PaymentStatus' and 
+'"COMPLETED"' have 
+no overlap.
+
+[7m220[0m     if 
+(payment.status !== 
+'COMPLETED') {
+[7m   [0m [91m    
+    ~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+[96msrc/payments/pay
+ments.service.ts[0m:
+[93m224[0m:[93m9[
+0m - 
+[91merror[0m[90m 
+TS2365: [0mOperator 
+'>' cannot be 
+applied to types 
+'number' and 
+'Decimal'.
+
+[7m224[0m     if (r
+efundPaymentDto.amoun
+t > payment.amount) {
+[7m   [0m [91m    
+    ~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~[0m
+[96msrc/payments/pay
+ments.service.ts[0m:
+[93m229[0m:[93m47
+[0m - 
+[91merror[0m[90m 
+TS2339: [0mProperty 
+'method' does not 
+exist on type '{ id: 
+string; storeId: 
+string; createdAt: 
+Date; updatedAt: 
+Date; currency: 
+string; status: 
+PaymentStatus; 
+orderId: string; 
+amount: Decimal; 
+gateway: string; gate
+wayTransactionId: 
+string | null; 
+metadata: JsonValue; 
+}'.
+
+[7m229[0m     
+const gateway = this.
+gateways.get(payment.
+method);
+[7m   [0m [91m    
+                     
+                     
+~~~~~~[0m
+[96msrc/payments/pay
+ments.service.ts[0m:
+[93m236[0m:[93m58
+[0m - 
+[91merror[0m[90m 
+TS2339: [0mProperty 
+'transactionId' does 
+not exist on type '{ 
+id: string; storeId: 
+string; createdAt: 
+Date; updatedAt: 
+Date; currency: 
+string; status: 
+PaymentStatus; 
+orderId: string; 
+amount: Decimal; 
+gateway: string; gate
+wayTransactionId: 
+string | null; 
+metadata: JsonValue; 
+}'.
+
+[7m236[0m       
+const result = await 
+gateway.refundPayment
+(payment.transactionI
+d, refundPaymentDto.a
+mount);
+[7m   [0m [91m    
+                     
+                     
+           
+~~~~~~~~~~~~~[0m
+[96msrc/payments/pay
+ments.service.ts[0m:
+[93m244[0m:[93m13
+[0m - 
+[91merror[0m[90m 
+TS2353: [0mObject 
+literal may only 
+specify known 
+properties, and 
+'notes' does not 
+exist in type '(Witho
+ut<PaymentUpdateInput
+, PaymentUncheckedUpd
+ateInput> & PaymentUn
+checkedUpdateInput) 
+| (Without<...> & 
+PaymentUpdateInput)'.
+
+[7m244[0m          
+   notes: refundPayme
+ntDto.reason || 
+'Refunded',
+[7m   [0m [91m    
+        ~~~~~[0m
+
+Found 62 error(s).
+
+  [96mnode_modules/.
+prisma/client/index.d
+.ts[0m:[93m18024[0
+m:[93m5[0m
+    [7m18024[0m    
+ data: XOR<PaymentUpd
+ateInput, PaymentUnch
+eckedUpdateInput>
+    [7m     [0m 
+[96m    ~~~~[0m
+    The expected 
+type comes from 
+property 'data' 
+which is declared 
+here on type '{ 
+select?: PaymentSelec
+t<DefaultArgs> | 
+null | undefined; 
+omit?: PaymentOmit<De
+faultArgs> | null | 
+undefined; include?: 
+PaymentInclude<...> 
+| ... 1 more ... | 
+undefined; data: 
+(Without<...> & Payme
+ntUncheckedUpdateInpu
+t) | (Without<...> & 
+PaymentUpdateInput); 
+where: PaymentWhereUn
+iqueInput; }'
+[96msrc/shipping/dto
+/shipping.dto.ts[0m:
+[93m2[0m:[93m10[0
+m - 
+[91merror[0m[90m 
+TS2305: [0mModule 
+'"@prisma/client"' 
+has no exported 
+member 
+'ShippingStatus'.
+
+[7m2[0m import { 
+ShippingStatus } 
+from 
+'@prisma/client';
+[7m [0m [91m      
+   ~~~~~~~~~~~~~~[0m
+[96msrc/shipping/shi
+pping.service.ts[0m:
+[93m119[0m:[93m9[
+0m - 
+[91merror[0m[90m 
+TS2353: [0mObject 
+literal may only 
+specify known 
+properties, and 
+'notes' does not 
+exist in type 'Withou
+t<ShipmentCreateInput
+, ShipmentUncheckedCr
+eateInput> & Shipment
+UncheckedCreateInput'
+.
+
+[7m119[0m         
+notes: createShipment
+Dto.notes,
+[7m   [0m [91m    
+    ~~~~~[0m
+
+  [96mnode_modules/.
+prisma/client/index.d
+.ts[0m:[93m21359[0
+m:[93m5[0m
+    [7m21359[0m    
+ data: XOR<ShipmentCr
+eateInput, ShipmentUn
+checkedCreateInput>
+    [7m     [0m 
+[96m    ~~~~[0m
+    The expected 
+type comes from 
+property 'data' 
+which is declared 
+here on type '{ 
+select?: ShipmentSele
+ct<DefaultArgs> | 
+null | undefined; 
+omit?: ShipmentOmit<D
+efaultArgs> | null | 
+undefined; include?: 
+ShipmentInclude<...> 
+| ... 1 more ... | 
+undefined; data: 
+(Without<...> & Shipm
+entUncheckedCreateInp
+ut) | (Without<...> 
+& ShipmentCreateInput
+); }'
+[96msrc/shipping/shi
+pping.service.ts[0m:
+[93m126[0m:[93m15
+[0m - 
+[91merror[0m[90m 
+TS2353: [0mObject 
+literal may only 
+specify known 
+properties, and 
+'fulfillmentStatus' 
+does not exist in 
+type '(Without<OrderU
+pdateInput, OrderUnch
+eckedUpdateInput> & O
+rderUncheckedUpdateIn
+put) | (Without<...> 
+& OrderUpdateInput)'.
+
+[7m126[0m       
+data: { 
+fulfillmentStatus: 
+'PROCESSING' },
+[7m   [0m [91m    
+          
+~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/.
+prisma/client/index.d
+.ts[0m:[93m15577[0
+m:[93m5[0m
+    [7m15577[0m    
+ data: XOR<OrderUpdat
+eInput, OrderUnchecke
+dUpdateInput>
+    [7m     [0m 
+[96m    ~~~~[0m
+    The expected 
+type comes from 
+property 'data' 
+which is declared 
+here on type '{ 
+select?: OrderSelect<
+DefaultArgs> | null 
+| undefined; omit?: O
+rderOmit<DefaultArgs>
+ | null | undefined; 
+include?: OrderInclud
+e<DefaultArgs> | 
+null | undefined; 
+data: (Without<...> 
+& OrderUncheckedUpdat
+eInput) | 
+(Without<...> & 
+OrderUpdateInput); 
+where: OrderWhereUniq
+ueInput; }'
+[96msrc/shipping/shi
+pping.service.ts[0m:
+[93m167[0m:[93m13
+[0m - 
+[91merror[0m[90m 
+TS2353: [0mObject 
+literal may only 
+specify known 
+properties, and 
+'shippingAddress' 
+does not exist in 
+type 'OrderInclude<De
+faultArgs>'.
+
+[7m167[0m          
+   shippingAddress: 
+true,
+[7m   [0m [91m    
+        
+~~~~~~~~~~~~~~~[0m
+[96msrc/shipping/shi
+pping.service.ts[0m:
+[93m205[0m:[93m40
+[0m - 
+[91merror[0m[90m 
+TS2551: [0mProperty 
+'order' does not 
+exist on type '{ id: 
+string; createdAt: 
+Date; updatedAt: 
+Date; status: 
+ShipmentStatus; 
+trackingNumber: 
+string | null; 
+orderId: string; 
+metadata: JsonValue; 
+carrier: string; 
+shippedAt: Date | 
+null; deliveredAt: 
+Date | null; }'. Did 
+you mean 'orderId'?
+
+[7m205[0m       
+let 
+fulfillmentStatus = s
+hipment.order.fulfill
+mentStatus;
+[7m   [0m [91m    
+                     
+              
+~~~~~[0m
+[96msrc/shipping/shi
+pping.service.ts[0m:
+[93m221[0m:[93m17
+[0m - 
+[91merror[0m[90m 
+TS2353: [0mObject 
+literal may only 
+specify known 
+properties, and 
+'fulfillmentStatus' 
+does not exist in 
+type '(Without<OrderU
+pdateInput, OrderUnch
+eckedUpdateInput> & O
+rderUncheckedUpdateIn
+put) | (Without<...> 
+& OrderUpdateInput)'.
+
+[7m221[0m         
+data: { 
+fulfillmentStatus },
+[7m   [0m [91m    
+            
+~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/.
+prisma/client/index.d
+.ts[0m:[93m15577[0
+m:[93m5[0m
+    [7m15577[0m    
+ data: XOR<OrderUpdat
+eInput, OrderUnchecke
+dUpdateInput>
+    [7m     [0m 
+[96m    ~~~~[0m
+    The expected 
+type comes from 
+property 'data' 
+which is declared 
+here on type '{ 
+select?: OrderSelect<
+DefaultArgs> | null 
+| undefined; omit?: O
+rderOmit<DefaultArgs>
+ | null | undefined; 
+include?: OrderInclud
+e<DefaultArgs> | 
+null | undefined; 
+data: (Without<...> 
+& OrderUncheckedUpdat
+eInput) | 
+(Without<...> & 
+OrderUpdateInput); 
+where: OrderWhereUniq
+ueInput; }'
+[96msrc/shipping/shi
+pping.service.ts[0m:
+[93m258[0m:[93m25
+[0m - 
+[91merror[0m[90m 
+TS2339: [0mProperty 
+'notes' does not 
+exist on type '{ id: 
+string; createdAt: 
+Date; updatedAt: 
+Date; status: 
+ShipmentStatus; 
+trackingNumber: 
+string | null; 
+orderId: string; 
+metadata: JsonValue; 
+carrier: string; 
+shippedAt: Date | 
+null; deliveredAt: 
+Date | null; }'.
+
+[7m258[0m         
+notes: 
+shipment.notes,
+[7m   [0m [91m    
+                    
+~~~~~[0m
+[96msrc/shipping/shi
+pping.service.ts[0m:
+[93m299[0m:[93m44
+[0m - 
+[91merror[0m[90m 
+TS2367: [0mThis 
+comparison appears 
+to be unintentional 
+because the types 
+'"PENDING" | 
+"RETURNED" | 
+"IN_TRANSIT"' and 
+'"CANCELLED"' have 
+no overlap.
+
+[7m299[0m     if 
+(shipment.status === 
+'DELIVERED' || 
+shipment.status === 
+'CANCELLED') {
+[7m   [0m [91m    
+                     
+                  ~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~[0m
+[96msrc/shipping/shi
+pping.service.ts[0m:
+[93m307[0m:[93m37
+[0m - 
+[91merror[0m[90m 
+TS2345: [0mArgument 
+of type 'string | 
+null' is not 
+assignable to 
+parameter of type 
+'string'.
+  Type 'null' is not 
+assignable to type 
+'string'.
+
+[7m307[0m       
+await provider.cancel
+Shipment(shipment.tra
+ckingNumber);
+[7m   [0m [91m    
+                     
+           ~~~~~~~~~~
+~~~~~~~~~~~~~[0m
+
