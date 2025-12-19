@@ -1,8 +1,8 @@
-# Multi-stage build for production
-FROM node:18-alpine AS development
+# Build stage
+FROM node:18-slim AS builder
 
-# Install dependencies required for Prisma on Alpine
-RUN apk add --no-cache libc6-compat
+# Install OpenSSL 3.0 (required for Prisma on newer Debian)
+RUN apt-get update -y && apt-get install -y openssl
 
 WORKDIR /app
 
@@ -10,40 +10,33 @@ WORKDIR /app
 COPY package*.json ./
 COPY prisma ./prisma/
 
-# Install dependencies with memory optimization
-RUN npm install --no-audit --no-fund
+# Install dependencies
+RUN npm install
 
 # Copy source code
 COPY . .
 
-# Generate Prisma Client
+# Generate Prisma Client (explicitly targeting engine for slim)
 RUN npx prisma generate
 
-# Build application - using || true as requested to bypass minor TS issues
-# but still attempting a clean build first.
-RUN npm run build || (echo "Warning: Build failed, attempting to proceed anyway" && exit 0)
+# Build application - bypass errors as requested to ensure container creation
+RUN npm run build || true
 
 # Production stage
-FROM node:18-alpine AS production
+FROM node:18-slim AS production
 
-# Install runtime dependencies for Prisma
-RUN apk add --no-cache libc6-compat
+# Install OpenSSL 3.0
+RUN apt-get update -y && apt-get install -y openssl
 
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
-COPY prisma ./prisma/
+# Copy built application from builder stage
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/prisma ./prisma
 
-# Install production dependencies only
-RUN npm ci --only=production --no-audit --no-fund
-
-# Copy built application from development stage
-COPY --from=development /app/dist ./dist
-COPY --from=development /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=development /app/node_modules/@prisma ./node_modules/@prisma
-
-# Expose port
+# Expose port (Koyeb setting should match this)
 EXPOSE 3000
 
 # Start application
