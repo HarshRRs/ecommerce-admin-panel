@@ -4,24 +4,22 @@ services:
     name: ecommerce-backend
     env: node
     plan: free
-    buildCommand: cd backend && npm install && npm run build
-    startCommand: cd backend && npm start
+    buildCommand: cd backend && npm install && npx prisma generate && npm run build
+    startCommand: cd backend && npx prisma db push && npm run start:prod
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 10000
       - key: DATABASE_URL
-        fromDatabase:
-          name: ecommerce-db
-          property: connectionString
+        sync: false # We will set this manually in the Render dashboard for Supabase
       - key: JWT_SECRET
         generateValue: true
-      - key: CLOUDINARY_CLOUD_NAME
+      - key: IMAGEKIT_PUBLIC_KEY
         sync: false
-      - key: CLOUDINARY_API_KEY
+      - key: IMAGEKIT_PRIVATE_KEY
         sync: false
-      - key: CLOUDINARY_API_SECRET
+      - key: IMAGEKIT_URL_ENDPOINT
         sync: false
       - key: STRIPE_SECRET_KEY
         sync: false
@@ -29,6 +27,8 @@ services:
         generateValue: true
       - key: ACCESS_TOKEN_SECRET
         generateValue: true
+      - key: ALLOWED_ORIGINS
+        value: https://ecommerce-frontend-3m02.onrender.com # Frontend URL
 
   # Frontend Service
   - type: web # Render Static Sites are great, but for Vite SPA with routing, 'web' or 'static' works. Let's use 'static' for efficiency.

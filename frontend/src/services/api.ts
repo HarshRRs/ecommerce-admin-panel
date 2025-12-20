@@ -1,7 +1,23 @@
 import axios from 'axios';
 
+const getBaseUrl = () => {
+    let url = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1';
+
+    // Ensure URL has protocol
+    if (!url.startsWith('http')) {
+        url = `https://${url}`;
+    }
+
+    // Ensure URL ends with /api/v1 if it's pointing to the root domain
+    if (!url.includes('/api/v1')) {
+        url = url.endsWith('/') ? `${url}api/v1` : `${url}/api/v1`;
+    }
+
+    return url;
+};
+
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1',
+    baseURL: getBaseUrl(),
     headers: {
         'Content-Type': 'application/json',
     },
