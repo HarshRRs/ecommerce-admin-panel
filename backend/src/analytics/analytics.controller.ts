@@ -28,10 +28,7 @@ export class AnalyticsController {
 
   @Get('products/top')
   @Roles(Role.OWNER, Role.MANAGER)
-  getTopProducts(
-    @CurrentUser('storeId') storeId: string,
-    @Query('limit') limit?: string,
-  ) {
+  getTopProducts(@CurrentUser('storeId') storeId: string, @Query('limit') limit?: string) {
     const limitNum = limit ? parseInt(limit, 10) : 10;
     return this.analyticsService.getTopProducts(storeId, limitNum);
   }

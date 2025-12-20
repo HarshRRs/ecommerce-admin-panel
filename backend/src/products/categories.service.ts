@@ -1,4 +1,9 @@
-import { Injectable, NotFoundException, ConflictException, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ConflictException,
+  BadRequestException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 
 interface CreateCategoryDto {
@@ -111,11 +116,7 @@ export class CategoriesService {
         throw new BadRequestException('Category cannot be its own parent');
       }
 
-      const isCircular = await this.wouldCreateCircularReference(
-        id,
-        updateDto.parentId,
-        storeId,
-      );
+      const isCircular = await this.wouldCreateCircularReference(id, updateDto.parentId, storeId);
 
       if (isCircular) {
         throw new BadRequestException('Cannot create circular category reference');

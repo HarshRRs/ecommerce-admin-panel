@@ -11,4 +11,4 @@ import { StripeService } from './stripe.service';
   controllers: [PaymentsController],
   exports: [PaymentsService, StripeService],
 })
-export class PaymentsModule { }
+export class PaymentsModule {}

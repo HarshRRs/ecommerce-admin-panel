@@ -7,7 +7,7 @@ import { Public } from '../common/decorators/public.decorator';
 
 @Controller('system')
 export class SystemController {
-  constructor(private readonly systemService: SystemService) { }
+  constructor(private readonly systemService: SystemService) {}
 
   @Get('audit-logs')
   @Roles(Role.SUPER_ADMIN, Role.OWNER, Role.MANAGER)
@@ -36,10 +36,7 @@ export class SystemController {
 
   @Get('stats')
   @Roles(Role.SUPER_ADMIN, Role.OWNER)
-  getSystemStats(
-    @CurrentUser('storeId') storeId: string,
-    @CurrentUser('role') role: Role,
-  ) {
+  getSystemStats(@CurrentUser('storeId') storeId: string, @CurrentUser('role') role: Role) {
     // SUPER_ADMIN sees global stats, OWNER sees store stats
     const filterStoreId = role === 'SUPER_ADMIN' ? undefined : storeId;
     return this.systemService.getSystemStats(filterStoreId);

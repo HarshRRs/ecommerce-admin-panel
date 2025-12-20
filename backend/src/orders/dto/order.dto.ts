@@ -1,4 +1,13 @@
-import { IsString, IsNotEmpty, IsArray, IsNumber, IsOptional, IsEnum, ValidateNested, IsObject } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsArray,
+  IsNumber,
+  IsOptional,
+  IsEnum,
+  ValidateNested,
+  IsObject,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 import { OrderStatus, PaymentStatus } from '@prisma/client';
 

@@ -5,11 +5,11 @@ import { Role } from '@prisma/client';
 
 @Controller('common')
 export class CommonController {
-    constructor(private readonly imagekitService: ImageKitService) { }
+  constructor(private readonly imagekitService: ImageKitService) {}
 
-    @Get('imagekit-auth')
-    @Roles(Role.SUPER_ADMIN, Role.OWNER, Role.MANAGER, Role.STAFF)
-    getImageKitAuth() {
-        return this.imagekitService.getAuthenticationParameters();
-    }
+  @Get('imagekit-auth')
+  @Roles(Role.SUPER_ADMIN, Role.OWNER, Role.MANAGER, Role.STAFF)
+  getImageKitAuth() {
+    return this.imagekitService.getAuthenticationParameters();
+  }
 }

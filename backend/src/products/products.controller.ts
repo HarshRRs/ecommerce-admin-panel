@@ -1,13 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  Query,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto, UpdateProductDto, CreateVariantDto } from './dto/product.dto';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
@@ -20,10 +11,7 @@ export class ProductsController {
 
   @Post()
   @Roles(Role.OWNER, Role.MANAGER)
-  create(
-    @Body() createProductDto: CreateProductDto,
-    @CurrentUser('storeId') storeId: string,
-  ) {
+  create(@Body() createProductDto: CreateProductDto, @CurrentUser('storeId') storeId: string) {
     return this.productsService.create(createProductDto, storeId);
   }
 
@@ -38,10 +26,7 @@ export class ProductsController {
   }
 
   @Get(':id')
-  findOne(
-    @Param('id') id: string,
-    @CurrentUser('storeId') storeId: string,
-  ) {
+  findOne(@Param('id') id: string, @CurrentUser('storeId') storeId: string) {
     return this.productsService.findOne(id, storeId);
   }
 
@@ -57,10 +42,7 @@ export class ProductsController {
 
   @Delete(':id')
   @Roles(Role.OWNER, Role.MANAGER)
-  remove(
-    @Param('id') id: string,
-    @CurrentUser('storeId') storeId: string,
-  ) {
+  remove(@Param('id') id: string, @CurrentUser('storeId') storeId: string) {
     return this.productsService.remove(id, storeId);
   }
 

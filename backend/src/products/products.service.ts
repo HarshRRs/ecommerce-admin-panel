@@ -1,4 +1,11 @@
-import { Injectable, NotFoundException, ConflictException, ForbiddenException, BadRequestException, Logger } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ConflictException,
+  ForbiddenException,
+  BadRequestException,
+  Logger,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateProductDto, UpdateProductDto, CreateVariantDto } from './dto/product.dto';
 import { Role } from '@prisma/client';
@@ -12,7 +19,7 @@ export class ProductsService {
   constructor(
     private prisma: PrismaService,
     private imagekitService: ImageKitService,
-  ) { }
+  ) {}
 
   async create(createProductDto: CreateProductDto, storeId: string) {
     // Check SKU uniqueness within store
@@ -264,51 +271,53 @@ export class ProductsService {
           const CHUNK_SIZE = 50;
           for (let i = 0; i < results.length; i += CHUNK_SIZE) {
             const chunk = results.slice(i, i + CHUNK_SIZE);
-            await Promise.all(chunk.map(async (row, chunkIndex) => {
-              const rowIndex = i + chunkIndex;
-              try {
-                if (!row.name || !row.sku || !row.price) {
-                  throw new Error('Missing required fields (name, sku, price)');
-                }
+            await Promise.all(
+              chunk.map(async (row, chunkIndex) => {
+                const rowIndex = i + chunkIndex;
+                try {
+                  if (!row.name || !row.sku || !row.price) {
+                    throw new Error('Missing required fields (name, sku, price)');
+                  }
 
-                const productData: CreateProductDto = {
-                  sku: row.sku,
-                  name: row.name,
-                  description: row.description || '',
-                  basePrice: parseFloat(row.price),
-                  stock: parseInt(row.stock || '0', 10),
-                  type: 'SIMPLE',
-                  status: (row.status || 'DRAFT') as any,
-                  taxable: row.taxable !== 'false',
-                  images: row.images ? row.images.split(',') : [],
-                  tags: row.tags ? row.tags.split(',') : [],
-                };
+                  const productData: CreateProductDto = {
+                    sku: row.sku,
+                    name: row.name,
+                    description: row.description || '',
+                    basePrice: parseFloat(row.price),
+                    stock: parseInt(row.stock || '0', 10),
+                    type: 'SIMPLE',
+                    status: row.status || 'DRAFT',
+                    taxable: row.taxable !== 'false',
+                    images: row.images ? row.images.split(',') : [],
+                    tags: row.tags ? row.tags.split(',') : [],
+                  };
 
-                const existing = await this.prisma.prisma.product.findFirst({
-                  where: { storeId, sku: productData.sku },
-                });
-
-                if (existing) {
-                  await this.prisma.prisma.product.update({
-                    where: { id: existing.id },
-                    data: {
-                      name: productData.name,
-                      description: productData.description,
-                      basePrice: productData.basePrice,
-                      stock: productData.stock,
-                      status: productData.status,
-                      updatedAt: new Date(),
-                    },
+                  const existing = await this.prisma.prisma.product.findFirst({
+                    where: { storeId, sku: productData.sku },
                   });
-                } else {
-                  await this.create(productData, storeId);
+
+                  if (existing) {
+                    await this.prisma.prisma.product.update({
+                      where: { id: existing.id },
+                      data: {
+                        name: productData.name,
+                        description: productData.description,
+                        basePrice: productData.basePrice,
+                        stock: productData.stock,
+                        status: productData.status,
+                        updatedAt: new Date(),
+                      },
+                    });
+                  } else {
+                    await this.create(productData, storeId);
+                  }
+                  successCount++;
+                } catch (err: any) {
+                  this.logger.warn(`Import failed for row ${rowIndex + 1}: ${err.message}`);
+                  errors.push({ row: rowIndex + 1, error: err.message, sku: row.sku });
                 }
-                successCount++;
-              } catch (err: any) {
-                this.logger.warn(`Import failed for row ${rowIndex + 1}: ${err.message}`);
-                errors.push({ row: rowIndex + 1, error: err.message, sku: row.sku });
-              }
-            }));
+              }),
+            );
           }
 
           // Cleanup file
@@ -328,10 +337,13 @@ export class ProductsService {
   }
 
   private generateSlug(name: string): string {
-    return name
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '')
-      + '-' + Date.now();
+    return (
+      name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '') +
+      '-' +
+      Date.now()
+    );
   }
 }

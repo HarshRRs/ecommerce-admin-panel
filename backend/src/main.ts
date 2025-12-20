@@ -5,6 +5,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
 import helmet from 'helmet';
 import compression from 'compression';
+import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -32,6 +33,9 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'uploads'), {
     prefix: '/uploads',
   });
+
+  // Global exception filter
+  app.useGlobalFilters(new GlobalExceptionFilter());
 
   // Global validation pipe
   app.useGlobalPipes(

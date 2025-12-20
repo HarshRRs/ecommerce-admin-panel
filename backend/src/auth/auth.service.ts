@@ -1,4 +1,9 @@
-import { Injectable, UnauthorizedException, ConflictException, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  UnauthorizedException,
+  ConflictException,
+  NotFoundException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { PrismaService } from '../prisma/prisma.service';
@@ -16,7 +21,7 @@ export class AuthService {
     private jwtService: JwtService,
     private configService: ConfigService,
     private emailService: TransactionalEmailService,
-  ) { }
+  ) {}
 
   async forgotPassword(email: string) {
     const user = await this.prisma.prisma.user.findUnique({
@@ -36,7 +41,7 @@ export class AuthService {
       data: {
         resetToken,
         resetTokenExpires,
-      } as any,
+      },
     });
 
     await this.emailService.sendPasswordReset(user.email, resetToken);
@@ -44,14 +49,17 @@ export class AuthService {
     return { message: 'If an account exists with this email, a reset link has been sent.' };
   }
 
-  async resetPassword(resetToken: string, newPassword: any) {
+  async resetPassword(
+    resetToken: string,
+    newPassword: string,
+  ): Promise<{ success: boolean; message: string }> {
     const user = await this.prisma.prisma.user.findFirst({
       where: {
         resetToken,
         resetTokenExpires: {
           gt: new Date(),
         },
-      } as any,
+      },
     });
 
     if (!user) {
@@ -67,7 +75,7 @@ export class AuthService {
         resetToken: null,
         resetTokenExpires: null,
         forcePasswordChange: false,
-      } as any,
+      },
     });
 
     return { success: true, message: 'Password reset successfully' };
@@ -89,10 +97,7 @@ export class AuthService {
       throw new UnauthorizedException('Account is inactive');
     }
 
-    const isPasswordValid = await bcrypt.compare(
-      loginDto.password,
-      user.password,
-    );
+    const isPasswordValid = await bcrypt.compare(loginDto.password, user.password);
 
     if (!isPasswordValid) {
       throw new UnauthorizedException('Invalid credentials');
@@ -118,8 +123,8 @@ export class AuthService {
         role: user.role,
         storeId: user.storeId,
         storeName: user.store?.name,
-        storeStatus: (user.store as any)?.status,
-        stripeOwnershipConfirmed: (user.store as any)?.stripeOwnershipConfirmed,
+        storeStatus: user.store?.status,
+        stripeOwnershipConfirmed: user.store?.stripeOwnershipConfirmed,
         forcePasswordChange: user.forcePasswordChange,
       },
     };
@@ -261,7 +266,9 @@ export class AuthService {
   async refreshToken(refreshToken: string) {
     try {
       const payload = this.jwtService.verify(refreshToken, {
-        secret: this.configService.get<string>('JWT_REFRESH_SECRET') || this.configService.get<string>('JWT_SECRET'),
+        secret:
+          this.configService.get<string>('JWT_REFRESH_SECRET') ||
+          this.configService.get<string>('JWT_SECRET'),
       });
 
       const user = await this.validateUser(payload.sub);
@@ -298,7 +305,9 @@ export class AuthService {
     const refreshToken = this.jwtService.sign(
       { sub: user.id, type: 'refresh' },
       {
-        secret: this.configService.get<string>('JWT_REFRESH_SECRET') || this.configService.get<string>('JWT_SECRET'),
+        secret:
+          this.configService.get<string>('JWT_REFRESH_SECRET') ||
+          this.configService.get<string>('JWT_SECRET'),
         expiresIn: '7d',
       },
     );

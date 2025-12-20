@@ -14,4 +14,4 @@ import { PrismaModule } from '../prisma/prisma.module';
   controllers: [ProductsController, CategoriesController, UploadController, ImportController],
   exports: [ProductsService, CategoriesService],
 })
-export class ProductsModule { }
+export class ProductsModule {}

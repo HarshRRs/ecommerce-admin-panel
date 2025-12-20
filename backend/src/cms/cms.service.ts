@@ -1,10 +1,17 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { CreatePageDto, UpdatePageDto, CreateBannerDto, UpdateBannerDto, CreateBlogDto, UpdateBlogDto } from './dto/cms.dto';
+import {
+  CreatePageDto,
+  UpdatePageDto,
+  CreateBannerDto,
+  UpdateBannerDto,
+  CreateBlogDto,
+  UpdateBlogDto,
+} from './dto/cms.dto';
 
 @Injectable()
 export class CmsService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   // Pages
   async createPage(createPageDto: CreatePageDto, storeId: string) {
@@ -186,10 +193,13 @@ export class CmsService {
   }
 
   private generateSlug(title: string): string {
-    return title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '')
-      + '-' + Date.now();
+    return (
+      title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '') +
+      '-' +
+      Date.now()
+    );
   }
 }

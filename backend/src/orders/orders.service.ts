@@ -4,7 +4,7 @@ import { CreateOrderDto, UpdateOrderDto } from './dto/order.dto';
 
 @Injectable()
 export class OrdersService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   async create(createOrderDto: CreateOrderDto, storeId: string) {
     const { items, couponId, ...orderData } = createOrderDto;
@@ -57,7 +57,7 @@ export class OrdersService {
 
       if (coupon) {
         if (coupon.type === 'PERCENTAGE') {
-          discount = (subtotal * (Number(coupon.value))) / 100;
+          discount = (subtotal * Number(coupon.value)) / 100;
         } else {
           discount = Number(coupon.value);
         }

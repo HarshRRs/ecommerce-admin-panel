@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { StoresService } from './stores.service';
 import { CreateStoreDto, UpdateStoreDto } from './dto/store.dto';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
@@ -15,22 +7,16 @@ import { Role } from '@prisma/client';
 
 @Controller('stores')
 export class StoresController {
-  constructor(private readonly storesService: StoresService) { }
+  constructor(private readonly storesService: StoresService) {}
 
   @Post()
   @Roles(Role.SUPER_ADMIN, Role.OWNER)
-  create(
-    @Body() createStoreDto: CreateStoreDto,
-    @CurrentUser('id') userId: string,
-  ) {
+  create(@Body() createStoreDto: CreateStoreDto, @CurrentUser('id') userId: string) {
     return this.storesService.create(createStoreDto, userId);
   }
 
   @Get()
-  findAll(
-    @CurrentUser('id') userId: string,
-    @CurrentUser('role') userRole: Role,
-  ) {
+  findAll(@CurrentUser('id') userId: string, @CurrentUser('role') userRole: Role) {
     return this.storesService.findAll(userId, userRole);
   }
 
@@ -56,7 +42,11 @@ export class StoresController {
 
   @Delete(':id')
   @Roles(Role.SUPER_ADMIN)
-  remove(@Param('id') id: string, @CurrentUser('id') userId: string, @CurrentUser('role') userRole: Role) {
+  remove(
+    @Param('id') id: string,
+    @CurrentUser('id') userId: string,
+    @CurrentUser('role') userRole: Role,
+  ) {
     return this.storesService.remove(id, userId, userRole);
   }
 

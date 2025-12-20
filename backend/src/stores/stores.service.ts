@@ -1,4 +1,9 @@
-import { Injectable, NotFoundException, ConflictException, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ConflictException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { SecurityService } from '../common/services/security.service';
 import { CreateStoreDto, UpdateStoreDto } from './dto/store.dto';
@@ -9,7 +14,7 @@ export class StoresService {
   constructor(
     private prisma: PrismaService,
     private securityService: SecurityService,
-  ) { }
+  ) {}
 
   async create(createStoreDto: CreateStoreDto, userId: string) {
     // Check if slug already exists
@@ -200,7 +205,7 @@ export class StoresService {
       data: {
         stripeOwnershipConfirmed: true,
         stripeConfirmedAt: new Date(),
-        stripeConfirmedBy: userId
+        stripeConfirmedBy: userId,
       },
     });
   }

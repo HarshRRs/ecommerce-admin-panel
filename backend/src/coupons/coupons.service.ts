@@ -1,10 +1,15 @@
-import { Injectable, NotFoundException, ConflictException, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ConflictException,
+  BadRequestException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateCouponDto, UpdateCouponDto } from './dto/coupon.dto';
 
 @Injectable()
 export class CouponsService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   async create(createCouponDto: CreateCouponDto, storeId: string) {
     const existing = await this.prisma.prisma.coupon.findFirst({

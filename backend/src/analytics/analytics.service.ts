@@ -3,34 +3,29 @@ import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class AnalyticsService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   async getDashboardStats(storeId: string) {
-    const [
-      totalOrders,
-      totalRevenue,
-      totalCustomers,
-      totalProducts,
-      recentOrders,
-    ] = await Promise.all([
-      this.prisma.prisma.order.count({ where: { storeId } }),
-      this.prisma.prisma.order.aggregate({
-        where: { storeId, status: 'DELIVERED' },
-        _sum: { total: true },
-      }),
-      this.prisma.prisma.customer.count({ where: { storeId } }),
-      this.prisma.prisma.product.count({ where: { storeId } }),
-      this.prisma.prisma.order.findMany({
-        where: { storeId },
-        take: 10,
-        orderBy: { createdAt: 'desc' },
-        include: {
-          customer: {
-            select: { id: true, email: true, firstName: true, lastName: true },
+    const [totalOrders, totalRevenue, totalCustomers, totalProducts, recentOrders] =
+      await Promise.all([
+        this.prisma.prisma.order.count({ where: { storeId } }),
+        this.prisma.prisma.order.aggregate({
+          where: { storeId, status: 'DELIVERED' },
+          _sum: { total: true },
+        }),
+        this.prisma.prisma.customer.count({ where: { storeId } }),
+        this.prisma.prisma.product.count({ where: { storeId } }),
+        this.prisma.prisma.order.findMany({
+          where: { storeId },
+          take: 10,
+          orderBy: { createdAt: 'desc' },
+          include: {
+            customer: {
+              select: { id: true, email: true, firstName: true, lastName: true },
+            },
           },
-        },
-      }),
-    ]);
+        }),
+      ]);
 
     return {
       totalOrders,
@@ -109,7 +104,7 @@ export class AnalyticsService {
   }
 
   async getCustomerStats(storeId: string) {
-    // Note: 'orders' is not a relation on Customer in the current schema.prisma, 
+    // Note: 'orders' is not a relation on Customer in the current schema.prisma,
     // it's a field in Customer but Customer doesn't 'include' orders as a relation in this way.
     // However, Customer has orders: Order[] in schema. Prisma allows querying this.
     // The previous error was that .orders.length was accessed on a result that didn't include it.
@@ -143,7 +138,8 @@ export class AnalyticsService {
           lastName: customer.lastName,
         },
         totalOrders: customer.orders?.length || 0,
-        totalSpent: customer.orders?.reduce((sum: number, order: any) => sum + Number(order.total), 0) || 0,
+        totalSpent:
+          customer.orders?.reduce((sum: number, order: any) => sum + Number(order.total), 0) || 0,
       }))
       .sort((a, b) => (b.totalSpent as number) - (a.totalSpent as number));
 

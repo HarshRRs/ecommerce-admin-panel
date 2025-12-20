@@ -6,8 +6,8 @@ import { CommonController } from './common.controller';
 
 @Global()
 @Module({
-    controllers: [CommonController],
-    providers: [ImageKitService, TransactionalEmailService, SecurityService],
-    exports: [ImageKitService, TransactionalEmailService, SecurityService],
+  controllers: [CommonController],
+  providers: [ImageKitService, TransactionalEmailService, SecurityService],
+  exports: [ImageKitService, TransactionalEmailService, SecurityService],
 })
-export class CommonModule { }
+export class CommonModule {}

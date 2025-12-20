@@ -1,10 +1,10 @@
 import {
-    Controller,
-    Post,
-    UseInterceptors,
-    UploadedFile,
-    BadRequestException,
-    UseGuards,
+  Controller,
+  Post,
+  UseInterceptors,
+  UploadedFile,
+  BadRequestException,
+  UseGuards,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
@@ -17,48 +17,45 @@ import { CurrentUser } from '../common/decorators/current-user.decorator';
 // import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard'; // Assumed global or standard guard usage
 
 const csvFileFilter = (req: any, file: any, callback: any) => {
-    if (!file.originalname.match(/\.(csv)$/)) {
-        return callback(
-            new BadRequestException('Only CSV files are allowed!'),
-            false,
-        );
-    }
-    callback(null, true);
+  if (!file.originalname.match(/\.(csv)$/)) {
+    return callback(new BadRequestException('Only CSV files are allowed!'), false);
+  }
+  callback(null, true);
 };
 
 const storage = diskStorage({
-    destination: './uploads/temp', // Make sure this exists
-    filename: (req, file, callback) => {
-        callback(null, `${uuidv4()}${extname(file.originalname)}`);
-    },
+  destination: './uploads/temp', // Make sure this exists
+  filename: (req, file, callback) => {
+    callback(null, `${uuidv4()}${extname(file.originalname)}`);
+  },
 });
 
 @Controller('products/import')
 // @UseGuards(JwtAuthGuard) // Enable if not global
 export class ImportController {
-    constructor(private readonly productsService: ProductsService) { }
+  constructor(private readonly productsService: ProductsService) {}
 
-    @Post('csv')
-    @Roles(Role.OWNER, Role.MANAGER)
-    @UseInterceptors(
-        FileInterceptor('file', {
-            storage: storage,
-            fileFilter: csvFileFilter,
-        }),
-    )
-    async importProducts(
-        @UploadedFile() file: Express.Multer.File,
-        @CurrentUser('storeId') storeId: string,
-    ) {
-        if (!file) {
-            throw new BadRequestException('File is required');
-        }
-
-        try {
-            const result = await this.productsService.importProducts(storeId, file.path);
-            return result;
-        } catch (error) {
-            throw new BadRequestException('Failed to process import');
-        }
+  @Post('csv')
+  @Roles(Role.OWNER, Role.MANAGER)
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: storage,
+      fileFilter: csvFileFilter,
+    }),
+  )
+  async importProducts(
+    @UploadedFile() file: Express.Multer.File,
+    @CurrentUser('storeId') storeId: string,
+  ) {
+    if (!file) {
+      throw new BadRequestException('File is required');
     }
+
+    try {
+      const result = await this.productsService.importProducts(storeId, file.path);
+      return result;
+    } catch (error) {
+      throw new BadRequestException('Failed to process import');
+    }
+  }
 }

@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Param,
-  Query,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
 import { PaymentsService } from './payments.service';
 import { CreatePaymentDto, ProcessPaymentDto, RefundPaymentDto } from './dto/payment.dto';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
@@ -22,7 +15,7 @@ export class PaymentsController {
   constructor(
     private readonly paymentsService: PaymentsService,
     private readonly stripeService: StripeService,
-  ) { }
+  ) {}
 
   @Public()
   @Post('webhook/:storeId')
@@ -46,10 +39,7 @@ export class PaymentsController {
 
   @Post()
   @Roles(Role.OWNER, Role.MANAGER)
-  create(
-    @Body() createPaymentDto: CreatePaymentDto,
-    @CurrentUser('storeId') storeId: string,
-  ) {
+  create(@Body() createPaymentDto: CreatePaymentDto, @CurrentUser('storeId') storeId: string) {
     return this.paymentsService.create(createPaymentDto, storeId);
   }
 
@@ -73,10 +63,7 @@ export class PaymentsController {
   }
 
   @Get(':id')
-  findOne(
-    @Param('id') id: string,
-    @CurrentUser('storeId') storeId: string,
-  ) {
+  findOne(@Param('id') id: string, @CurrentUser('storeId') storeId: string) {
     return this.paymentsService.findOne(id, storeId);
   }
 

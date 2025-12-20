@@ -4,14 +4,20 @@ import { CreateShipmentDto, UpdateShipmentDto, TrackingUpdateDto } from './dto/s
 
 // Shipping Provider Interfaces
 interface ShippingProvider {
-  createShipment(orderId: string, carrier: string): Promise<{ trackingNumber: string; labelUrl?: string }>;
+  createShipment(
+    orderId: string,
+    carrier: string,
+  ): Promise<{ trackingNumber: string; labelUrl?: string }>;
   trackShipment(trackingNumber: string): Promise<{ status: string; location?: string }>;
   cancelShipment(trackingNumber: string): Promise<{ success: boolean }>;
 }
 
 // FedEx Provider (stub)
 class FedExProvider implements ShippingProvider {
-  async createShipment(orderId: string, carrier: string): Promise<{ trackingNumber: string; labelUrl?: string }> {
+  async createShipment(
+    orderId: string,
+    carrier: string,
+  ): Promise<{ trackingNumber: string; labelUrl?: string }> {
     // In production, integrate with FedEx API
     return {
       trackingNumber: `FX${Date.now()}${Math.random().toString(36).substring(7).toUpperCase()}`,
@@ -34,7 +40,10 @@ class FedExProvider implements ShippingProvider {
 
 // UPS Provider (stub)
 class UPSProvider implements ShippingProvider {
-  async createShipment(orderId: string, carrier: string): Promise<{ trackingNumber: string; labelUrl?: string }> {
+  async createShipment(
+    orderId: string,
+    carrier: string,
+  ): Promise<{ trackingNumber: string; labelUrl?: string }> {
     return {
       trackingNumber: `1Z${Date.now()}${Math.random().toString(36).substring(7).toUpperCase()}`,
       labelUrl: 'https://example.com/ups-label.pdf',
@@ -55,7 +64,10 @@ class UPSProvider implements ShippingProvider {
 
 // USPS Provider (stub)
 class USPSProvider implements ShippingProvider {
-  async createShipment(orderId: string, carrier: string): Promise<{ trackingNumber: string; labelUrl?: string }> {
+  async createShipment(
+    orderId: string,
+    carrier: string,
+  ): Promise<{ trackingNumber: string; labelUrl?: string }> {
     return {
       trackingNumber: `USPS${Date.now()}${Math.random().toString(36).substring(7).toUpperCase()}`,
       labelUrl: 'https://example.com/usps-label.pdf',
@@ -146,7 +158,7 @@ export class ShippingService {
             customer: {
               select: { email: true, firstName: true, lastName: true },
             },
-            // shippingAddress is Json, already included in order select if not specified, 
+            // shippingAddress is Json, already included in order select if not specified,
             // but we need to select it explicitly if we use select
             shippingAddress: true,
           },

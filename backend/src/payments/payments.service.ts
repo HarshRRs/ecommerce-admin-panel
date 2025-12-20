@@ -5,13 +5,19 @@ import { PaymentStatus } from '@prisma/client';
 
 // Payment Gateway Interfaces
 interface PaymentGateway {
-  processPayment(amount: number, token?: string): Promise<{ success: boolean; transactionId: string }>;
+  processPayment(
+    amount: number,
+    token?: string,
+  ): Promise<{ success: boolean; transactionId: string }>;
   refundPayment(transactionId: string, amount: number): Promise<{ success: boolean }>;
 }
 
 // Stripe Gateway Implementation (stub)
 class StripeGateway implements PaymentGateway {
-  async processPayment(amount: number, token?: string): Promise<{ success: boolean; transactionId: string }> {
+  async processPayment(
+    amount: number,
+    token?: string,
+  ): Promise<{ success: boolean; transactionId: string }> {
     // In production, integrate with actual Stripe SDK
     return {
       success: true,
@@ -26,7 +32,10 @@ class StripeGateway implements PaymentGateway {
 
 // PayPal Gateway Implementation (stub)
 class PayPalGateway implements PaymentGateway {
-  async processPayment(amount: number, token?: string): Promise<{ success: boolean; transactionId: string }> {
+  async processPayment(
+    amount: number,
+    token?: string,
+  ): Promise<{ success: boolean; transactionId: string }> {
     return {
       success: true,
       transactionId: `paypal_${Date.now()}_${Math.random().toString(36).substring(7)}`,
@@ -236,7 +245,10 @@ export class PaymentsService {
 
     try {
       // Process refund through gateway
-      const result = await gateway.refundPayment(payment.gatewayTransactionId || '', refundPaymentDto.amount);
+      const result = await gateway.refundPayment(
+        payment.gatewayTransactionId || '',
+        refundPaymentDto.amount,
+      );
 
       if (result.success) {
         // Update payment status

@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Query,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Query } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { CreateOrderDto, UpdateOrderDto } from './dto/order.dto';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
@@ -19,10 +11,7 @@ export class OrdersController {
 
   @Post()
   @Roles(Role.OWNER, Role.MANAGER, Role.STAFF)
-  create(
-    @Body() createOrderDto: CreateOrderDto,
-    @CurrentUser('storeId') storeId: string,
-  ) {
+  create(@Body() createOrderDto: CreateOrderDto, @CurrentUser('storeId') storeId: string) {
     return this.ordersService.create(createOrderDto, storeId);
   }
 
@@ -45,10 +34,7 @@ export class OrdersController {
   }
 
   @Get(':id')
-  findOne(
-    @Param('id') id: string,
-    @CurrentUser('storeId') storeId: string,
-  ) {
+  findOne(@Param('id') id: string, @CurrentUser('storeId') storeId: string) {
     return this.ordersService.findOne(id, storeId);
   }
 
@@ -64,10 +50,7 @@ export class OrdersController {
 
   @Post(':id/cancel')
   @Roles(Role.OWNER, Role.MANAGER)
-  cancel(
-    @Param('id') id: string,
-    @CurrentUser('storeId') storeId: string,
-  ) {
+  cancel(@Param('id') id: string, @CurrentUser('storeId') storeId: string) {
     return this.ordersService.cancel(id, storeId);
   }
 }

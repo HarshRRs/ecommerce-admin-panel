@@ -138,6 +138,7 @@ model User {
   resetTokenExpires   DateTime?
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
+  deletedAt           DateTime? // Soft delete support
   
   // Relations
   auditLogs     AuditLog[]
@@ -172,6 +173,7 @@ model Store {
   stripeWebhookSecret     String?       // Encrypted
   createdAt               DateTime      @default(now())
   updatedAt               DateTime      @updatedAt
+  deletedAt               DateTime?     // Soft delete support
   
   // Relations
   users         User[]
@@ -260,6 +262,7 @@ model Product {
   lowStockThreshold Int?
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
+  deletedAt       DateTime?       // Soft delete support
   
   // Relations
   variants        ProductVariant[]
@@ -323,6 +326,7 @@ model Customer {
   notes         String?         @db.Text
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
+  deletedAt     DateTime?       // Soft delete support
   
   // Relations
   addresses     Address[]
@@ -379,6 +383,7 @@ model Order {
   internalNotes     String?       @db.Text
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt
+  deletedAt         DateTime?     // Soft delete support
   
   // Relations
   items             OrderItem[]
@@ -509,6 +514,7 @@ model Coupon {
   restrictions      Json?         // Product/category restrictions
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt
+  deletedAt         DateTime?     // Soft delete support
   
   @@unique([storeId, code])
   @@index([storeId, status])

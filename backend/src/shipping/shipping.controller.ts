@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Query,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Query } from '@nestjs/common';
 import { ShippingService } from './shipping.service';
 import { CreateShipmentDto, UpdateShipmentDto, TrackingUpdateDto } from './dto/shipping.dto';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
@@ -19,10 +11,7 @@ export class ShippingController {
 
   @Post()
   @Roles(Role.OWNER, Role.MANAGER, Role.STAFF)
-  create(
-    @Body() createShipmentDto: CreateShipmentDto,
-    @CurrentUser('storeId') storeId: string,
-  ) {
+  create(@Body() createShipmentDto: CreateShipmentDto, @CurrentUser('storeId') storeId: string) {
     return this.shippingService.create(createShipmentDto, storeId);
   }
 
@@ -37,18 +26,12 @@ export class ShippingController {
   }
 
   @Get('track/:trackingNumber')
-  track(
-    @Param('trackingNumber') trackingNumber: string,
-    @CurrentUser('storeId') storeId: string,
-  ) {
+  track(@Param('trackingNumber') trackingNumber: string, @CurrentUser('storeId') storeId: string) {
     return this.shippingService.track(trackingNumber, storeId);
   }
 
   @Get(':id')
-  findOne(
-    @Param('id') id: string,
-    @CurrentUser('storeId') storeId: string,
-  ) {
+  findOne(@Param('id') id: string, @CurrentUser('storeId') storeId: string) {
     return this.shippingService.findOne(id, storeId);
   }
 
@@ -73,10 +56,7 @@ export class ShippingController {
 
   @Post(':id/cancel')
   @Roles(Role.OWNER, Role.MANAGER)
-  cancel(
-    @Param('id') id: string,
-    @CurrentUser('storeId') storeId: string,
-  ) {
+  cancel(@Param('id') id: string, @CurrentUser('storeId') storeId: string) {
     return this.shippingService.cancel(id, storeId);
   }
 }

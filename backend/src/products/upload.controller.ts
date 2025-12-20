@@ -12,6 +12,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { CloudinaryService } from '../common/services/cloudinary.service';
 import { Roles } from '../common/decorators/roles.decorator';
 import { Role } from '@prisma/client';
+import * as fs from 'fs';
+import * as path from 'path';
 
 // File upload configuration
 const imageFileFilter = (req: any, file: any, callback: any) => {
@@ -68,8 +70,6 @@ export class UploadController {
       }
     } else {
       // Fallback to Local Disk (for dev)
-      const fs = require('fs');
-      const path = require('path');
       const uploadDir = './uploads/images';
 
       if (!fs.existsSync(uploadDir)) {

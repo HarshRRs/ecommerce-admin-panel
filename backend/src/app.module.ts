@@ -10,6 +10,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { RolesGuard } from './common/guards/roles.guard';
 import { StoreSuspensionGuard } from './common/guards/store-suspension.guard';
+import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
 import { StoresModule } from './stores/stores.module';
 import { ProductsModule } from './products/products.module';
 import { OrdersModule } from './orders/orders.module';
@@ -21,6 +22,8 @@ import { PaymentsModule } from './payments/payments.module';
 import { ShippingModule } from './shipping/shipping.module';
 import { SystemModule } from './system/system.module';
 import { CommonModule } from './common/common.module';
+import { CacheModule } from './common/services/cache.module';
+import { HealthModule } from './health/health.module';
 
 @Module({
   imports: [
@@ -32,12 +35,15 @@ import { CommonModule } from './common/common.module';
         PORT: Joi.number().default(3000),
       }),
     }),
-    ThrottlerModule.forRoot([{
-      ttl: 60000,
-      limit: 100,
-    }]),
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60000,
+        limit: 100,
+      },
+    ]),
     PrismaModule,
     CommonModule,
+    CacheModule,
     AuthModule,
     StoresModule,
     ProductsModule,
@@ -49,6 +55,7 @@ import { CommonModule } from './common/common.module';
     PaymentsModule,
     ShippingModule,
     SystemModule,
+    HealthModule,
   ],
   controllers: [AppController],
   providers: [
@@ -71,4 +78,4 @@ import { CommonModule } from './common/common.module';
     },
   ],
 })
-export class AppModule { }
+export class AppModule {}

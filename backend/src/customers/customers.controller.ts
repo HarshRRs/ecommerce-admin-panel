@@ -1,13 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  Query,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { CustomersService } from './customers.service';
 import { CreateCustomerDto, UpdateCustomerDto, CreateAddressDto } from './dto/customer.dto';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
@@ -20,26 +11,17 @@ export class CustomersController {
 
   @Post()
   @Roles(Role.OWNER, Role.MANAGER, Role.STAFF)
-  create(
-    @Body() createCustomerDto: CreateCustomerDto,
-    @CurrentUser('storeId') storeId: string,
-  ) {
+  create(@Body() createCustomerDto: CreateCustomerDto, @CurrentUser('storeId') storeId: string) {
     return this.customersService.create(createCustomerDto, storeId);
   }
 
   @Get()
-  findAll(
-    @CurrentUser('storeId') storeId: string,
-    @Query('search') search?: string,
-  ) {
+  findAll(@CurrentUser('storeId') storeId: string, @Query('search') search?: string) {
     return this.customersService.findAll(storeId, search);
   }
 
   @Get(':id')
-  findOne(
-    @Param('id') id: string,
-    @CurrentUser('storeId') storeId: string,
-  ) {
+  findOne(@Param('id') id: string, @CurrentUser('storeId') storeId: string) {
     return this.customersService.findOne(id, storeId);
   }
 
@@ -55,10 +37,7 @@ export class CustomersController {
 
   @Delete(':id')
   @Roles(Role.OWNER, Role.MANAGER)
-  remove(
-    @Param('id') id: string,
-    @CurrentUser('storeId') storeId: string,
-  ) {
+  remove(@Param('id') id: string, @CurrentUser('storeId') storeId: string) {
     return this.customersService.remove(id, storeId);
   }
 

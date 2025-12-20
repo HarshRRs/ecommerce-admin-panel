@@ -48,12 +48,13 @@ services:
     environment:
       DATABASE_URL: "postgresql://postgres:password@postgres:5432/ecommerce_admin?schema=public"
       REDIS_URL: "redis://redis:6379"
-      JWT_SECRET: "development-secret-key-change-in-production"
+      JWT_SECRET: ${JWT_SECRET:-please-change-this-secret-in-production}
       JWT_EXPIRES_IN: "15m"
-      JWT_REFRESH_SECRET: "development-refresh-secret-change-in-production"
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-please-change-this-refresh-secret-in-production}
       JWT_REFRESH_EXPIRES_IN: "7d"
       PORT: 3000
       NODE_ENV: development
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:5173,http://localhost:3001}
     volumes:
       - ./backend:/app
       - /app/node_modules

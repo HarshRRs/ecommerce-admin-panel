@@ -4,7 +4,7 @@ import { CreateCustomerDto, UpdateCustomerDto, CreateAddressDto } from './dto/cu
 
 @Injectable()
 export class CustomersService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   async create(createCustomerDto: CreateCustomerDto, storeId: string) {
     const { addresses, ...customerData } = createCustomerDto;
@@ -23,19 +23,19 @@ export class CustomersService {
         storeId,
         addresses: addresses
           ? {
-            create: addresses.map((addr) => ({
-              firstName: addr.firstName,
-              lastName: addr.lastName,
-              addressLine1: addr.addressLine1,
-              addressLine2: addr.addressLine2,
-              city: addr.city,
-              state: addr.state,
-              postalCode: addr.postalCode,
-              country: addr.country,
-              phone: addr.phone || '',
-              isDefault: addr.isDefault || false,
-            })),
-          }
+              create: addresses.map((addr) => ({
+                firstName: addr.firstName,
+                lastName: addr.lastName,
+                addressLine1: addr.addressLine1,
+                addressLine2: addr.addressLine2,
+                city: addr.city,
+                state: addr.state,
+                postalCode: addr.postalCode,
+                country: addr.country,
+                phone: addr.phone || '',
+                isDefault: addr.isDefault || false,
+              })),
+            }
           : undefined,
       },
       include: {
