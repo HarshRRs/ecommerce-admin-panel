@@ -45,7 +45,7 @@ services:
     name: ecommerce-frontend
     env: static
     buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: ./frontend/dist
+    staticPublishPath: frontend/dist
     envVars:
       - key: VITE_API_URL
         value: https://ecommerce-backend-zlm4.onrender.com/api/v1
