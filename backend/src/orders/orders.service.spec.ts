@@ -13,7 +13,12 @@ describe('OrdersService', () => {
           provide: PrismaService,
           useValue: {
             prisma: {
-              order: { findMany: jest.fn(), findUnique: jest.fn(), create: jest.fn(), update: jest.fn() },
+              order: {
+                findMany: jest.fn(),
+                findUnique: jest.fn(),
+                create: jest.fn(),
+                update: jest.fn(),
+              },
               product: { findFirst: jest.fn() },
               customer: { findFirst: jest.fn() },
               coupon: { findFirst: jest.fn() },

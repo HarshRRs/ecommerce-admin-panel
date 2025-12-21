@@ -14,7 +14,13 @@ describe('ProductsService', () => {
           provide: PrismaService,
           useValue: {
             prisma: {
-              product: { findMany: jest.fn(), findFirst: jest.fn(), create: jest.fn(), update: jest.fn(), delete: jest.fn() },
+              product: {
+                findMany: jest.fn(),
+                findFirst: jest.fn(),
+                create: jest.fn(),
+                update: jest.fn(),
+                delete: jest.fn(),
+              },
               productVariant: { create: jest.fn(), findUnique: jest.fn(), update: jest.fn() },
               productImage: { create: jest.fn() },
             },

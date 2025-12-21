@@ -55,7 +55,7 @@ const apiService = {
     // Auth
     auth: {
         login: (credentials: any) => api.post('/auth/login', credentials),
-        register: (data: any) => api.post('/auth/register', data),
+        register: (data: any) => api.post('/auth/register-with-store', data),
         me: () => api.get('/auth/me'),
         forgotPassword: (email: string) => api.post('/auth/forgot-password', { email }),
         resetPassword: (token: string, password: string) => api.post('/auth/reset-password', { token, password }),

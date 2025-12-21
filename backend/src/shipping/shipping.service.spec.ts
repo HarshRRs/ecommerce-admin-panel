@@ -13,7 +13,12 @@ describe('ShippingService', () => {
           provide: PrismaService,
           useValue: {
             prisma: {
-              shipment: { findMany: jest.fn(), findFirst: jest.fn(), create: jest.fn(), update: jest.fn() },
+              shipment: {
+                findMany: jest.fn(),
+                findFirst: jest.fn(),
+                create: jest.fn(),
+                update: jest.fn(),
+              },
               order: { findFirst: jest.fn(), update: jest.fn() },
             },
           },

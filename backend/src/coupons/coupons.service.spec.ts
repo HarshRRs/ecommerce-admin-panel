@@ -13,7 +13,13 @@ describe('CouponsService', () => {
           provide: PrismaService,
           useValue: {
             prisma: {
-              coupon: { findMany: jest.fn(), findUnique: jest.fn(), create: jest.fn(), update: jest.fn(), delete: jest.fn() },
+              coupon: {
+                findMany: jest.fn(),
+                findUnique: jest.fn(),
+                create: jest.fn(),
+                update: jest.fn(),
+                delete: jest.fn(),
+              },
             },
           },
         },

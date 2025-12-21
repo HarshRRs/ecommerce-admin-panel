@@ -14,7 +14,13 @@ describe('StoresService', () => {
           provide: PrismaService,
           useValue: {
             prisma: {
-              store: { findUnique: jest.fn(), create: jest.fn(), update: jest.fn(), delete: jest.fn(), findMany: jest.fn() },
+              store: {
+                findUnique: jest.fn(),
+                create: jest.fn(),
+                update: jest.fn(),
+                delete: jest.fn(),
+                findMany: jest.fn(),
+              },
               user: { findUnique: jest.fn(), update: jest.fn() },
             },
           },

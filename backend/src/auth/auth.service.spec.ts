@@ -16,12 +16,19 @@ describe('AuthService', () => {
           provide: PrismaService,
           useValue: {
             prisma: {
-              user: { findUnique: jest.fn(), findFirst: jest.fn(), update: jest.fn(), create: jest.fn() },
+              user: {
+                findUnique: jest.fn(),
+                findFirst: jest.fn(),
+                update: jest.fn(),
+                create: jest.fn(),
+              },
               store: { findUnique: jest.fn(), create: jest.fn() },
-              $transaction: jest.fn((cb) => cb({
-                user: { create: jest.fn(), update: jest.fn() },
-                store: { create: jest.fn() },
-              })),
+              $transaction: jest.fn((cb) =>
+                cb({
+                  user: { create: jest.fn(), update: jest.fn() },
+                  store: { create: jest.fn() },
+                }),
+              ),
             },
           },
         },

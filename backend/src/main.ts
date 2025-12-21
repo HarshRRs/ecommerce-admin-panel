@@ -19,11 +19,25 @@ async function bootstrap() {
     ? allowedOriginsEnv.split(',').map((origin) => origin.trim())
     : ['http://localhost:5173', 'http://localhost:3001'];
 
+  console.log('--- CORS Configuration ---');
   console.log('Allowed Origins:', allowedOrigins);
+  console.log('-------------------------');
 
   app.enableCors({
-    origin: allowedOrigins,
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps or curl)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.indexOf(origin) !== -1 || allowedOrigins.includes('*')) {
+        callback(null, true);
+      } else {
+        console.warn(`CORS blocked for origin: ${origin}`);
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type,Accept,Authorization,X-Idempotency-Key',
   });
 
   // Security Headers
