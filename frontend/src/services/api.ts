@@ -17,6 +17,7 @@ const getBaseUrl = () => {
         url = url.endsWith('/') ? `${url}api/v1` : `${url}/api/v1`;
     }
 
+    console.log('[API] Configured Base URL:', url);
     return url;
 };
 
