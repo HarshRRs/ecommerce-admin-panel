@@ -1,19 +1,37 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Resend } from 'resend';
 
 @Injectable()
 export class EmailService {
-  private resend: Resend;
+  private resend: Resend | null = null;
+  private readonly enabled: boolean;
+  private readonly logger = new Logger(EmailService.name);
 
   constructor(private configService: ConfigService) {
     const apiKey = this.configService.get<string>('EMAIL_API_KEY');
-    this.resend = new Resend(apiKey);
+    this.enabled = !!apiKey && apiKey.length > 0;
+    
+    if (this.enabled) {
+      this.resend = new Resend(apiKey!);
+      this.logger.log('✅ Email service (Resend) initialized');
+    } else {
+      this.logger.warn('⚠️  Email service disabled - EMAIL_API_KEY not configured');
+      this.logger.warn('   Emails will be logged to console only');
+    }
   }
 
   async sendEmail(to: string, subject: string, html: string) {
     const from =
       this.configService.get<string>('EMAIL_FROM') || 'OrderNest <noreply@ordernest.com>';
+
+    if (!this.resend) {
+      this.logger.warn(`📧 Email not sent (service disabled):`);
+      this.logger.warn(`   To: ${to}`);
+      this.logger.warn(`   Subject: ${subject}`);
+      console.log('   Email HTML:', html.substring(0, 100) + '...');
+      return { id: 'disabled', message: 'Email service not configured' };
+    }
 
     try {
       const data = await this.resend.emails.send({
@@ -22,9 +40,10 @@ export class EmailService {
         subject,
         html,
       });
+      this.logger.log(`✅ Email sent to ${to}: ${subject}`);
       return data;
     } catch (error) {
-      console.error('Failed to send email:', error);
+      this.logger.error('Failed to send email:', error);
       throw error;
     }
   }

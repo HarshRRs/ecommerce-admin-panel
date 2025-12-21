@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import ThemeToggle from './ThemeToggle';
 import {
     LayoutDashboard,
     Package,
@@ -112,6 +113,7 @@ const Layout: React.FC = () => {
                     </div>
 
                     <div className="flex-center" style={{ gap: '1rem' }}>
+                        <ThemeToggle />
                         <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'var(--accent-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', fontWeight: 700 }}>
                             {user?.firstName?.charAt(0)}{user?.lastName?.charAt(0)}
                         </div>

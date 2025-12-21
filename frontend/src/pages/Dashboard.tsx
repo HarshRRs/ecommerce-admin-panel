@@ -10,20 +10,28 @@ const Dashboard: React.FC = () => {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const response = await api.get('/analytics/stats');
+                const response = await api.get('/analytics/dashboard');
                 setStats(response.data);
             } catch (err) {
-                console.error('Failed to fetch stats');
+                console.error('Failed to fetch stats:', err);
+                // Set default stats on error
+                setStats({
+                    totalRevenue: 0,
+                    totalOrders: 0,
+                    totalCustomers: 0,
+                    totalProducts: 0,
+                    recentOrders: []
+                });
             }
         };
         fetchStats();
     }, []);
 
     const statCards = [
-        { label: 'Total Revenue', value: `$${stats?.totalRevenue || 0}`, icon: <DollarSign />, color: '#6366f1' },
-        { label: 'New Orders', value: stats?.orderCount || 0, icon: <ShoppingBag />, color: '#a855f7' },
-        { label: 'Customers', value: stats?.customerCount || 0, icon: <Users />, color: '#10b981' },
-        { label: 'Active Products', value: stats?.productCount || 0, icon: <Package />, color: '#f59e0b' },
+        { label: 'Total Revenue', value: `$${stats?.totalRevenue?.toLocaleString() || 0}`, icon: <DollarSign />, color: '#6366f1' },
+        { label: 'Total Orders', value: stats?.totalOrders || 0, icon: <ShoppingBag />, color: '#a855f7' },
+        { label: 'Customers', value: stats?.totalCustomers || 0, icon: <Users />, color: '#10b981' },
+        { label: 'Products', value: stats?.totalProducts || 0, icon: <Package />, color: '#f59e0b' },
     ];
 
     return (
@@ -77,10 +85,39 @@ const Dashboard: React.FC = () => {
             <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '1.5rem' }}>
                 <div className="glass-card" style={{ minHeight: '300px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-                        <h3>Recent Activity</h3>
+                        <h3>Recent Orders</h3>
                         <button className="btn btn-secondary" style={{ fontSize: '0.8rem' }}>View All</button>
                     </div>
-                    <p style={{ color: 'var(--text-secondary)', textAlign: 'center', marginTop: '4rem' }}>No recent activity to display.</p>
+                    {stats?.recentOrders && stats.recentOrders.length > 0 ? (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                            {stats.recentOrders.slice(0, 5).map((order: any) => (
+                                <div key={order.id} style={{ 
+                                    display: 'flex', 
+                                    justifyContent: 'space-between', 
+                                    padding: '0.75rem',
+                                    borderRadius: '8px',
+                                    background: 'rgba(var(--accent-primary-rgb), 0.05)'
+                                }}>
+                                    <div>
+                                        <p style={{ fontWeight: 600 }}>#{order.id.slice(0, 8)}</p>
+                                        <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                                            {order.customer?.firstName} {order.customer?.lastName}
+                                        </p>
+                                    </div>
+                                    <div style={{ textAlign: 'right' }}>
+                                        <p style={{ fontWeight: 600 }}>${order.total}</p>
+                                        <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                                            {order.status}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <p style={{ color: 'var(--text-secondary)', textAlign: 'center', marginTop: '4rem' }}>
+                            No recent orders to display.
+                        </p>
+                    )}
                 </div>
 
                 <div className="glass-card">

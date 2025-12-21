@@ -12,6 +12,7 @@ import RegisterPage from './pages/RegisterPage';
 import OrdersList from './pages/OrdersList';
 import CustomersDirectory from './pages/CustomersDirectory';
 import AnalyticsDashboard from './pages/AnalyticsDashboard';
+import CMSPages from './pages/CMSPages';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import TermsPage from './pages/TermsPage';
@@ -54,7 +55,7 @@ function App() {
             <Route path="orders" element={<OrdersList />} />
             <Route path="customers" element={<CustomersDirectory />} />
             <Route path="analytics" element={<AnalyticsDashboard />} />
-            <Route path="cms" element={<div>CMS Page (Coming Soon)</div>} />
+            <Route path="cms" element={<CMSPages />} />
 
             <Route path="stores" element={
               <ProtectedRoute roles={['SUPER_ADMIN']}>

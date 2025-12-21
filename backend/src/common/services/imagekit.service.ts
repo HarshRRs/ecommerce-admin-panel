@@ -13,13 +13,16 @@ export class ImageKitService {
     const urlEndpoint = this.configService.get<string>('IMAGEKIT_URL_ENDPOINT');
 
     if (!publicKey || !privateKey || !urlEndpoint) {
-      this.logger.warn('ImageKit credentials are missing. Image uploads will fail.');
+      this.logger.warn('⚠️  ImageKit disabled - credentials not configured');
+      this.logger.warn('   Set IMAGEKIT_PUBLIC_KEY, IMAGEKIT_PRIVATE_KEY, IMAGEKIT_URL_ENDPOINT');
+      this.logger.warn('   Image uploads will fail until credentials are provided');
     } else {
       this.imagekit = new ImageKit({
         publicKey,
         privateKey,
         urlEndpoint,
       });
+      this.logger.log('✅ ImageKit service initialized');
     }
   }
 

@@ -37,22 +37,30 @@ import { EmailModule } from './system/email/email.module';
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({
+        // Core required - app cannot start without these
         NODE_ENV: Joi.string().valid('development', 'production', 'test').default('development'),
         PORT: Joi.number().default(3000),
         DATABASE_URL: Joi.string().required(),
-        REDIS_URL: Joi.string().required(),
         JWT_SECRET: Joi.string().required(),
         ACCESS_TOKEN_SECRET: Joi.string().required(),
         REFRESH_TOKEN_SECRET: Joi.string().required(),
         ALLOWED_ORIGINS: Joi.string().required(),
-        STRIPE_SECRET_KEY: Joi.string().optional(),
-        IMAGEKIT_PUBLIC_KEY: Joi.string().required(),
-        IMAGEKIT_PRIVATE_KEY: Joi.string().required(),
-        IMAGEKIT_URL_ENDPOINT: Joi.string().required(),
-        EMAIL_PROVIDER: Joi.string().valid('resend').default('resend'),
-        EMAIL_API_KEY: Joi.string().required(),
-        EMAIL_FROM: Joi.string().default('noreply@ordernest.com'),
         ENCRYPTION_KEY: Joi.string().required(),
+        
+        // Optional services - app works without these
+        REDIS_URL: Joi.string().optional().allow(''),
+        IMAGEKIT_PUBLIC_KEY: Joi.string().optional().allow(''),
+        IMAGEKIT_PRIVATE_KEY: Joi.string().optional().allow(''),
+        IMAGEKIT_URL_ENDPOINT: Joi.string().optional().allow(''),
+        EMAIL_API_KEY: Joi.string().optional().allow(''),
+        EMAIL_FROM: Joi.string().default('noreply@ordernest.com'),
+        EMAIL_PROVIDER: Joi.string().valid('resend').default('resend'),
+        
+        // Payment gateway (optional)
+        STRIPE_SECRET_KEY: Joi.string().optional().allow(''),
+        
+        // Frontend URL (optional, used in emails)
+        FRONTEND_URL: Joi.string().optional().default('http://localhost:5173'),
       }),
     }),
     LoggerModule.forRoot({
@@ -64,17 +72,15 @@ import { EmailModule } from './system/email/email.module';
         level: process.env.NODE_ENV !== 'production' ? 'debug' : 'info',
       },
     }),
-    BullModule.forRoot({
-      connection: process.env.REDIS_URL
-        ? {
-            url: process.env.REDIS_URL,
-          }
-        : {
-            host: process.env.REDIS_HOST || 'localhost',
-            port: parseInt(process.env.REDIS_PORT ?? '6379'),
-          },
-    }),
-    BackgroundJobsModule,
+    // Conditionally import BullModule only if Redis is configured
+    ...(process.env.REDIS_URL
+      ? [
+          BullModule.forRoot({
+            connection: { url: process.env.REDIS_URL },
+          }),
+          BackgroundJobsModule,
+        ]
+      : []),
     AuditLogModule,
     EmailModule,
     ThrottlerModule.forRoot([
