@@ -27,21 +27,28 @@ services:
         generateValue: true
       - key: ACCESS_TOKEN_SECRET
         generateValue: true
+      - key: REDIS_URL
+        sync: false
+      - key: ENCRYPTION_KEY
+        value: ecommerce_admin_panel_master_encryption_key_32_chars
+      - key: EMAIL_PROVIDER
+        value: resend
+      - key: EMAIL_API_KEY
+        sync: false
+      - key: EMAIL_FROM
+        value: OrderNest <onboarding@resend.dev>
       - key: ALLOWED_ORIGINS
-        value: https://ecommerce-frontend-3m02.onrender.com # Frontend URL
+        value: https://ecommerce-frontend-3m02.onrender.com
 
   # Frontend Service
-  - type: web # Render Static Sites are great, but for Vite SPA with routing, 'web' or 'static' works. Let's use 'static' for efficiency.
+  - type: web
     name: ecommerce-frontend
     env: static
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: ./frontend/dist
     envVars:
       - key: VITE_API_URL
-        fromService:
-          type: web
-          name: ecommerce-backend
-          property: host
+        value: https://ecommerce-backend.onrender.com/api/v1
 
 databases:
   - name: ecommerce-db
