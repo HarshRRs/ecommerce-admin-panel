@@ -30,6 +30,9 @@ jobs:
         ports:
           - 5432:5432
 
+    env:
+      DATABASE_URL: postgresql://test:test@localhost:5432/test_db
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -45,10 +48,6 @@ jobs:
         working-directory: backend
         run: npm ci
 
-      - name: Generate Prisma Client
-        working-directory: backend
-        run: npx prisma generate
-
       - name: Lint code
         working-directory: backend
         run: npm run lint
@@ -56,8 +55,6 @@ jobs:
       - name: Run tests
         working-directory: backend
         run: npm test
-        env:
-          DATABASE_URL: postgresql://test:test@localhost:5432/test_db
 
       - name: Build application
         working-directory: backend
