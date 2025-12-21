@@ -47,4 +47,54 @@ api.interceptors.response.use(
     }
 );
 
+const apiService = {
+    // Auth
+    auth: {
+        login: (credentials: any) => api.post('/auth/login', credentials),
+        register: (data: any) => api.post('/auth/register', data),
+        me: () => api.get('/auth/me'),
+        forgotPassword: (email: string) => api.post('/auth/forgot-password', { email }),
+        resetPassword: (token: string, password: string) => api.post('/auth/reset-password', { token, password }),
+    },
+    // Products
+    products: {
+        getAll: () => api.get('/products'),
+        getById: (id: string) => api.get(`/products/${id}`),
+        create: (data: any) => api.post('/products', data),
+        update: (id: string, data: any) => api.patch(`/products/${id}`, data),
+        delete: (id: string) => api.delete(`/products/${id}`),
+    },
+    // Categories
+    categories: {
+        getAll: () => api.get('/products/categories'),
+    },
+    // Orders
+    orders: {
+        getAll: (params?: any) => api.get('/orders', { params }),
+        getById: (id: string) => api.get(`/orders/${id}`),
+        updateStatus: (id: string, status: string) => api.patch(`/orders/${id}/status`, { status }),
+    },
+    // Customers
+    customers: {
+        getAll: (params?: any) => api.get('/customers', { params }),
+        getById: (id: string) => api.get(`/customers/${id}`),
+    },
+    // Analytics
+    analytics: {
+        getDashboard: () => api.get('/analytics/dashboard'),
+        getRevenue: (period: string) => api.get('/analytics/revenue', { params: { period } }),
+    },
+    // Stores
+    stores: {
+        getAll: () => api.get('/stores'),
+        getById: (id: string) => api.get(`/stores/${id}`),
+        create: (data: any) => api.post('/stores', data),
+        update: (id: string, data: any) => api.patch(`/stores/${id}`, data),
+        delete: (id: string) => api.delete(`/stores/${id}`),
+        updateStatus: (id: string, status: string) => api.patch(`/stores/${id}/status`, { status }),
+        confirmStripe: (id: string) => api.post(`/stores/${id}/confirm-stripe`),
+    },
+};
+
+export { api, apiService };
 export default api;

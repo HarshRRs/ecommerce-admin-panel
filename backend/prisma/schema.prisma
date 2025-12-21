@@ -381,6 +381,7 @@ model Order {
   billingAddress    Json
   notes             String?       @db.Text
   internalNotes     String?       @db.Text
+  idempotencyKey    String?       @unique
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt
   deletedAt         DateTime?     // Soft delete support

@@ -12,7 +12,7 @@ import { LoginDto, RegisterDto, RegisterWithStoreDto } from './dto/auth.dto';
 import { randomBytes } from 'crypto';
 import { Role } from '@prisma/client';
 
-import { TransactionalEmailService } from '../common/services/email.service';
+import { EmailService } from '../system/email/email.service';
 
 @Injectable()
 export class AuthService {
@@ -20,8 +20,8 @@ export class AuthService {
     private prisma: PrismaService,
     private jwtService: JwtService,
     private configService: ConfigService,
-    private emailService: TransactionalEmailService,
-  ) {}
+    private emailService: EmailService,
+  ) { }
 
   async forgotPassword(email: string) {
     const user = await this.prisma.prisma.user.findUnique({

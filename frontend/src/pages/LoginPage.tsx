@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
-import api from '../services/api';
+import { apiService } from '../services/api';
 import { LogIn, Loader2 } from 'lucide-react';
 
 const LoginPage: React.FC = () => {
@@ -17,7 +17,7 @@ const LoginPage: React.FC = () => {
         setError('');
 
         try {
-            const response = await api.post('/auth/login', { email, password });
+            const response = await apiService.auth.login({ email, password });
             const { access_token, refresh_token, user } = response.data;
 
             login(access_token, refresh_token, user);
@@ -78,6 +78,12 @@ const LoginPage: React.FC = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
+                    </div>
+
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1.5rem' }}>
+                        <Link to="/forgot-password" style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', textDecoration: 'none' }}>
+                            Forgot password?
+                        </Link>
                     </div>
 
                     {error && (

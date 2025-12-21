@@ -7,8 +7,11 @@ import helmet from 'helmet';
 import compression from 'compression';
 import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
 
+import { Logger } from 'nestjs-pino';
+
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, { bufferLogs: true });
+  app.useLogger(app.get(Logger));
 
   // Enable CORS
   const allowedOriginsEnv = process.env.ALLOWED_ORIGINS;

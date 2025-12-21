@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import api from '../services/api';
+import { apiService } from '../services/api';
 import { UserPlus, Loader2, Store, User, ArrowRight } from 'lucide-react';
 
 const RegisterPage: React.FC = () => {
@@ -31,7 +31,7 @@ const RegisterPage: React.FC = () => {
         setError('');
 
         try {
-            const response = await api.post('/auth/register-with-store', formData);
+            const response = await apiService.auth.register(formData);
             const { access_token, refresh_token, user } = response.data;
 
             login(access_token, refresh_token, user);

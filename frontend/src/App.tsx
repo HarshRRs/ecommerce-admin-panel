@@ -9,6 +9,13 @@ import StoreList from './pages/StoreList';
 import StoreForm from './pages/StoreForm';
 import StoreSettings from './pages/StoreSettings';
 import RegisterPage from './pages/RegisterPage';
+import OrdersList from './pages/OrdersList';
+import CustomersDirectory from './pages/CustomersDirectory';
+import AnalyticsDashboard from './pages/AnalyticsDashboard';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
+import TermsPage from './pages/TermsPage';
+import PrivacyPage from './pages/PrivacyPage';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode; roles?: string[] }> = ({ children, roles }) => {
   const { user, loading } = useAuth();
@@ -30,6 +37,10 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/terms" element={<TermsPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
 
           <Route path="/" element={
             <ProtectedRoute>
@@ -40,9 +51,9 @@ function App() {
             <Route path="products" element={<ProductsList />} />
             <Route path="products/new" element={<ProductForm />} />
             <Route path="products/:id" element={<ProductForm />} />
-            <Route path="orders" element={<div>Orders Page (Coming Soon)</div>} />
-            <Route path="customers" element={<div>Customers Page (Coming Soon)</div>} />
-            <Route path="analytics" element={<div>Analytics Page (Coming Soon)</div>} />
+            <Route path="orders" element={<OrdersList />} />
+            <Route path="customers" element={<CustomersDirectory />} />
+            <Route path="analytics" element={<AnalyticsDashboard />} />
             <Route path="cms" element={<div>CMS Page (Coming Soon)</div>} />
 
             <Route path="stores" element={

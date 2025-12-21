@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import * as Joi from 'joi';
 import { ConfigModule } from '@nestjs/config';
-import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -24,17 +23,57 @@ import { SystemModule } from './system/system.module';
 import { CommonModule } from './common/common.module';
 import { CacheModule } from './common/services/cache.module';
 import { HealthModule } from './health/health.module';
+import { BullModule } from '@nestjs/bullmq';
+import { LoggerModule } from 'nestjs-pino';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
+import { IdempotencyInterceptor } from './common/interceptors/idempotency.interceptor';
+import { AuditLogInterceptor } from './common/interceptors/audit-log.interceptor';
+import { BackgroundJobsModule } from './common/jobs/background-jobs.module';
+import { AuditLogModule } from './system/audit-logs/audit-log.module';
+import { EmailModule } from './system/email/email.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({
-        DATABASE_URL: Joi.string().required(),
-        JWT_SECRET: Joi.string().required(),
+        NODE_ENV: Joi.string().valid('development', 'production', 'test').default('development'),
         PORT: Joi.number().default(3000),
+        DATABASE_URL: Joi.string().required(),
+        REDIS_URL: Joi.string().required(),
+        JWT_SECRET: Joi.string().required(),
+        ACCESS_TOKEN_SECRET: Joi.string().required(),
+        REFRESH_TOKEN_SECRET: Joi.string().required(),
+        ALLOWED_ORIGINS: Joi.string().required(),
+        STRIPE_SECRET_KEY: Joi.string().optional(),
+        IMAGEKIT_PUBLIC_KEY: Joi.string().required(),
+        IMAGEKIT_PRIVATE_KEY: Joi.string().required(),
+        IMAGEKIT_URL_ENDPOINT: Joi.string().required(),
+        EMAIL_PROVIDER: Joi.string().valid('resend').default('resend'),
+        EMAIL_API_KEY: Joi.string().required(),
+        EMAIL_FROM: Joi.string().default('noreply@ordernest.com'),
+        ENCRYPTION_KEY: Joi.string().required(),
       }),
     }),
+    LoggerModule.forRoot({
+      pinoHttp: {
+        transport: process.env.NODE_ENV !== 'production'
+          ? { target: 'pino-pretty', options: { colorize: true } }
+          : undefined,
+        level: process.env.NODE_ENV !== 'production' ? 'debug' : 'info',
+      },
+    }),
+    BullModule.forRoot({
+      connection: process.env.REDIS_URL ? {
+        url: process.env.REDIS_URL,
+      } : {
+        host: process.env.REDIS_HOST || 'localhost',
+        port: parseInt(process.env.REDIS_PORT ?? '6379'),
+      },
+    }),
+    BackgroundJobsModule,
+    AuditLogModule,
+    EmailModule,
     ThrottlerModule.forRoot([
       {
         ttl: 60000,
@@ -76,6 +115,14 @@ import { HealthModule } from './health/health.module';
       provide: APP_GUARD,
       useClass: StoreSuspensionGuard,
     },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: IdempotencyInterceptor,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: AuditLogInterceptor,
+    },
   ],
 })
-export class AppModule {}
+export class AppModule { }
