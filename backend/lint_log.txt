@@ -1,0 +1,532 @@
+﻿
+> backend@0.0.1 lint
+> eslint "{src,apps,libs,test}/**/*.ts" --fix
+
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\analytics\analytics.service.ts
+   43:13  error    Unsafe member access .createdAt on an `any` value                                       @typescript-eslint/no-unsafe-member-access
+   44:28  error    Unsafe member access .createdAt on an `any` value                                       @typescript-eslint/no-unsafe-member-access
+   45:26  error    Unsafe member access .createdAt on an `any` value                                       @typescript-eslint/no-unsafe-member-access
+   49:40  error    Unsafe assignment of an `any` value                                                     @typescript-eslint/no-unsafe-assignment
+   51:9   error    Unsafe assignment of an `any` value                                                     @typescript-eslint/no-unsafe-assignment
+  135:11  error    Unsafe assignment of an `any` value                                                     @typescript-eslint/no-unsafe-assignment
+  135:24  error    Unsafe member access .id on an `any` value                                              @typescript-eslint/no-unsafe-member-access
+  136:11  error    Unsafe assignment of an `any` value                                                     @typescript-eslint/no-unsafe-assignment
+  136:27  error    Unsafe member access .email on an `any` value                                           @typescript-eslint/no-unsafe-member-access
+  137:11  error    Unsafe assignment of an `any` value                                                     @typescript-eslint/no-unsafe-assignment
+  137:31  error    Unsafe member access .firstName on an `any` value                                       @typescript-eslint/no-unsafe-member-access
+  138:11  error    Unsafe assignment of an `any` value                                                     @typescript-eslint/no-unsafe-assignment
+  138:30  error    Unsafe member access .lastName on an `any` value                                        @typescript-eslint/no-unsafe-member-access
+  140:9   error    Unsafe assignment of an `any` value                                                     @typescript-eslint/no-unsafe-assignment
+  140:31  error    Unsafe member access .orders on an `any` value                                          @typescript-eslint/no-unsafe-member-access
+  141:9   error    Unsafe assignment of an `any` value                                                     @typescript-eslint/no-unsafe-assignment
+  142:11  error    Unsafe call of a(n) `any` typed value                                                   @typescript-eslint/no-unsafe-call
+  142:20  error    Unsafe member access .orders on an `any` value                                          @typescript-eslint/no-unsafe-member-access
+  142:83  error    Unsafe member access .total on an `any` value                                           @typescript-eslint/no-unsafe-member-access
+  157:29  warning  Unsafe argument of type `any` assigned to a parameter of type `string | number | Date`  @typescript-eslint/no-unsafe-argument
+  157:34  error    Unsafe member access .createdAt on an `any` value                                       @typescript-eslint/no-unsafe-member-access
+  161:13  error    Unsafe assignment of an `any` value                                                     @typescript-eslint/no-unsafe-assignment
+  162:13  error    Unsafe member access .total on an `any` value                                           @typescript-eslint/no-unsafe-member-access
+  162:27  error    Unsafe member access ._sum on an `any` value                                            @typescript-eslint/no-unsafe-member-access
+  163:13  error    Unsafe member access .count on an `any` value                                           @typescript-eslint/no-unsafe-member-access
+  163:27  error    Unsafe member access ._count on an `any` value                                          @typescript-eslint/no-unsafe-member-access
+  166:5   error    Unsafe return of a value of type `any[]`                                                @typescript-eslint/no-unsafe-return
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\app.module.ts
+  12:10  error  'GlobalExceptionFilter' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\auth\auth.module.ts
+  18:7  error  Async method 'useFactory' has no 'await' expression  @typescript-eslint/require-await
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\auth\auth.service.ts
+  268:13  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  274:44  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+  274:52  error    Unsafe member access .sub on an `any` value                             @typescript-eslint/no-unsafe-member-access
+  282:14  error    'error' is defined but never used                                       @typescript-eslint/no-unused-vars
+  287:3   error    Async method 'logout' has no 'await' expression                         @typescript-eslint/require-await
+  287:16  error    'userId' is defined but never used                                      @typescript-eslint/no-unused-vars
+  293:3   error    Async method 'generateTokens' has no 'await' expression                 @typescript-eslint/require-await
+  295:7   error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  295:17  error    Unsafe member access .id on an `any` value                              @typescript-eslint/no-unsafe-member-access
+  296:7   error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  296:19  error    Unsafe member access .email on an `any` value                           @typescript-eslint/no-unsafe-member-access
+  297:7   error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  297:18  error    Unsafe member access .role on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  298:7   error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  298:21  error    Unsafe member access .storeId on an `any` value                         @typescript-eslint/no-unsafe-member-access
+  306:9   error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  306:19  error    Unsafe member access .id on an `any` value                              @typescript-eslint/no-unsafe-member-access
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\cms\cms.service.ts
+   30:23  error  Unsafe member access .status on an `any` value  @typescript-eslint/no-unsafe-member-access
+   33:7   error  Unsafe assignment of an `any` value             @typescript-eslint/no-unsafe-assignment
+   92:23  error  Unsafe member access .status on an `any` value  @typescript-eslint/no-unsafe-member-access
+   95:7   error  Unsafe assignment of an `any` value             @typescript-eslint/no-unsafe-assignment
+  145:23  error  Unsafe member access .status on an `any` value  @typescript-eslint/no-unsafe-member-access
+  148:7   error  Unsafe assignment of an `any` value             @typescript-eslint/no-unsafe-assignment
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\common\decorators\current-user.decorator.ts
+  5:11  error  Unsafe assignment of an `any` value            @typescript-eslint/no-unsafe-assignment
+  6:11  error  Unsafe assignment of an `any` value            @typescript-eslint/no-unsafe-assignment
+  6:26  error  Unsafe member access .user on an `any` value   @typescript-eslint/no-unsafe-member-access
+  8:5   error  Unsafe return of a value of type `any`         @typescript-eslint/no-unsafe-return
+  8:26  error  Unsafe member access [data] on an `any` value  @typescript-eslint/no-unsafe-member-access
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\common\exceptions\custom.exceptions.ts
+  24:9  error  Unsafe assignment of an `any` value  @typescript-eslint/no-unsafe-assignment
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\common\filters\global-exception.filter.ts
+   46:15  error  Unsafe assignment of an `any` value                                            @typescript-eslint/no-unsafe-assignment
+   49:11  error  Unsafe assignment of an `any` value                                            @typescript-eslint/no-unsafe-assignment
+   49:32  error  Unsafe member access .message on an `any` value                                @typescript-eslint/no-unsafe-member-access
+   50:11  error  Unsafe assignment of an `any` value                                            @typescript-eslint/no-unsafe-assignment
+   50:30  error  Unsafe member access .error on an `any` value                                  @typescript-eslint/no-unsafe-member-access
+   51:11  error  Unsafe assignment of an `any` value                                            @typescript-eslint/no-unsafe-assignment
+   51:34  error  Unsafe member access .errorCode on an `any` value                              @typescript-eslint/no-unsafe-member-access
+   54:11  error  Unsafe assignment of an `any` value                                            @typescript-eslint/no-unsafe-assignment
+   54:32  error  Unsafe member access .details on an `any` value                                @typescript-eslint/no-unsafe-member-access
+  108:11  error  Unsafe assignment of an `any` value                                            @typescript-eslint/no-unsafe-assignment
+  108:28  error  Unsafe member access .code on an `any` value                                   @typescript-eslint/no-unsafe-member-access
+  120:11  error  Unsafe assignment of an `any` value                                            @typescript-eslint/no-unsafe-assignment
+  120:30  error  Unsafe member access .meta on an `any` value                                   @typescript-eslint/no-unsafe-member-access
+  157:7   error  The case statement does not have a shared enum type with the switch predicate  @typescript-eslint/no-unsafe-enum-comparison
+  159:7   error  The case statement does not have a shared enum type with the switch predicate  @typescript-eslint/no-unsafe-enum-comparison
+  161:7   error  The case statement does not have a shared enum type with the switch predicate  @typescript-eslint/no-unsafe-enum-comparison
+  163:7   error  The case statement does not have a shared enum type with the switch predicate  @typescript-eslint/no-unsafe-enum-comparison
+  165:7   error  The case statement does not have a shared enum type with the switch predicate  @typescript-eslint/no-unsafe-enum-comparison
+  167:7   error  The case statement does not have a shared enum type with the switch predicate  @typescript-eslint/no-unsafe-enum-comparison
+  169:7   error  The case statement does not have a shared enum type with the switch predicate  @typescript-eslint/no-unsafe-enum-comparison
+  171:7   error  The case statement does not have a shared enum type with the switch predicate  @typescript-eslint/no-unsafe-enum-comparison
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\common\guards\roles.guard.ts
+  28:11  error  Unsafe assignment of an `any` value                   @typescript-eslint/no-unsafe-assignment
+  30:24  error  Unsafe member access .role on an `any` value          @typescript-eslint/no-unsafe-member-access
+  35:14  error  Unsafe member access .role on an `any` value          @typescript-eslint/no-unsafe-member-access
+  40:11  error  Unsafe assignment of an error typed value             @typescript-eslint/no-unsafe-assignment
+  40:46  error  Computed name [user.role] resolves to an `any` value  @typescript-eslint/no-unsafe-member-access
+  40:51  error  Unsafe member access .role on an `any` value          @typescript-eslint/no-unsafe-member-access
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\common\guards\store-suspension.guard.ts
+   6:3   error  'Inject' is defined but never used               @typescript-eslint/no-unused-vars
+  19:11  error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+  20:11  error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+  20:26  error  Unsafe member access .user on an `any` value     @typescript-eslint/no-unsafe-member-access
+  26:14  error  Unsafe member access .role on an `any` value     @typescript-eslint/no-unsafe-member-access
+  34:14  error  Unsafe member access .storeId on an `any` value  @typescript-eslint/no-unsafe-member-access
+  36:18  error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+  36:27  error  Unsafe member access .storeId on an `any` value  @typescript-eslint/no-unsafe-member-access
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\common\interceptors\audit-log.interceptor.ts
+  11:11  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  12:11  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  15:68  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+  21:11  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  22:7   error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  22:11  error    Unsafe member access .includes on an `any` value                        @typescript-eslint/no-unsafe-member-access
+  22:32  error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  22:36  error    Unsafe member access .includes on an `any` value                        @typescript-eslint/no-unsafe-member-access
+  22:60  error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  22:64  error    Unsafe member access .includes on an `any` value                        @typescript-eslint/no-unsafe-member-access
+  28:11  error    Promise returned in function argument where a void return was expected  @typescript-eslint/no-misused-promises
+  31:61  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+  32:50  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+  35:11  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  35:24  error    Unsafe member access .id on an `any` value                              @typescript-eslint/no-unsafe-member-access
+  36:11  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  36:25  error    Unsafe member access .storeId on an `any` value                         @typescript-eslint/no-unsafe-member-access
+  39:11  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  39:29  error    Unsafe member access .id on an `any` value                              @typescript-eslint/no-unsafe-member-access
+  39:43  error    Unsafe member access .params on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  40:11  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  41:11  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  42:11  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  42:30  error    Unsafe member access ['user-agent'] on an `any` value                   @typescript-eslint/no-unsafe-member-access
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\common\interceptors\idempotency.interceptor.ts
+  17:11  error  Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  20:17  error  Unsafe member access .method on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  24:11  error  Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  24:36  error  Unsafe member access .headers on an `any` value                         @typescript-eslint/no-unsafe-member-access
+  47:11  error  Promise returned in function argument where a void return was expected  @typescript-eslint/no-misused-promises
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\common\jobs\background-jobs.processor.ts
+  19:9   error    Unexpected lexical declaration in case block                            no-case-declarations
+  19:15  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  21:53  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+  21:57  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+  21:62  error    Unsafe member access .name on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  23:59  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+  23:63  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+  23:68  error    Unsafe member access .token on an `any` value                           @typescript-eslint/no-unsafe-member-access
+  25:44  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+  25:48  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+  25:57  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\common\services\cache.service.ts
+  16:3  error  Async method 'onModuleInit' has no 'await' expression  @typescript-eslint/require-await
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\common\services\cloudinary.service.ts
+  38:16  error    Unsafe member access .buffer on an `any` value                                                      @typescript-eslint/no-unsafe-member-access
+  39:38  warning  Unsafe argument of type `any` assigned to a parameter of type `Iterable<any> | AsyncIterable<any>`  @typescript-eslint/no-unsafe-argument
+  39:43  error    Unsafe member access .buffer on an `any` value                                                      @typescript-eslint/no-unsafe-member-access
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\coupons\coupons.service.ts
+  36:13  error  Unsafe member access .status on an `any` value  @typescript-eslint/no-unsafe-member-access
+  40:7   error  Unsafe assignment of an `any` value             @typescript-eslint/no-unsafe-assignment
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\customers\customers.service.ts
+  51:13  error  Unsafe member access .OR on an `any` value  @typescript-eslint/no-unsafe-member-access
+  59:7   error  Unsafe assignment of an `any` value         @typescript-eslint/no-unsafe-assignment
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\health\health.controller.ts
+  16:11  error    Unsafe assignment of an `any` value                                                                             @typescript-eslint/no-unsafe-assignment
+  17:37  warning  Unsafe argument of type `any` assigned to a parameter of type `{ [s: string]: unknown; } | ArrayLike<unknown>`  @typescript-eslint/no-unsafe-argument
+  17:73  error    Unsafe member access .status on an `any` value                                                                  @typescript-eslint/no-unsafe-member-access
+  22:7   error    Unsafe assignment of an `any` value                                                                             @typescript-eslint/no-unsafe-assignment
+  31:13  error    Unsafe use of a(n) `error` type typed template tag                                                              @typescript-eslint/no-unsafe-call
+  47:3   error    Async method 'live' has no 'await' expression                                                                   @typescript-eslint/require-await
+  63:5   error    Unsafe return of a value of type `any`                                                                          @typescript-eslint/no-unsafe-return
+  68:13  error    Unsafe use of a(n) `error` type typed template tag                                                              @typescript-eslint/no-unsafe-call
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\main.ts
+  59:1  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\orders\orders.service.ts
+   99:18  error  Unsafe member access .status on an `any` value         @typescript-eslint/no-unsafe-member-access
+   99:26  error  Unsafe assignment of an `any` value                    @typescript-eslint/no-unsafe-assignment
+   99:32  error  Unsafe member access .status on an `any` value         @typescript-eslint/no-unsafe-member-access
+   99:49  error  Unsafe member access .status on an `any` value         @typescript-eslint/no-unsafe-member-access
+  100:18  error  Unsafe member access .paymentStatus on an `any` value  @typescript-eslint/no-unsafe-member-access
+  100:33  error  Unsafe assignment of an `any` value                    @typescript-eslint/no-unsafe-assignment
+  100:39  error  Unsafe member access .paymentStatus on an `any` value  @typescript-eslint/no-unsafe-member-access
+  100:63  error  Unsafe member access .paymentStatus on an `any` value  @typescript-eslint/no-unsafe-member-access
+  101:18  error  Unsafe member access .customerId on an `any` value     @typescript-eslint/no-unsafe-member-access
+  101:30  error  Unsafe assignment of an `any` value                    @typescript-eslint/no-unsafe-assignment
+  101:36  error  Unsafe member access .customerId on an `any` value     @typescript-eslint/no-unsafe-member-access
+  101:57  error  Unsafe member access .customerId on an `any` value     @typescript-eslint/no-unsafe-member-access
+  102:18  error  Unsafe member access .search on an `any` value         @typescript-eslint/no-unsafe-member-access
+  103:13  error  Unsafe member access .OR on an `any` value             @typescript-eslint/no-unsafe-member-access
+  104:26  error  Unsafe assignment of an `any` value                    @typescript-eslint/no-unsafe-assignment
+  104:44  error  Unsafe member access .search on an `any` value         @typescript-eslint/no-unsafe-member-access
+  105:32  error  Unsafe assignment of an `any` value                    @typescript-eslint/no-unsafe-assignment
+  105:50  error  Unsafe member access .search on an `any` value         @typescript-eslint/no-unsafe-member-access
+  110:7   error  Unsafe assignment of an `any` value                    @typescript-eslint/no-unsafe-assignment
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\payments\payments.controller.ts
+  27:59  warning  Unsafe argument of type `any` assigned to a parameter of type `Buffer<ArrayBufferLike>`  @typescript-eslint/no-unsafe-argument
+  27:63  error    Unsafe member access .rawBody on an `any` value                                          @typescript-eslint/no-unsafe-member-access
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\payments\payments.service.ts
+    4:10  error  'PaymentStatus' is defined but never used                @typescript-eslint/no-unused-vars
+   17:3   error  Async method 'processPayment' has no 'await' expression  @typescript-eslint/require-await
+   18:5   error  'amount' is defined but never used                       @typescript-eslint/no-unused-vars
+   19:5   error  'token' is defined but never used                        @typescript-eslint/no-unused-vars
+   28:3   error  Async method 'refundPayment' has no 'await' expression   @typescript-eslint/require-await
+   28:23  error  'transactionId' is defined but never used                @typescript-eslint/no-unused-vars
+   28:46  error  'amount' is defined but never used                       @typescript-eslint/no-unused-vars
+   35:3   error  Async method 'processPayment' has no 'await' expression  @typescript-eslint/require-await
+   36:5   error  'amount' is defined but never used                       @typescript-eslint/no-unused-vars
+   37:5   error  'token' is defined but never used                        @typescript-eslint/no-unused-vars
+   45:3   error  Async method 'refundPayment' has no 'await' expression   @typescript-eslint/require-await
+   45:23  error  'transactionId' is defined but never used                @typescript-eslint/no-unused-vars
+   45:46  error  'amount' is defined but never used                       @typescript-eslint/no-unused-vars
+   52:3   error  Async method 'processPayment' has no 'await' expression  @typescript-eslint/require-await
+   52:24  error  'amount' is defined but never used                       @typescript-eslint/no-unused-vars
+   59:3   error  Async method 'refundPayment' has no 'await' expression   @typescript-eslint/require-await
+   59:23  error  'transactionId' is defined but never used                @typescript-eslint/no-unused-vars
+   59:46  error  'amount' is defined but never used                       @typescript-eslint/no-unused-vars
+  162:23  error  Unsafe assignment of an error typed value                @typescript-eslint/no-unsafe-assignment
+  173:18  error  Unsafe member access .status on an `any` value           @typescript-eslint/no-unsafe-member-access
+  173:26  error  Unsafe assignment of an `any` value                      @typescript-eslint/no-unsafe-assignment
+  173:32  error  Unsafe member access .status on an `any` value           @typescript-eslint/no-unsafe-member-access
+  173:49  error  Unsafe member access .status on an `any` value           @typescript-eslint/no-unsafe-member-access
+  174:18  error  Unsafe member access .gateway on an `any` value          @typescript-eslint/no-unsafe-member-access
+  174:27  error  Unsafe assignment of an `any` value                      @typescript-eslint/no-unsafe-assignment
+  174:33  error  Unsafe member access .gateway on an `any` value          @typescript-eslint/no-unsafe-member-access
+  174:51  error  Unsafe member access .gateway on an `any` value          @typescript-eslint/no-unsafe-member-access
+  175:18  error  Unsafe member access .orderId on an `any` value          @typescript-eslint/no-unsafe-member-access
+  175:27  error  Unsafe assignment of an `any` value                      @typescript-eslint/no-unsafe-assignment
+  175:33  error  Unsafe member access .orderId on an `any` value          @typescript-eslint/no-unsafe-member-access
+  175:51  error  Unsafe member access .orderId on an `any` value          @typescript-eslint/no-unsafe-member-access
+  178:7   error  Unsafe assignment of an `any` value                      @typescript-eslint/no-unsafe-assignment
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\payments\stripe.service.ts
+   20:11  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+   22:7   error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+   31:15  error    Unsafe member access .status on an `any` value                          @typescript-eslint/no-unsafe-member-access
+   34:16  error    Unsafe member access .stripeOwnershipConfirmed on an `any` value        @typescript-eslint/no-unsafe-member-access
+   39:16  error    Unsafe member access .stripeApiKey on an `any` value                    @typescript-eslint/no-unsafe-member-access
+   44:51  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+   44:57  error    Unsafe member access .stripeApiKey on an `any` value                    @typescript-eslint/no-unsafe-member-access
+   45:35  error    Unsafe member access .stripeWebhookSecret on an `any` value             @typescript-eslint/no-unsafe-member-access
+   46:40  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+   46:46  error    Unsafe member access .stripeWebhookSecret on an `any` value             @typescript-eslint/no-unsafe-member-access
+   51:11  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  115:9   error    Unexpected lexical declaration in case block                            no-case-declarations
+  119:9   error    Unexpected lexical declaration in case block                            no-case-declarations
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\prisma\prisma.service.new.ts
+  10:5   error    Unsafe call of a(n) `error` type typed value                            @typescript-eslint/no-unsafe-call
+  14:37  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+  14:44  error    Unsafe member access .model on an `any` value                           @typescript-eslint/no-unsafe-member-access
+  16:20  error    Unsafe member access .action on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  18:18  error    Unsafe member access .action on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  19:18  error    Unsafe member access .args on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  22:20  error    Unsafe member access .action on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  24:18  error    Unsafe member access .action on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  25:22  error    Unsafe member access .args on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  26:20  error    Unsafe member access .args on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  28:20  error    Unsafe member access .args on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  33:20  error    Unsafe member access .action on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  33:54  error    Unsafe member access .action on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  34:18  error    Unsafe member access .action on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  35:18  error    Unsafe member access .args on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  38:20  error    Unsafe member access .action on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  39:22  error    Unsafe member access .args on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  40:24  error    Unsafe member access .args on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  41:22  error    Unsafe member access .args on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  44:20  error    Unsafe member access .args on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  48:20  error    Unsafe member access .action on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  49:22  error    Unsafe member access .args on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  50:24  error    Unsafe member access .args on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  51:22  error    Unsafe member access .args on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  54:20  error    Unsafe member access .args on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  58:20  error    Unsafe member access .action on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  59:18  error    Unsafe member access .action on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  60:18  error    Unsafe member access .args on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  61:17  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  61:32  error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  62:11  error    Unsafe return of a value of type `any`                                  @typescript-eslint/no-unsafe-return
+  62:25  error    Unsafe member access .count on an `any` value                           @typescript-eslint/no-unsafe-member-access
+  65:20  error    Unsafe member access .action on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  66:22  error    Unsafe member access .args on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  67:20  error    Unsafe member access .args on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  69:20  error    Unsafe member access .args on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  74:7   error    Unsafe return of a value of type `any`                                  @typescript-eslint/no-unsafe-return
+  74:14  error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  83:3   error    Async method 'hardDelete' has no 'await' expression                     @typescript-eslint/require-await
+  84:5   error    Unsafe return of a value of type `any`                                  @typescript-eslint/no-unsafe-return
+  84:12  error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  84:26  error    Unsafe member access [model] on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  84:42  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  88:3   error    Async method 'restore' has no 'await' expression                        @typescript-eslint/require-await
+  89:5   error    Unsafe return of a value of type `any`                                  @typescript-eslint/no-unsafe-return
+  89:12  error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  89:26  error    Unsafe member access [model] on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  90:7   error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  96:3   error    Async method 'findWithDeleted' has no 'await' expression                @typescript-eslint/require-await
+  97:5   error    Unsafe return of a value of type `any`                                  @typescript-eslint/no-unsafe-return
+  97:12  error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  97:26  error    Unsafe member access [model] on an `any` value                          @typescript-eslint/no-unsafe-member-access
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\prisma\prisma.service.ts
+  29:11  error  Unsafe return of a value of type `any`              @typescript-eslint/no-unsafe-return
+  29:18  error  Unsafe call of a(n) `any` typed value               @typescript-eslint/no-unsafe-call
+  29:33  error  Unsafe member access .deleteMany on an `any` value  @typescript-eslint/no-unsafe-member-access
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\products\categories.controller.ts
+  14:42  warning  Unsafe argument of type `any` assigned to a parameter of type `CreateCategoryDto`  @typescript-eslint/no-unsafe-argument
+  35:46  warning  Unsafe argument of type `any` assigned to a parameter of type `UpdateCategoryDto`  @typescript-eslint/no-unsafe-argument
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\products\import.controller.ts
+   7:3   error  'UseGuards' is defined but never used                 @typescript-eslint/no-unused-vars
+  20:8   error  Unsafe call of a(n) `any` typed value                 @typescript-eslint/no-unsafe-call
+  20:13  error  Unsafe member access .originalname on an `any` value  @typescript-eslint/no-unsafe-member-access
+  21:5   error  Unsafe return of a value of type `any`                @typescript-eslint/no-unsafe-return
+  21:12  error  Unsafe call of a(n) `any` typed value                 @typescript-eslint/no-unsafe-call
+  23:3   error  Unsafe call of a(n) `any` typed value                 @typescript-eslint/no-unsafe-call
+  57:14  error  'error' is defined but never used                     @typescript-eslint/no-unused-vars
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\products\products.service.ts
+    5:3   error    'ForbiddenException' is defined but never used                          @typescript-eslint/no-unused-vars
+   11:10  error    'Role' is defined but never used                                        @typescript-eslint/no-unused-vars
+   54:18  error    Unsafe member access .status on an `any` value                          @typescript-eslint/no-unsafe-member-access
+   54:26  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+   54:32  error    Unsafe member access .status on an `any` value                          @typescript-eslint/no-unsafe-member-access
+   54:49  error    Unsafe member access .status on an `any` value                          @typescript-eslint/no-unsafe-member-access
+   55:18  error    Unsafe member access .categoryId on an `any` value                      @typescript-eslint/no-unsafe-member-access
+   55:30  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+   55:36  error    Unsafe member access .categoryId on an `any` value                      @typescript-eslint/no-unsafe-member-access
+   55:57  error    Unsafe member access .categoryId on an `any` value                      @typescript-eslint/no-unsafe-member-access
+   56:18  error    Unsafe member access .search on an `any` value                          @typescript-eslint/no-unsafe-member-access
+   57:13  error    Unsafe member access .OR on an `any` value                              @typescript-eslint/no-unsafe-member-access
+   58:19  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+   58:37  error    Unsafe member access .search on an `any` value                          @typescript-eslint/no-unsafe-member-access
+   59:18  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+   59:36  error    Unsafe member access .search on an `any` value                          @typescript-eslint/no-unsafe-member-access
+   64:7   error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  183:70  error    'reason' is defined but never used                                      @typescript-eslint/no-unused-vars
+  258:13  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  258:18  error    A `require()` style import is forbidden                                 @typescript-eslint/no-require-imports
+  259:13  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  259:19  error    A `require()` style import is forbidden                                 @typescript-eslint/no-require-imports
+  261:7   error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  261:7   error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  261:7   error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  261:7   error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  261:7   error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  261:10  error    Unsafe member access .createReadStream on an `any` value                @typescript-eslint/no-unsafe-member-access
+  262:10  error    Unsafe member access .pipe on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  262:15  error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  263:10  error    Unsafe member access .on on an `any` value                              @typescript-eslint/no-unsafe-member-access
+  264:10  error    Unsafe member access .on on an `any` value                              @typescript-eslint/no-unsafe-member-access
+  265:54  error    Unsafe member access .message on an `any` value                         @typescript-eslint/no-unsafe-member-access
+  266:11  error    Expected the Promise rejection reason to be an Error                    @typescript-eslint/prefer-promise-reject-errors
+  268:10  error    Unsafe member access .on on an `any` value                              @typescript-eslint/no-unsafe-member-access
+  278:28  error    Unsafe member access .name on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  278:41  error    Unsafe member access .sku on an `any` value                             @typescript-eslint/no-unsafe-member-access
+  278:53  error    Unsafe member access .price on an `any` value                           @typescript-eslint/no-unsafe-member-access
+  283:21  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  283:30  error    Unsafe member access .sku on an `any` value                             @typescript-eslint/no-unsafe-member-access
+  284:21  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  284:31  error    Unsafe member access .name on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  285:21  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  285:38  error    Unsafe member access .description on an `any` value                     @typescript-eslint/no-unsafe-member-access
+  286:43  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+  286:47  error    Unsafe member access .price on an `any` value                           @typescript-eslint/no-unsafe-member-access
+  287:37  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+  287:41  error    Unsafe member access .stock on an `any` value                           @typescript-eslint/no-unsafe-member-access
+  289:21  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  289:33  error    Unsafe member access .status on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  290:34  error    Unsafe member access .taxable on an `any` value                         @typescript-eslint/no-unsafe-member-access
+  291:21  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  291:33  error    Unsafe member access .images on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  291:42  error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  291:46  error    Unsafe member access .images on an `any` value                          @typescript-eslint/no-unsafe-member-access
+  292:21  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  292:31  error    Unsafe member access .tags on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  292:38  error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  292:42  error    Unsafe member access .tags on an `any` value                            @typescript-eslint/no-unsafe-member-access
+  316:82  error    Unsafe member access .message on an `any` value                         @typescript-eslint/no-unsafe-member-access
+  317:52  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  317:63  error    Unsafe member access .message on an `any` value                         @typescript-eslint/no-unsafe-member-access
+  317:72  error    Unsafe assignment of an `any` value                                     @typescript-eslint/no-unsafe-assignment
+  317:81  error    Unsafe member access .sku on an `any` value                             @typescript-eslint/no-unsafe-member-access
+  325:17  error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  325:20  error    Unsafe member access .existsSync on an `any` value                      @typescript-eslint/no-unsafe-member-access
+  325:42  error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  325:45  error    Unsafe member access .unlinkSync on an `any` value                      @typescript-eslint/no-unsafe-member-access
+  326:20  error    'e' is defined but never used                                           @typescript-eslint/no-unused-vars
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\products\upload.controller.ts
+   9:10  error    'diskStorage' is defined but never used                                 @typescript-eslint/no-unused-vars
+  22:34  warning  Unsafe argument of type `any` assigned to a parameter of type `string`  @typescript-eslint/no-unsafe-argument
+  22:39  error    Unsafe member access .mimetype on an `any` value                        @typescript-eslint/no-unsafe-member-access
+  23:5   error    Unsafe return of a value of type `any`                                  @typescript-eslint/no-unsafe-return
+  23:12  error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+  28:3   error    Unsafe call of a(n) `any` typed value                                   @typescript-eslint/no-unsafe-call
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\shipping\shipping.service.ts
+   17:3   error    Async method 'createShipment' has no 'await' expression                            @typescript-eslint/require-await
+   18:5   error    'orderId' is defined but never used                                                @typescript-eslint/no-unused-vars
+   19:5   error    'carrier' is defined but never used                                                @typescript-eslint/no-unused-vars
+   28:3   error    Async method 'trackShipment' has no 'await' expression                             @typescript-eslint/require-await
+   28:23  error    'trackingNumber' is defined but never used                                         @typescript-eslint/no-unused-vars
+   36:3   error    Async method 'cancelShipment' has no 'await' expression                            @typescript-eslint/require-await
+   36:24  error    'trackingNumber' is defined but never used                                         @typescript-eslint/no-unused-vars
+   43:3   error    Async method 'createShipment' has no 'await' expression                            @typescript-eslint/require-await
+   44:5   error    'orderId' is defined but never used                                                @typescript-eslint/no-unused-vars
+   45:5   error    'carrier' is defined but never used                                                @typescript-eslint/no-unused-vars
+   53:3   error    Async method 'trackShipment' has no 'await' expression                             @typescript-eslint/require-await
+   53:23  error    'trackingNumber' is defined but never used                                         @typescript-eslint/no-unused-vars
+   60:3   error    Async method 'cancelShipment' has no 'await' expression                            @typescript-eslint/require-await
+   60:24  error    'trackingNumber' is defined but never used                                         @typescript-eslint/no-unused-vars
+   67:3   error    Async method 'createShipment' has no 'await' expression                            @typescript-eslint/require-await
+   68:5   error    'orderId' is defined but never used                                                @typescript-eslint/no-unused-vars
+   69:5   error    'carrier' is defined but never used                                                @typescript-eslint/no-unused-vars
+   77:3   error    Async method 'trackShipment' has no 'await' expression                             @typescript-eslint/require-await
+   77:23  error    'trackingNumber' is defined but never used                                         @typescript-eslint/no-unused-vars
+   84:3   error    Async method 'cancelShipment' has no 'await' expression                            @typescript-eslint/require-await
+   84:24  error    'trackingNumber' is defined but never used                                         @typescript-eslint/no-unused-vars
+  147:18  error    Unsafe member access .status on an `any` value                                     @typescript-eslint/no-unsafe-member-access
+  147:26  error    Unsafe assignment of an `any` value                                                @typescript-eslint/no-unsafe-assignment
+  147:32  error    Unsafe member access .status on an `any` value                                     @typescript-eslint/no-unsafe-member-access
+  147:49  error    Unsafe member access .status on an `any` value                                     @typescript-eslint/no-unsafe-member-access
+  148:18  error    Unsafe member access .carrier on an `any` value                                    @typescript-eslint/no-unsafe-member-access
+  148:27  error    Unsafe assignment of an `any` value                                                @typescript-eslint/no-unsafe-assignment
+  148:33  error    Unsafe member access .carrier on an `any` value                                    @typescript-eslint/no-unsafe-member-access
+  148:51  error    Unsafe member access .carrier on an `any` value                                    @typescript-eslint/no-unsafe-member-access
+  149:18  error    Unsafe member access .orderId on an `any` value                                    @typescript-eslint/no-unsafe-member-access
+  149:27  error    Unsafe assignment of an `any` value                                                @typescript-eslint/no-unsafe-assignment
+  149:33  error    Unsafe member access .orderId on an `any` value                                    @typescript-eslint/no-unsafe-member-access
+  149:51  error    Unsafe member access .orderId on an `any` value                                    @typescript-eslint/no-unsafe-member-access
+  152:7   error    Unsafe assignment of an `any` value                                                @typescript-eslint/no-unsafe-assignment
+  235:19  error    Unsafe assignment of an `any` value                                                @typescript-eslint/no-unsafe-assignment
+  279:37  error    'location' is assigned a value but never used                                      @typescript-eslint/no-unused-vars
+  279:47  error    'notes' is assigned a value but never used                                         @typescript-eslint/no-unused-vars
+  294:7   warning  Unsafe argument of type `any` assigned to a parameter of type `UpdateShipmentDto`  @typescript-eslint/no-unsafe-argument
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\system\audit-logs\audit-log.service.ts
+   8:3   error  Async method 'log' has no 'await' expression            @typescript-eslint/require-await
+  18:5   error  Unsafe return of a value of type error                  @typescript-eslint/no-unsafe-return
+  18:12  error  Unsafe call of a(n) `error` type typed value            @typescript-eslint/no-unsafe-call
+  18:33  error  Unsafe member access .create on an `error` typed value  @typescript-eslint/no-unsafe-member-access
+  25:9   error  Unsafe assignment of an `any` value                     @typescript-eslint/no-unsafe-assignment
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\src\system\system.service.ts
+   12:13  error    Unsafe member access .storeId on an `any` value                                         @typescript-eslint/no-unsafe-member-access
+   15:18  error    Unsafe member access .userId on an `any` value                                          @typescript-eslint/no-unsafe-member-access
+   15:26  error    Unsafe assignment of an `any` value                                                     @typescript-eslint/no-unsafe-assignment
+   15:32  error    Unsafe member access .userId on an `any` value                                          @typescript-eslint/no-unsafe-member-access
+   15:49  error    Unsafe member access .userId on an `any` value                                          @typescript-eslint/no-unsafe-member-access
+   16:18  error    Unsafe member access .action on an `any` value                                          @typescript-eslint/no-unsafe-member-access
+   16:32  error    Unsafe member access .action on an `any` value                                          @typescript-eslint/no-unsafe-member-access
+   16:43  error    Unsafe assignment of an `any` value                                                     @typescript-eslint/no-unsafe-assignment
+   16:61  error    Unsafe member access .action on an `any` value                                          @typescript-eslint/no-unsafe-member-access
+   17:18  error    Unsafe member access .resource on an `any` value                                        @typescript-eslint/no-unsafe-member-access
+   17:34  error    Unsafe member access .resource on an `any` value                                        @typescript-eslint/no-unsafe-member-access
+   17:47  error    Unsafe assignment of an `any` value                                                     @typescript-eslint/no-unsafe-assignment
+   17:65  error    Unsafe member access .resource on an `any` value                                        @typescript-eslint/no-unsafe-member-access
+   19:18  error    Unsafe member access .startDate on an `any` value                                       @typescript-eslint/no-unsafe-member-access
+   19:40  error    Unsafe member access .endDate on an `any` value                                         @typescript-eslint/no-unsafe-member-access
+   20:13  error    Unsafe member access .createdAt on an `any` value                                       @typescript-eslint/no-unsafe-member-access
+   21:19  error    Unsafe member access .startDate on an `any` value                                       @typescript-eslint/no-unsafe-member-access
+   21:36  error    Unsafe member access .createdAt on an `any` value                                       @typescript-eslint/no-unsafe-member-access
+   21:61  warning  Unsafe argument of type `any` assigned to a parameter of type `string | number | Date`  @typescript-eslint/no-unsafe-argument
+   21:69  error    Unsafe member access .startDate on an `any` value                                       @typescript-eslint/no-unsafe-member-access
+   22:19  error    Unsafe member access .endDate on an `any` value                                         @typescript-eslint/no-unsafe-member-access
+   22:34  error    Unsafe member access .createdAt on an `any` value                                       @typescript-eslint/no-unsafe-member-access
+   22:59  warning  Unsafe argument of type `any` assigned to a parameter of type `string | number | Date`  @typescript-eslint/no-unsafe-argument
+   22:67  error    Unsafe member access .endDate on an `any` value                                         @typescript-eslint/no-unsafe-member-access
+   26:7   error    Unsafe assignment of an `any` value                                                     @typescript-eslint/no-unsafe-assignment
+   39:7   error    Unsafe assignment of an `any` value                                                     @typescript-eslint/no-unsafe-assignment
+   39:22  error    Unsafe member access .limit on an `any` value                                           @typescript-eslint/no-unsafe-member-access
+   89:24  error    Unsafe member access .storeId on an `any` value                                         @typescript-eslint/no-unsafe-member-access
+   92:7   error    Unsafe assignment of an `any` value                                                     @typescript-eslint/no-unsafe-assignment
+  126:9   error    Unsafe assignment of an `any` value                                                     @typescript-eslint/no-unsafe-assignment
+  159:9   error    Unsafe assignment of an error typed value                                               @typescript-eslint/no-unsafe-assignment
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\test\isolation.e2e-spec.ts
+  30:11  error    Unsafe call of a(n) `error` type typed value                         @typescript-eslint/no-unsafe-call
+  30:23  error    Unsafe member access .deleteMany on an `error` typed value           @typescript-eslint/no-unsafe-member-access
+  31:11  error    Unsafe call of a(n) `error` type typed value                         @typescript-eslint/no-unsafe-call
+  31:26  error    Unsafe member access .deleteMany on an `error` typed value           @typescript-eslint/no-unsafe-member-access
+  32:11  error    Unsafe call of a(n) `error` type typed value                         @typescript-eslint/no-unsafe-call
+  32:24  error    Unsafe member access .deleteMany on an `error` typed value           @typescript-eslint/no-unsafe-member-access
+  39:11  error    Unsafe assignment of an error typed value                            @typescript-eslint/no-unsafe-assignment
+  39:26  error    Unsafe call of a(n) `error` type typed value                         @typescript-eslint/no-unsafe-call
+  39:39  error    Unsafe member access .create on an `error` typed value               @typescript-eslint/no-unsafe-member-access
+  43:11  error    Unsafe call of a(n) `error` type typed value                         @typescript-eslint/no-unsafe-call
+  43:23  error    Unsafe member access .create on an `error` typed value               @typescript-eslint/no-unsafe-member-access
+  48:9   error    Unsafe assignment of an error typed value                            @typescript-eslint/no-unsafe-assignment
+  48:25  error    Unsafe member access .id on an `error` typed value                   @typescript-eslint/no-unsafe-member-access
+  55:11  error    Unsafe assignment of an error typed value                            @typescript-eslint/no-unsafe-assignment
+  55:26  error    Unsafe call of a(n) `error` type typed value                         @typescript-eslint/no-unsafe-call
+  55:39  error    Unsafe member access .create on an `error` typed value               @typescript-eslint/no-unsafe-member-access
+  58:11  error    Unsafe assignment of an error typed value                            @typescript-eslint/no-unsafe-assignment
+  58:28  error    Unsafe call of a(n) `error` type typed value                         @typescript-eslint/no-unsafe-call
+  58:43  error    Unsafe member access .create on an `error` typed value               @typescript-eslint/no-unsafe-member-access
+  63:9   error    Unsafe assignment of an error typed value                            @typescript-eslint/no-unsafe-assignment
+  63:25  error    Unsafe member access .id on an `error` typed value                   @typescript-eslint/no-unsafe-member-access
+  69:36  warning  Unsafe argument of type `any` assigned to a parameter of type `App`  @typescript-eslint/no-unsafe-argument
+  73:11  error    Unsafe assignment of an `any` value                                  @typescript-eslint/no-unsafe-assignment
+  73:33  error    Unsafe member access .access_token on an `any` value                 @typescript-eslint/no-unsafe-member-access
+  77:31  warning  Unsafe argument of type `any` assigned to a parameter of type `App`  @typescript-eslint/no-unsafe-argument
+  78:34  error    Unsafe member access .id on an `error` typed value                   @typescript-eslint/no-unsafe-member-access
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\backend\test\setup.ts
+  3:10  error    'ConfigModule' is defined but never used                                        @typescript-eslint/no-unused-vars
+  9:71  warning  Unsafe argument of type `any` assigned to a parameter of type `ModuleMetadata`  @typescript-eslint/no-unsafe-argument
+
+Γ£û 457 problems (427 errors, 30 warnings)
+

@@ -21,7 +21,7 @@ export class AuthService {
     private jwtService: JwtService,
     private configService: ConfigService,
     private emailService: EmailService,
-  ) { }
+  ) {}
 
   async forgotPassword(email: string) {
     const user = await this.prisma.prisma.user.findUnique({

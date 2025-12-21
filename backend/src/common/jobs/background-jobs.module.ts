@@ -5,12 +5,12 @@ import { BackgroundJobsProcessor } from './background-jobs.processor';
 
 @Global()
 @Module({
-    imports: [
-        BullModule.registerQueue({
-            name: 'background-tasks',
-        }),
-    ],
-    providers: [BackgroundJobsService, BackgroundJobsProcessor],
-    exports: [BackgroundJobsService],
+  imports: [
+    BullModule.registerQueue({
+      name: 'background-tasks',
+    }),
+  ],
+  providers: [BackgroundJobsService, BackgroundJobsProcessor],
+  exports: [BackgroundJobsService],
 })
-export class BackgroundJobsModule { }
+export class BackgroundJobsModule {}

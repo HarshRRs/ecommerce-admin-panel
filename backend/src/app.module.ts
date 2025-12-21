@@ -57,19 +57,22 @@ import { EmailModule } from './system/email/email.module';
     }),
     LoggerModule.forRoot({
       pinoHttp: {
-        transport: process.env.NODE_ENV !== 'production'
-          ? { target: 'pino-pretty', options: { colorize: true } }
-          : undefined,
+        transport:
+          process.env.NODE_ENV !== 'production'
+            ? { target: 'pino-pretty', options: { colorize: true } }
+            : undefined,
         level: process.env.NODE_ENV !== 'production' ? 'debug' : 'info',
       },
     }),
     BullModule.forRoot({
-      connection: process.env.REDIS_URL ? {
-        url: process.env.REDIS_URL,
-      } : {
-        host: process.env.REDIS_HOST || 'localhost',
-        port: parseInt(process.env.REDIS_PORT ?? '6379'),
-      },
+      connection: process.env.REDIS_URL
+        ? {
+            url: process.env.REDIS_URL,
+          }
+        : {
+            host: process.env.REDIS_HOST || 'localhost',
+            port: parseInt(process.env.REDIS_PORT ?? '6379'),
+          },
     }),
     BackgroundJobsModule,
     AuditLogModule,
@@ -125,4 +128,4 @@ import { EmailModule } from './system/email/email.module';
     },
   ],
 })
-export class AppModule { }
+export class AppModule {}

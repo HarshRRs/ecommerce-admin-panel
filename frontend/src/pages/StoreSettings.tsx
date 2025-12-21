@@ -16,7 +16,6 @@ const StoreSettings: React.FC = () => {
     const { user } = useAuth();
     const [loading, setLoading] = useState(true);
 
-    if (!user) return null;
     const [saving, setSaving] = useState(false);
     const [store, setStore] = useState<any>(null);
     const [error, setError] = useState('');
@@ -39,9 +38,11 @@ const StoreSettings: React.FC = () => {
         if (user?.storeId) {
             fetchStore();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user]);
 
     const fetchStore = async () => {
+        if (!user) return;
         try {
             const response = await api.get(`/stores/${user.storeId}`);
             setStore(response.data);
@@ -65,6 +66,7 @@ const StoreSettings: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!user) return;
         setSaving(true);
         setError('');
         setSuccess('');
@@ -89,6 +91,7 @@ const StoreSettings: React.FC = () => {
 
     const handleConfirmOwnership = async () => {
         if (!window.confirm('Are you sure you want to confirm ownership? This action is legally binding.')) return;
+        if (!user) return;
 
         setSaving(true);
         try {
@@ -103,6 +106,8 @@ const StoreSettings: React.FC = () => {
     };
 
     if (loading) return <div className="flex-center" style={{ height: '60vh' }}>Loading settings...</div>;
+
+    if (!user) return null;
 
     return (
         <div className="animate-fade-in max-w-4xl mx-auto">

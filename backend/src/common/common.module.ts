@@ -9,4 +9,4 @@ import { CommonController } from './common.controller';
   providers: [ImageKitService, SecurityService],
   exports: [ImageKitService, SecurityService],
 })
-export class CommonModule { }
+export class CommonModule {}

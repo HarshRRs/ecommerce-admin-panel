@@ -53,7 +53,9 @@ export class StripeService {
         webhookSecret,
       };
     } catch (error) {
-      this.logger.error(`Failed to decrypt Stripe keys for store ${storeId}: ${error.message}`);
+      this.logger.error(
+        `Failed to decrypt Stripe keys for store ${storeId}: ${(error as any).message}`,
+      );
       throw new BadRequestException('Invalid Stripe configuration for this store.');
     }
   }
@@ -88,7 +90,7 @@ export class StripeService {
         id: paymentIntent.id,
       };
     } catch (error) {
-      this.logger.error(`Stripe Payment Intent Error: ${error.message}`);
+      this.logger.error(`Stripe Payment Intent Error: ${(error as any).message}`);
       throw error;
     }
   }
@@ -106,19 +108,21 @@ export class StripeService {
     try {
       event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
     } catch (err) {
-      this.logger.error(`Webhook Error: ${err.message}`);
-      throw new Error(`Webhook Error: ${err.message}`);
+      this.logger.error(`Webhook Error: ${(err as any).message}`);
+      throw new Error(`Webhook Error: ${(err as any).message}`);
     }
 
     switch (event.type) {
-      case 'payment_intent.succeeded':
+      case 'payment_intent.succeeded': {
         const paymentIntent = event.data.object;
         await this.handlePaymentSuccess(paymentIntent);
         break;
-      case 'payment_intent.payment_failed':
+      }
+      case 'payment_intent.payment_failed': {
         const failedIntent = event.data.object;
         await this.handlePaymentFailure(failedIntent);
         break;
+      }
     }
 
     return { received: true };

@@ -263,7 +263,7 @@ export class ProductsService {
         .on('data', (data: any) => results.push(data))
         .on('error', (error: any) => {
           this.logger.error(`CSV Read Error: ${error.message}`);
-          reject(error);
+          reject(error instanceof Error ? error : new Error(String(error)));
         })
         .on('end', async () => {
           this.logger.log(`Starting import of ${results.length} items for store ${storeId}`);

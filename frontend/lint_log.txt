@@ -1,0 +1,102 @@
+﻿
+> frontend@0.0.0 lint
+> eslint .
+
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\frontend\src\components\BulkImport.tsx
+   8:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  35:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  97:66  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\frontend\src\contexts\AuthContext.tsx
+  23:13  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\frontend\src\contexts\AuthContext.tsx:23:13
+  21 |
+  22 |         if (savedUser && token) {
+> 23 |             setUser(JSON.parse(savedUser));
+     |             ^^^^^^^ Avoid calling setState() directly within an effect
+  24 |         }
+  25 |         setLoading(false);
+  26 |     }, []);  react-hooks/set-state-in-effect
+  57:14  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               react-refresh/only-export-components
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\frontend\src\pages\AnalyticsDashboard.tsx
+   6:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  98:52  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\frontend\src\pages\CustomersDirectory.tsx
+  6:48  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\frontend\src\pages\Dashboard.tsx
+   8:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  15:22  error  'err' is defined but never used           @typescript-eslint/no-unused-vars
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\frontend\src\pages\ForgotPassword.tsx
+  20:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\frontend\src\pages\LoginPage.tsx
+  30:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\frontend\src\pages\OrdersList.tsx
+  6:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\frontend\src\pages\ProductForm.tsx
+  30:8   warning  React Hook useEffect has missing dependencies: 'fetchProduct' and 'isEdit'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  37:18  error    'err' is defined but never used                                                                                                 @typescript-eslint/no-unused-vars
+  54:18  error    'err' is defined but never used                                                                                                 @typescript-eslint/no-unused-vars
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\frontend\src\pages\ProductsList.tsx
+  19:46  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  32:18  error  'err' is defined but never used           @typescript-eslint/no-unused-vars
+  44:18  error  'err' is defined but never used           @typescript-eslint/no-unused-vars
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\frontend\src\pages\RegisterPage.tsx
+  39:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\frontend\src\pages\ResetPassword.tsx
+  31:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\frontend\src\pages\StoreForm.tsx
+  27:8   warning  React Hook useEffect has missing dependencies: 'fetchStore' and 'isEdit'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  34:18  error    'err' is defined but never used                                                                                               @typescript-eslint/no-unused-vars
+  51:23  error    Unexpected any. Specify a different type                                                                                      @typescript-eslint/no-explicit-any
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\frontend\src\pages\StoreList.tsx
+  14:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  25:18  error  'err' is defined but never used           @typescript-eslint/no-unused-vars
+  39:18  error  'err' is defined but never used           @typescript-eslint/no-unused-vars
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\frontend\src\pages\StoreSettings.tsx
+  20:33  error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render   react-hooks/rules-of-hooks
+  21:31  error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render   react-hooks/rules-of-hooks
+  21:40  error    Unexpected any. Specify a different type                                                                                      @typescript-eslint/no-explicit-any
+  22:31  error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render   react-hooks/rules-of-hooks
+  23:35  error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render   react-hooks/rules-of-hooks
+  25:37  error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render   react-hooks/rules-of-hooks
+  36:39  error    React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render   react-hooks/rules-of-hooks
+  38:5   error    React Hook "useEffect" is called conditionally. React Hooks must be called in the exact same order in every component render  react-hooks/rules-of-hooks
+  42:8   warning  React Hook useEffect has a missing dependency: 'fetchStore'. Either include it or remove the dependency array                 react-hooks/exhaustive-deps
+  59:18  error    'err' is defined but never used                                                                                               @typescript-eslint/no-unused-vars
+  74:31  error    Unexpected any. Specify a different type                                                                                      @typescript-eslint/no-explicit-any
+  83:23  error    Unexpected any. Specify a different type                                                                                      @typescript-eslint/no-explicit-any
+  98:23  error    Unexpected any. Specify a different type                                                                                      @typescript-eslint/no-explicit-any
+
+C:\Users\SHAH HARSH\.gemini\antigravity\scratch\ecommerce-admin-panel\frontend\src\services\api.ts
+  57:30  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  58:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  67:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  68:36  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  77:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  83:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  95:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  96:36  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+Γ£û 48 problems (45 errors, 3 warnings)
+

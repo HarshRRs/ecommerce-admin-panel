@@ -30,7 +30,7 @@ const imageFileFilter = (req: any, file: any, callback: any) => {
 
 @Controller('products')
 export class UploadController {
-  constructor(private readonly cloudinaryService: CloudinaryService) { }
+  constructor(private readonly cloudinaryService: CloudinaryService) {}
 
   @Post('upload-images')
   @Roles(Role.OWNER, Role.MANAGER)
