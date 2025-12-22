@@ -5,7 +5,11 @@ import { Upload, Loader2, AlertTriangle } from 'lucide-react';
 const BulkImport: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
     const [file, setFile] = useState<File | null>(null);
     const [importing, setImporting] = useState(false);
-    const [result, setResult] = useState<any>(null);
+    const [result, setResult] = useState<{
+        total: number;
+        success: number;
+        errors: Array<{ row: number; error: string }>;
+    } | null>(null);
     const [error, setError] = useState('');
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,8 +36,9 @@ const BulkImport: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
             if (response.data.success > 0) {
                 setTimeout(onComplete, 2000);
             }
-        } catch (err: any) {
-            setError(err.response?.data?.message || 'Import failed. Check file format.');
+        } catch (err) {
+            const error = err as { response?: { data?: { message?: string } } };
+            setError(error.response?.data?.message || 'Import failed. Check file format.');
         } finally {
             setImporting(false);
         }
@@ -94,7 +99,7 @@ const BulkImport: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
                     {result.errors.length > 0 && (
                         <div style={{ textAlign: 'left', maxHeight: '150px', overflowY: 'auto' }}>
                             <p style={{ fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.5rem', color: 'var(--error)' }}>Errors Detail:</p>
-                            {result.errors.slice(0, 5).map((err: any, i: number) => (
+                            {result.errors.slice(0, 5).map((err, i: number) => (
                                 <p key={i} style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
                                     Row {err.row}: {err.error}
                                 </p>
