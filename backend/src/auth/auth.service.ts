@@ -24,7 +24,7 @@ export class AuthService {
   ) {}
 
   async forgotPassword(email: string) {
-    const user = await this.prisma.prisma.user.findUnique({
+    const user = await this.prisma.user.findUnique({
       where: { email },
     });
 
@@ -36,7 +36,7 @@ export class AuthService {
     const resetToken = randomBytes(32).toString('hex');
     const resetTokenExpires = new Date(Date.now() + 3600000); // 1 hour
 
-    await this.prisma.prisma.user.update({
+    await this.prisma.user.update({
       where: { id: user.id },
       data: {
         resetToken,
