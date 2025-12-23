@@ -33,6 +33,7 @@
     "@nestjs/jwt": "^11.0.2",
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/swagger": "^11.2.3",
     "@nestjs/throttler": "^6.5.0",
     "@prisma/client": "^6.8.0",
     "@swc/cli": "^0.6.0",
@@ -60,6 +61,7 @@
     "resend": "^6.6.0",
     "rxjs": "^7.8.1",
     "stripe": "^20.1.0",
+    "swagger-ui-express": "^5.0.1",
     "uuid": "^13.0.0"
   },
   "devDependencies": {

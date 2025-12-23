@@ -21,7 +21,7 @@ export class AuthService {
     private jwtService: JwtService,
     private configService: ConfigService,
     private emailService: EmailService,
-  ) {}
+  ) { }
 
   async forgotPassword(email: string) {
     const user = await this.prisma.user.findUnique({
@@ -53,7 +53,7 @@ export class AuthService {
     resetToken: string,
     newPassword: string,
   ): Promise<{ success: boolean; message: string }> {
-    const user = await this.prisma.prisma.user.findFirst({
+    const user = await this.prisma.user.findFirst({
       where: {
         resetToken,
         resetTokenExpires: {
@@ -68,7 +68,7 @@ export class AuthService {
 
     const hashedPassword = await bcrypt.hash(newPassword, 12);
 
-    await this.prisma.prisma.user.update({
+    await this.prisma.user.update({
       where: { id: user.id },
       data: {
         password: hashedPassword,
@@ -82,7 +82,7 @@ export class AuthService {
   }
 
   async login(loginDto: LoginDto) {
-    const user = await this.prisma.prisma.user.findUnique({
+    const user = await this.prisma.user.findUnique({
       where: { email: loginDto.email },
       include: {
         store: true,
@@ -104,7 +104,7 @@ export class AuthService {
     }
 
     // Update last login
-    await this.prisma.prisma.user.update({
+    await this.prisma.user.update({
       where: { id: user.id },
       data: { lastLoginAt: new Date() },
     });
@@ -132,7 +132,7 @@ export class AuthService {
 
   async registerWithStore(dto: RegisterWithStoreDto) {
     // Check if user already exists
-    const existingUser = await this.prisma.prisma.user.findUnique({
+    const existingUser = await this.prisma.user.findUnique({
       where: { email: dto.email },
     });
 
@@ -141,7 +141,7 @@ export class AuthService {
     }
 
     // Check if store slug already exists
-    const existingStore = await this.prisma.prisma.store.findUnique({
+    const existingStore = await this.prisma.store.findUnique({
       where: { slug: dto.storeSlug },
     });
 
@@ -152,7 +152,7 @@ export class AuthService {
     const hashedPassword = await bcrypt.hash(dto.password, 12);
 
     // Create store and user in a transaction
-    return this.prisma.prisma.$transaction(async (tx) => {
+    return this.prisma.$transaction(async (tx) => {
       // 1. Create User first (Owner)
       const user = await tx.user.create({
         data: {
@@ -200,7 +200,7 @@ export class AuthService {
 
   async register(registerDto: RegisterDto) {
     // Check if user already exists
-    const existingUser = await this.prisma.prisma.user.findUnique({
+    const existingUser = await this.prisma.user.findUnique({
       where: { email: registerDto.email },
     });
 
@@ -210,7 +210,7 @@ export class AuthService {
 
     const hashedPassword = await bcrypt.hash(registerDto.password, 12);
 
-    const user = await this.prisma.prisma.user.create({
+    const user = await this.prisma.user.create({
       data: {
         email: registerDto.email,
         password: hashedPassword,
@@ -243,7 +243,7 @@ export class AuthService {
   }
 
   async validateUser(userId: string) {
-    const user = await this.prisma.prisma.user.findUnique({
+    const user = await this.prisma.user.findUnique({
       where: { id: userId },
       select: {
         id: true,
@@ -316,7 +316,7 @@ export class AuthService {
   }
 
   async getProfile(userId: string) {
-    const user = await this.prisma.prisma.user.findUnique({
+    const user = await this.prisma.user.findUnique({
       where: { id: userId },
       select: {
         id: true,

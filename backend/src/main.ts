@@ -23,17 +23,17 @@ async function bootstrap() {
   console.log(process.env.DATABASE_URL ? '✅ Database: Connected' : '❌ Database: MISSING (CRITICAL!)');
   console.log(process.env.JWT_SECRET ? '✅ JWT Auth: Configured' : '❌ JWT: MISSING (CRITICAL!)');
   console.log('\n--- Optional Services ---');
-  console.log(process.env.REDIS_URL 
-    ? '✅ Redis: Enabled (caching active)' 
+  console.log(process.env.REDIS_URL
+    ? '✅ Redis: Enabled (caching active)'
     : '⚠️  Redis: Disabled (no caching, background jobs disabled)');
   console.log(process.env.IMAGEKIT_PUBLIC_KEY && process.env.IMAGEKIT_PRIVATE_KEY && process.env.IMAGEKIT_URL_ENDPOINT
-    ? '✅ ImageKit: Enabled (image uploads will work)' 
+    ? '✅ ImageKit: Enabled (image uploads will work)'
     : '⚠️  ImageKit: Disabled (image uploads will fail)');
-  console.log(process.env.EMAIL_API_KEY 
-    ? '✅ Email (Resend): Enabled (notifications will send)' 
+  console.log(process.env.EMAIL_API_KEY
+    ? '✅ Email (Resend): Enabled (notifications will send)'
     : '⚠️  Email: Disabled (notifications logged only)');
-  console.log(process.env.STRIPE_SECRET_KEY 
-    ? '✅ Stripe: Enabled (payments active)' 
+  console.log(process.env.STRIPE_SECRET_KEY
+    ? '✅ Stripe: Enabled (payments active)'
     : '⚠️  Stripe: Disabled (payments unavailable)');
   console.log('========================================\n');
 
@@ -89,6 +89,30 @@ async function bootstrap() {
 
   // API prefix
   app.setGlobalPrefix('api/v1');
+
+  // Swagger Documentation Setup
+  if (process.env.NODE_ENV !== 'production') {
+    const { DocumentBuilder, SwaggerModule } = await import('@nestjs/swagger');
+    const config = new DocumentBuilder()
+      .setTitle('E-commerce Admin Panel API')
+      .setDescription('The Universal E-commerce Admin Panel API description')
+      .setVersion('1.0')
+      .addBearerAuth()
+      .addTag('Auth', 'Authentication endpoints')
+      .addTag('Stores', 'Store management endpoints')
+      .addTag('Products', 'Product catalog endpoints')
+      .addTag('Orders', 'Order processing endpoints')
+      .build();
+
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('api/docs', app, document, {
+      swaggerOptions: {
+        persistAuthorization: true,
+      },
+      customSiteTitle: 'E-commerce API Docs',
+    });
+    console.log(`📚 API Documentation available at: http://localhost:${process.env.PORT || 3000}/api/docs`);
+  }
 
   const port = process.env.PORT ?? 3000;
   await app.listen(port);
