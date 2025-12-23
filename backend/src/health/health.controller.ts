@@ -8,7 +8,7 @@ export class HealthController {
   constructor(
     private prisma: PrismaService,
     private cache: CacheService,
-  ) {}
+  ) { }
 
   @Public()
   @Get()
@@ -28,7 +28,7 @@ export class HealthController {
   async ready() {
     // Check if application is ready to serve requests
     try {
-      await this.prisma.$queryRaw`SELECT 1`;
+      await this.prisma.user.findFirst({ select: { id: true } });
       return {
         status: 'ready',
         timestamp: new Date().toISOString(),
@@ -65,7 +65,8 @@ export class HealthController {
 
   private async checkDatabase() {
     try {
-      await this.prisma.$queryRaw`SELECT 1`;
+      // Use findFirst instead of $queryRaw for better compatibility
+      await this.prisma.user.findFirst({ select: { id: true } });
       return {
         status: 'up',
         message: 'Database connection successful',
