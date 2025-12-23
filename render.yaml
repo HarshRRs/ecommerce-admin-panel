@@ -48,7 +48,7 @@ services:
     staticPublishPath: frontend/dist
     envVars:
       - key: VITE_API_URL
-        value: https://ecommerce-backend-zlm4.onrender.com/api/v1
+        value: https://ecommerce-backend-481u.onrender.com/api/v1
     routes:
       - type: rewrite
         source: /*
