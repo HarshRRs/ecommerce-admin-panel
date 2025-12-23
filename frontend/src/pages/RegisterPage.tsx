@@ -114,11 +114,11 @@ const RegisterPage: React.FC = () => {
                             <input
                                 type="password"
                                 className="input"
-                                placeholder="Min 6 characters"
+                                placeholder="Min 8 chars, uppercase, lowercase, number"
                                 value={formData.password}
                                 onChange={e => setFormData({ ...formData, password: e.target.value })}
                                 required
-                                minLength={6}
+                                minLength={8}
                             />
                         </div>
                     </div>
