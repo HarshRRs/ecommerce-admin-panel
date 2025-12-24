@@ -2,10 +2,7 @@ import axios from 'axios';
 
 const getBaseUrl = () => {
     // Use production backend URL if VITE_API_URL is not set
-    let url = import.meta.env.VITE_API_URL ||
-        (window.location.hostname.includes('render.com')
-            ? 'https://ecommerce-backend-481u.onrender.com/api/v1'
-            : 'http://localhost:3000/api/v1');
+    let url = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1';
 
     // Ensure URL has protocol
     if (!url.startsWith('http')) {

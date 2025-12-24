@@ -32,6 +32,13 @@ export default function Layout() {
           <Link to="/products" className={isActive('/products')}>📦 Products</Link>
           <Link to="/orders" className={isActive('/orders')}>📋 Orders</Link>
           <Link to="/customers" className={isActive('/customers')}>👥 Customers</Link>
+          <div className="mt-4 pt-4 border-t border-gray-200">
+            <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide px-3 mb-2">Website</div>
+            <Link to="/cms/pages" className={isActive('/cms/pages')}>📄 Pages</Link>
+            <Link to="/cms/homepage" className={isActive('/cms/homepage')}>🏠 Homepage</Link>
+            <Link to="/cms/menus" className={isActive('/cms/menus')}>🔗 Menus</Link>
+            <Link to="/cms/media" className={isActive('/cms/media')}>🖼️ Media</Link>
+          </div>
         </nav>
         <button onClick={handleLogout} className="logout-btn">
           🚪 Logout

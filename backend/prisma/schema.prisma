@@ -187,6 +187,9 @@ model Store {
   pages         Page[]
   banners       Banner[]
   blogPosts     BlogPost[]
+  homepageSections HomepageSection[]
+  navigationMenus NavigationMenu[]
+  mediaAssets   MediaAsset[]
   auditLogs     AuditLog[]
   
   @@index([slug])
@@ -525,20 +528,25 @@ model Coupon {
 // ==================== CMS ====================
 
 model Page {
-  id            String      @id @default(uuid())
-  storeId       String
-  store         Store       @relation(fields: [storeId], references: [id], onDelete: Cascade)
-  title         String
-  slug          String
-  content       String      @db.Text
-  metaTitle     String?
+  id              String      @id @default(uuid())
+  storeId         String
+  store           Store       @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  title           String
+  slug            String
+  content         String      @db.Text
+  draftContent    String?     @db.Text
+  metaTitle       String?
   metaDescription String?
-  metaKeywords  String?
-  status        PageStatus  @default(DRAFT)
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
+  metaKeywords    String?
+  ogImage         String?
+  noIndex         Boolean     @default(false)
+  status          PageStatus  @default(DRAFT)
+  publishedAt     DateTime?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
   
   @@unique([storeId, slug])
+  @@index([storeId, status])
   @@map("pages")
 }
 
@@ -583,6 +591,64 @@ model BlogPost {
   @@unique([storeId, slug])
   @@index([storeId, status])
   @@map("blog_posts")
+}
+
+// ==================== HOMEPAGE SECTIONS ====================
+
+model HomepageSection {
+  id            String    @id @default(uuid())
+  storeId       String
+  store         Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  type          String    // HERO_SECTION, FEATURED_PRODUCTS, etc.
+  config        Json      // Section-specific configuration
+  displayOrder  Int       @default(0)
+  isEnabled     Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  @@index([storeId, displayOrder])
+  @@index([storeId, isEnabled])
+  @@map("homepage_sections")
+}
+
+// ==================== NAVIGATION MENUS ====================
+
+model NavigationMenu {
+  id            String    @id @default(uuid())
+  storeId       String
+  store         Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  location      String    // HEADER or FOOTER
+  items         Json      // Array of menu items
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  @@unique([storeId, location])
+  @@index([storeId, location])
+  @@map("navigation_menus")
+}
+
+// ==================== MEDIA ASSETS ====================
+
+model MediaAsset {
+  id            String    @id @default(uuid())
+  storeId       String
+  store         Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  fileName      String
+  fileUrl       String
+  fileId        String    @unique
+  altText       String?
+  folder        String    @default("/")
+  mimeType      String
+  size          Int
+  width         Int?
+  height        Int?
+  uploadedBy    String?
+  createdAt     DateTime  @default(now())
+  
+  @@index([storeId, folder])
+  @@index([storeId, createdAt])
+  @@map("media_assets")
 }
 
 // ==================== SYSTEM ADMIN ====================

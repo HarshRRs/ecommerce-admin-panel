@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import { ShoppingBag, TrendingUp, Users, DollarSign, Package, ExternalLink, Globe } from 'lucide-react';
 
 const Dashboard: React.FC = () => {
     const { user } = useAuth();
+    const navigate = useNavigate();
     const [stats, setStats] = useState<any>(null);
 
     useEffect(() => {
@@ -86,18 +88,19 @@ const Dashboard: React.FC = () => {
                 <div className="glass-card" style={{ minHeight: '300px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                         <h3>Recent Orders</h3>
-                        <button className="btn btn-secondary" style={{ fontSize: '0.8rem' }}>View All</button>
+                        <button className="btn btn-secondary" style={{ fontSize: '0.8rem' }} onClick={() => navigate('/orders')}>View All</button>
                     </div>
                     {stats?.recentOrders && stats.recentOrders.length > 0 ? (
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             {stats.recentOrders.slice(0, 5).map((order: any) => (
-                                <div key={order.id} style={{ 
-                                    display: 'flex', 
-                                    justifyContent: 'space-between', 
+                                <div key={order.id} style={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
                                     padding: '0.75rem',
                                     borderRadius: '8px',
-                                    background: 'rgba(var(--accent-primary-rgb), 0.05)'
-                                }}>
+                                    background: 'rgba(var(--accent-primary-rgb), 0.05)',
+                                    cursor: 'pointer'
+                                }} onClick={() => navigate(`/orders/${order.id}`)}>
                                     <div>
                                         <p style={{ fontWeight: 600 }}>#{order.id.slice(0, 8)}</p>
                                         <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
@@ -123,13 +126,13 @@ const Dashboard: React.FC = () => {
                 <div className="glass-card">
                     <h3>Quick Actions</h3>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1.5rem' }}>
-                        <button className="btn btn-secondary" style={{ width: '100%', justifyContent: 'flex-start' }}>
+                        <button className="btn btn-secondary" style={{ width: '100%', justifyContent: 'flex-start' }} onClick={() => navigate('/products/new')}>
                             <Package size={18} /> Add New Product
                         </button>
-                        <button className="btn btn-secondary" style={{ width: '100%', justifyContent: 'flex-start' }}>
+                        <button className="btn btn-secondary" style={{ width: '100%', justifyContent: 'flex-start' }} onClick={() => navigate('/orders')}>
                             <TrendingUp size={18} /> Review Sales
                         </button>
-                        <button className="btn btn-secondary" style={{ width: '100%', justifyContent: 'flex-start' }}>
+                        <button className="btn btn-secondary" style={{ width: '100%', justifyContent: 'flex-start' }} onClick={() => navigate('/settings')}>
                             <Users size={18} /> Manage Team
                         </button>
                     </div>

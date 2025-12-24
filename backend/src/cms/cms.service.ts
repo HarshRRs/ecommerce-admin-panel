@@ -21,6 +21,7 @@ export class CmsService {
         ...createPageDto,
         slug,
         storeId,
+        publishedAt: createPageDto.status === 'PUBLISHED' ? new Date() : null,
       },
     });
   }
@@ -56,12 +57,34 @@ export class CmsService {
       throw new NotFoundException('Page not found');
     }
 
+    // If slug is being updated, validate uniqueness
+    if (updatePageDto.slug && updatePageDto.slug !== page.slug) {
+      const existingPage = await this.prisma.prisma.page.findFirst({
+        where: {
+          storeId,
+          slug: updatePageDto.slug,
+          id: { not: id },
+        },
+      });
+
+      if (existingPage) {
+        throw new Error('Slug already exists');
+      }
+    }
+
+    const updateData: any = {
+      ...updatePageDto,
+      updatedAt: new Date(),
+    };
+
+    // Set publishedAt when changing status to PUBLISHED
+    if (updatePageDto.status === 'PUBLISHED' && page.status !== 'PUBLISHED') {
+      updateData.publishedAt = new Date();
+    }
+
     return this.prisma.prisma.page.update({
       where: { id },
-      data: {
-        ...updatePageDto,
-        updatedAt: new Date(),
-      },
+      data: updateData,
     });
   }
 
@@ -75,6 +98,39 @@ export class CmsService {
     }
 
     return this.prisma.prisma.page.delete({ where: { id } });
+  }
+
+  async saveDraft(id: string, draftContent: string, storeId: string) {
+    const page = await this.prisma.prisma.page.findFirst({
+      where: { id, storeId },
+    });
+
+    if (!page) {
+      throw new NotFoundException('Page not found');
+    }
+
+    return this.prisma.prisma.page.update({
+      where: { id },
+      data: {
+        draftContent,
+        updatedAt: new Date(),
+      },
+    });
+  }
+
+  async getPreview(id: string, storeId: string) {
+    const page = await this.prisma.prisma.page.findFirst({
+      where: { id, storeId },
+    });
+
+    if (!page) {
+      throw new NotFoundException('Page not found');
+    }
+
+    return {
+      ...page,
+      content: page.draftContent || page.content,
+    };
   }
 
   // Banners

@@ -16,6 +16,7 @@ import { OrdersModule } from './orders/orders.module';
 import { CustomersModule } from './customers/customers.module';
 import { CouponsModule } from './coupons/coupons.module';
 import { CmsModule } from './cms/cms.module';
+import { MediaModule } from './media/media.module';
 import { AnalyticsModule } from './analytics/analytics.module';
 import { PaymentsModule } from './payments/payments.module';
 import { ShippingModule } from './shipping/shipping.module';
@@ -99,6 +100,7 @@ import { EmailModule } from './system/email/email.module';
     CustomersModule,
     CouponsModule,
     CmsModule,
+    MediaModule,
     AnalyticsModule,
     PaymentsModule,
     ShippingModule,

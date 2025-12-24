@@ -8,6 +8,10 @@ import Orders from './pages/Orders';
 import Customers from './pages/Customers';
 import Layout from './components/Layout';
 import StoreWizard from './pages/StoreWizard';
+import CMSPages from './pages/cms/CMSPages';
+import HomepageEditor from './pages/cms/HomepageEditor';
+import MenuEditor from './pages/cms/MenuEditor';
+import MediaLibrary from './pages/cms/MediaLibrary';
 
 function App() {
   return (
@@ -32,6 +36,10 @@ function App() {
             <Route path="products" element={<Products />} />
             <Route path="orders" element={<Orders />} />
             <Route path="customers" element={<Customers />} />
+            <Route path="cms/pages" element={<CMSPages />} />
+            <Route path="cms/homepage" element={<HomepageEditor />} />
+            <Route path="cms/menus" element={<MenuEditor />} />
+            <Route path="cms/media" element={<MediaLibrary />} />
           </Route>
         </Routes>
       </AuthProvider>

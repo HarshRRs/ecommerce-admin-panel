@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { apiService } from '../services/api';
 import { ShoppingBag, Search, Filter, Eye, Clock, CheckCircle, XCircle, Truck } from 'lucide-react';
 
 const OrdersList: React.FC = () => {
+    const navigate = useNavigate();
     const [orders, setOrders] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
@@ -130,7 +132,7 @@ const OrdersList: React.FC = () => {
                                         </span>
                                     </td>
                                     <td style={{ padding: '1.2rem 1.5rem', textAlign: 'right' }}>
-                                        <button className="btn btn-secondary" style={{ padding: '0.5rem', minWidth: 'auto', border: 'none' }}>
+                                        <button className="btn btn-secondary" style={{ padding: '0.5rem', minWidth: 'auto', border: 'none' }} onClick={() => navigate(`/orders/${order.id}`)}>
                                             <Eye size={18} />
                                         </button>
                                     </td>

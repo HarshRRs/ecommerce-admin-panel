@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { apiService } from '../services/api';
 import { Users, Search, Mail, ShieldCheck } from 'lucide-react';
 
 const CustomersDirectory: React.FC = () => {
+    const navigate = useNavigate();
     const [customers, setCustomers] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
@@ -99,7 +101,7 @@ const CustomersDirectory: React.FC = () => {
                                 </div>
                             </div>
 
-                            <button className="btn btn-secondary" style={{ width: '100%', marginTop: '1.5rem', fontSize: '0.85rem' }}>
+                            <button className="btn btn-secondary" style={{ width: '100%', marginTop: '1.5rem', fontSize: '0.85rem' }} onClick={() => navigate(`/customers/${customer.id}`)}>
                                 View Profile
                             </button>
                         </div>
