@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import api from '../services/api';
+import api, { apiService } from '../services/api';
 import { Save, ArrowLeft, Loader2, Image as ImageIcon, X } from 'lucide-react';
 import type { ProductStatus } from '../types';
 
@@ -11,6 +11,8 @@ const ProductForm: React.FC = () => {
 
     const [loading, setLoading] = useState(false);
     const [saving, setSaving] = useState(false);
+    const [uploading, setUploading] = useState(false);
+    const fileInputRef = useRef<HTMLInputElement>(null);
     const [formData, setFormData] = useState({
         name: '',
         sku: '',
@@ -55,6 +57,36 @@ const ProductForm: React.FC = () => {
             console.error('Failed to save product');
         } finally {
             setSaving(false);
+        }
+    };
+
+    const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        setUploading(true);
+        try {
+            const response = await apiService.media.upload(file);
+            // Assuming response.data returns the object with { url: ... } or { fileUrl: ... }
+            // Based on MediaController, it calls uploadFile -> likely returns the ImageKit result or our DB record
+            // Helper: The backend usually maps this. Let's assume it returns { fileUrl: ... } or check service. 
+            // Standard NestJS/Prisma pattern: returns the created record.
+            // Let's assume response.data.fileUrl based on schema
+            const newImageUrl = response.data.fileUrl || response.data.url;
+
+            if (newImageUrl) {
+                setFormData(prev => ({
+                    ...prev,
+                    images: [...prev.images, newImageUrl]
+                }));
+            }
+        } catch (err) {
+            console.error('Failed to upload image', err);
+            alert('Failed to upload image. Check your ImageKit configuration.');
+        } finally {
+            setUploading(false);
+            // Reset input
+            if (fileInputRef.current) fileInputRef.current.value = '';
         }
     };
 
@@ -154,10 +186,20 @@ const ProductForm: React.FC = () => {
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                cursor: 'pointer'
-                            }}>
+                                cursor: 'pointer',
+                                position: 'relative'
+                            }}
+                                onClick={() => fileInputRef.current?.click()}>
                                 <ImageIcon size={24} color="var(--text-secondary)" />
+                                {uploading && <div style={{ position: 'absolute', inset: 0, background: 'rgba(255,255,255,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Loader2 className="animate-spin" size={20} /></div>}
                             </div>
+                            <input
+                                type="file"
+                                ref={fileInputRef}
+                                style={{ display: 'none' }}
+                                accept="image/*"
+                                onChange={handleFileUpload}
+                            />
                         </div>
                     </div>
                 </div>

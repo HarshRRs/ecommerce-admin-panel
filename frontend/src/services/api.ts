@@ -96,6 +96,16 @@ const apiService = {
         updateStatus: (id: string, status: string) => api.patch(`/stores/${id}/status`, { status }),
         confirmStripe: (id: string) => api.post(`/stores/${id}/confirm-stripe`),
     },
+    // Media
+    media: {
+        upload: (file: File) => {
+            const formData = new FormData();
+            formData.append('file', file);
+            return api.post('/media/upload', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            });
+        },
+    },
 };
 
 export { api, apiService };
