@@ -32,6 +32,7 @@ import { AuditLogInterceptor } from './common/interceptors/audit-log.interceptor
 import { BackgroundJobsModule } from './common/jobs/background-jobs.module';
 import { AuditLogModule } from './system/audit-logs/audit-log.module';
 import { EmailModule } from './system/email/email.module';
+import { ShopModule } from './shop/shop.module';
 
 @Module({
   imports: [
@@ -47,7 +48,7 @@ import { EmailModule } from './system/email/email.module';
         REFRESH_TOKEN_SECRET: Joi.string().required(),
         ALLOWED_ORIGINS: Joi.string().required(),
         ENCRYPTION_KEY: Joi.string().required(),
-        
+
         // Optional services - app works without these
         REDIS_URL: Joi.string().optional().allow(''),
         IMAGEKIT_PUBLIC_KEY: Joi.string().optional().allow(''),
@@ -56,10 +57,10 @@ import { EmailModule } from './system/email/email.module';
         EMAIL_API_KEY: Joi.string().optional().allow(''),
         EMAIL_FROM: Joi.string().default('noreply@ordernest.com'),
         EMAIL_PROVIDER: Joi.string().valid('resend').default('resend'),
-        
+
         // Payment gateway (optional)
         STRIPE_SECRET_KEY: Joi.string().optional().allow(''),
-        
+
         // Frontend URL (optional, used in emails)
         FRONTEND_URL: Joi.string().optional().default('http://localhost:5173'),
       }),
@@ -76,11 +77,11 @@ import { EmailModule } from './system/email/email.module';
     // Conditionally import BullModule only if Redis is configured
     ...(process.env.REDIS_URL
       ? [
-          BullModule.forRoot({
-            connection: { url: process.env.REDIS_URL },
-          }),
-          BackgroundJobsModule,
-        ]
+        BullModule.forRoot({
+          connection: { url: process.env.REDIS_URL },
+        }),
+        BackgroundJobsModule,
+      ]
       : []),
     AuditLogModule,
     EmailModule,
@@ -105,6 +106,7 @@ import { EmailModule } from './system/email/email.module';
     PaymentsModule,
     ShippingModule,
     SystemModule,
+    ShopModule,
     HealthModule,
   ],
   controllers: [AppController],
@@ -136,4 +138,4 @@ import { EmailModule } from './system/email/email.module';
     },
   ],
 })
-export class AppModule {}
+export class AppModule { }
