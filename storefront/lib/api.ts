@@ -12,7 +12,7 @@ const api = axios.create({
 });
 
 export const getStoreConfig = async (slug?: string, domain?: string): Promise<StoreConfig> => {
-    const params: any = {};
+    const params: Record<string, string | boolean | undefined> = {};
     if (slug) params.slug = slug;
     if (domain) params.domain = domain;
 
@@ -21,7 +21,7 @@ export const getStoreConfig = async (slug?: string, domain?: string): Promise<St
 };
 
 export const getProducts = async (storeId: string, categoryId?: string, featured?: boolean): Promise<{ products: Product[], total: number }> => {
-    const params: any = { storeId };
+    const params: Record<string, string | boolean | undefined> = { storeId };
     if (categoryId) params.categoryId = categoryId;
     if (featured) params.featured = 'true';
 
