@@ -178,10 +178,7 @@ export class CmsController {
 
   @Patch('homepage-sections/reorder')
   @Roles(Role.OWNER, Role.MANAGER)
-  reorderSections(
-    @Body() reorderDto: ReorderSectionsDto,
-    @CurrentUser('storeId') storeId: string,
-  ) {
+  reorderSections(@Body() reorderDto: ReorderSectionsDto, @CurrentUser('storeId') storeId: string) {
     return this.homepageSectionService.reorderSections(reorderDto, storeId);
   }
 

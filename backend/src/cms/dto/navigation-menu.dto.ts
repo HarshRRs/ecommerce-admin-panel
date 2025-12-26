@@ -1,4 +1,12 @@
-import { IsString, IsNotEmpty, IsArray, IsBoolean, IsOptional, IsEnum, MaxLength } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsArray,
+  IsBoolean,
+  IsOptional,
+  IsEnum,
+  MaxLength,
+} from 'class-validator';
 
 export enum MenuLocation {
   HEADER = 'HEADER',

@@ -14,27 +14,39 @@ async function bootstrap() {
   app.useLogger(app.get(Logger));
 
   // Log service configuration status
-  console.log('\n========================================')
+  console.log('\n========================================');
   console.log('🚀 E-COMMERCE ADMIN PANEL STARTING');
   console.log('========================================');
   console.log('Environment:', process.env.NODE_ENV || 'development');
   console.log('Port:', process.env.PORT || 3000);
   console.log('\n--- Core Services (Required) ---');
-  console.log(process.env.DATABASE_URL ? '✅ Database: Connected' : '❌ Database: MISSING (CRITICAL!)');
+  console.log(
+    process.env.DATABASE_URL ? '✅ Database: Connected' : '❌ Database: MISSING (CRITICAL!)',
+  );
   console.log(process.env.JWT_SECRET ? '✅ JWT Auth: Configured' : '❌ JWT: MISSING (CRITICAL!)');
   console.log('\n--- Optional Services ---');
-  console.log(process.env.REDIS_URL
-    ? '✅ Redis: Enabled (caching active)'
-    : '⚠️  Redis: Disabled (no caching, background jobs disabled)');
-  console.log(process.env.IMAGEKIT_PUBLIC_KEY && process.env.IMAGEKIT_PRIVATE_KEY && process.env.IMAGEKIT_URL_ENDPOINT
-    ? '✅ ImageKit: Enabled (image uploads will work)'
-    : '⚠️  ImageKit: Disabled (image uploads will fail)');
-  console.log(process.env.EMAIL_API_KEY
-    ? '✅ Email (Resend): Enabled (notifications will send)'
-    : '⚠️  Email: Disabled (notifications logged only)');
-  console.log(process.env.STRIPE_SECRET_KEY
-    ? '✅ Stripe: Enabled (payments active)'
-    : '⚠️  Stripe: Disabled (payments unavailable)');
+  console.log(
+    process.env.REDIS_URL
+      ? '✅ Redis: Enabled (caching active)'
+      : '⚠️  Redis: Disabled (no caching, background jobs disabled)',
+  );
+  console.log(
+    process.env.IMAGEKIT_PUBLIC_KEY &&
+      process.env.IMAGEKIT_PRIVATE_KEY &&
+      process.env.IMAGEKIT_URL_ENDPOINT
+      ? '✅ ImageKit: Enabled (image uploads will work)'
+      : '⚠️  ImageKit: Disabled (image uploads will fail)',
+  );
+  console.log(
+    process.env.EMAIL_API_KEY
+      ? '✅ Email (Resend): Enabled (notifications will send)'
+      : '⚠️  Email: Disabled (notifications logged only)',
+  );
+  console.log(
+    process.env.STRIPE_SECRET_KEY
+      ? '✅ Stripe: Enabled (payments active)'
+      : '⚠️  Stripe: Disabled (payments unavailable)',
+  );
   console.log('========================================\n');
 
   // Enable CORS
@@ -42,11 +54,11 @@ async function bootstrap() {
   const allowedOrigins = allowedOriginsEnv
     ? allowedOriginsEnv.split(',').map((origin) => origin.trim())
     : [
-      'http://localhost:5173',
-      'http://localhost:3001',
-      'https://ecommerce-admin-panel-eight-lake.vercel.app',
-      'https://lookreal-storefront.vercel.app'
-    ];
+        'http://localhost:5173',
+        'http://localhost:3001',
+        'https://ecommerce-admin-panel-eight-lake.vercel.app',
+        'https://lookreal-storefront.vercel.app',
+      ];
 
   console.log('--- CORS Configuration ---');
   console.log('Allowed Origins:', allowedOrigins);
@@ -116,7 +128,9 @@ async function bootstrap() {
       },
       customSiteTitle: 'E-commerce API Docs',
     });
-    console.log(`📚 API Documentation available at: http://localhost:${process.env.PORT || 3000}/api/docs`);
+    console.log(
+      `📚 API Documentation available at: http://localhost:${process.env.PORT || 3000}/api/docs`,
+    );
   }
 
   const port = process.env.PORT ?? 3000;

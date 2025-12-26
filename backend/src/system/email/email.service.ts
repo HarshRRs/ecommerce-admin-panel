@@ -11,9 +11,9 @@ export class EmailService {
   constructor(private configService: ConfigService) {
     const apiKey = this.configService.get<string>('EMAIL_API_KEY');
     this.enabled = !!apiKey && apiKey.length > 0;
-    
+
     if (this.enabled) {
-      this.resend = new Resend(apiKey!);
+      this.resend = new Resend(apiKey);
       this.logger.log('✅ Email service (Resend) initialized');
     } else {
       this.logger.warn('⚠️  Email service disabled - EMAIL_API_KEY not configured');

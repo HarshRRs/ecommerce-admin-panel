@@ -8,7 +8,7 @@ export class HealthController {
   constructor(
     private prisma: PrismaService,
     private cache: CacheService,
-  ) { }
+  ) {}
 
   @Public()
   @Get()

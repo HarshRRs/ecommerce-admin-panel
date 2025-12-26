@@ -77,11 +77,11 @@ import { ShopModule } from './shop/shop.module';
     // Conditionally import BullModule only if Redis is configured
     ...(process.env.REDIS_URL
       ? [
-        BullModule.forRoot({
-          connection: { url: process.env.REDIS_URL },
-        }),
-        BackgroundJobsModule,
-      ]
+          BullModule.forRoot({
+            connection: { url: process.env.REDIS_URL },
+          }),
+          BackgroundJobsModule,
+        ]
       : []),
     AuditLogModule,
     EmailModule,
@@ -138,4 +138,4 @@ import { ShopModule } from './shop/shop.module';
     },
   ],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,4 +1,12 @@
-import { IsString, IsNotEmpty, IsOptional, IsEnum, IsBoolean, MaxLength, IsUrl } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsOptional,
+  IsEnum,
+  IsBoolean,
+  MaxLength,
+  IsUrl,
+} from 'class-validator';
 import { PageStatus, BlogPostStatus, BannerStatus } from '@prisma/client';
 
 export class CreatePageDto {
