@@ -171,6 +171,13 @@ model Store {
   stripeConfirmedBy       String?
   stripeApiKey            String?       // Encrypted
   stripeWebhookSecret     String?       // Encrypted
+  
+  // Theme & Storefront Config
+  primaryColor            String?       @default("#000000")
+  accentColor             String?       @default("#D4AF37")
+  shippingRegions         Json?         // Array of regions
+  paymentMethods          Json?         // Array of method objects
+  
   createdAt               DateTime      @default(now())
   updatedAt               DateTime      @updatedAt
   deletedAt               DateTime?     // Soft delete support

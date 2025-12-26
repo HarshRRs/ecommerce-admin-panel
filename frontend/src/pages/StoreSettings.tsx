@@ -29,7 +29,9 @@ const StoreSettings: React.FC = () => {
         stripeWebhookSecret: '',
         logo: '',
         customDomain: '',
-        websiteUrl: ''
+        websiteUrl: '',
+        primaryColor: '#000000',
+        accentColor: '#D4AF37'
     });
 
     const [confirmed, setConfirmed] = useState(false);
@@ -50,11 +52,13 @@ const StoreSettings: React.FC = () => {
                 name: response.data.name || '',
                 currency: response.data.currency || 'EUR',
                 timezone: response.data.timezone || 'Europe/Paris',
-                stripeApiKey: '', // Never show existing keys for security
+                stripeApiKey: '',
                 stripeWebhookSecret: '',
                 logo: response.data.logo || '',
                 customDomain: response.data.customDomain || '',
-                websiteUrl: response.data.websiteUrl || ''
+                websiteUrl: response.data.websiteUrl || '',
+                primaryColor: response.data.primaryColor || '#000000',
+                accentColor: response.data.accentColor || '#D4AF37'
             });
             setConfirmed(response.data.stripeOwnershipConfirmed || false);
         } catch (err) {
@@ -72,7 +76,6 @@ const StoreSettings: React.FC = () => {
         setSuccess('');
 
         try {
-            // 1. Update basic settings and Stripe keys
             const updateData: any = { ...formData };
             if (!updateData.stripeApiKey) delete updateData.stripeApiKey;
             if (!updateData.stripeWebhookSecret) delete updateData.stripeWebhookSecret;
@@ -80,7 +83,6 @@ const StoreSettings: React.FC = () => {
             await api.patch(`/stores/${user.storeId}`, updateData);
 
             setSuccess('Settings updated successfully!');
-            // Clear sensitive inputs
             setFormData(prev => ({ ...prev, stripeApiKey: '', stripeWebhookSecret: '' }));
         } catch (err: any) {
             setError(err.response?.data?.message || 'Failed to save settings');
@@ -113,7 +115,7 @@ const StoreSettings: React.FC = () => {
         <div className="animate-fade-in max-w-4xl mx-auto">
             <div style={{ marginBottom: '2rem' }}>
                 <h1 style={{ fontSize: '2rem' }}>Store Settings</h1>
-                <p style={{ color: 'var(--text-secondary)' }}>Manage your shop identity and payment infrastructure</p>
+                <p style={{ color: 'var(--text-secondary)' }}>Manage your shop identity and website theme</p>
             </div>
 
             {error && (
@@ -179,16 +181,66 @@ const StoreSettings: React.FC = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* Section: Design & Appearance */}
+                <div className="glass-card">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '1.5rem' }}>
+                        <div style={{ padding: '8px', background: 'rgba(212, 175, 55, 0.1)', borderRadius: '8px' }}>
+                            <div style={{ width: '24px', height: '24px', background: formData.accentColor || '#D4AF37', borderRadius: '4px' }}></div>
+                        </div>
+                        <h2 style={{ fontSize: '1.25rem' }}>Design & Appearance</h2>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                        <div className="form-group">
+                            <label>Primary Brand Color</label>
+                            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                                <input
+                                    type="color"
+                                    style={{ width: '50px', height: '40px', padding: '0', border: 'none', background: 'none', cursor: 'pointer' }}
+                                    value={formData.primaryColor || '#000000'}
+                                    onChange={e => setFormData({ ...formData, primaryColor: e.target.value })}
+                                />
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    style={{ flex: 1 }}
+                                    value={formData.primaryColor || ''}
+                                    onChange={e => setFormData({ ...formData, primaryColor: e.target.value })}
+                                />
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <label>Accent / Action Color</label>
+                            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                                <input
+                                    type="color"
+                                    style={{ width: '50px', height: '40px', padding: '0', border: 'none', background: 'none', cursor: 'pointer' }}
+                                    value={formData.accentColor || '#D4AF37'}
+                                    onChange={e => setFormData({ ...formData, accentColor: e.target.value })}
+                                />
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    style={{ flex: 1 }}
+                                    value={formData.accentColor || ''}
+                                    onChange={e => setFormData({ ...formData, accentColor: e.target.value })}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 {/* Section: Website & Domain */}
-                <div className="glass-card" style={{ marginTop: '1.5rem' }}>
+                <div className="glass-card">
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '1.5rem' }}>
                         <Globe className="text-secondary" />
                         <h2 style={{ fontSize: '1.25rem' }}>Website & Domain</h2>
                     </div>
 
                     <div className="space-y-4">
-                        <div className="form-group" style={{ marginBottom: '1.5rem' }}>
-                            <label>Your OrderNest URL (Live)</label>
+                        <div className="form-group">
+                            <label>Your Live Store URL</label>
                             <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', marginTop: '0.5rem' }}>
                                 <div className="form-control" style={{ background: 'rgba(255,255,255,0.05)', color: 'var(--text-secondary)', flex: 1, padding: '0.8rem' }}>
                                     https://{store?.slug}.ordernest.com
@@ -207,17 +259,17 @@ const StoreSettings: React.FC = () => {
 
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
                             <div className="form-group">
-                                <label>Custom Domain (e.g. www.mystore.com)</label>
+                                <label>Custom Domain</label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    placeholder="Enter your own domain"
+                                    placeholder="e.g. www.mystore.com"
                                     value={formData.customDomain}
                                     onChange={e => setFormData({ ...formData, customDomain: e.target.value })}
                                 />
                             </div>
                             <div className="form-group">
-                                <label>External Website Link (Portfolio/Social)</label>
+                                <label>External Link</label>
                                 <input
                                     type="url"
                                     className="form-control"
@@ -262,8 +314,7 @@ const StoreSettings: React.FC = () => {
                         <p style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
                             <Info size={16} style={{ marginTop: '2px', flexShrink: 0 }} />
                             <span>
-                                As part of our freelancer multi-tenant agreement, you must provide your <strong>own Stripe API keys</strong>.
-                                Money goes directly into your account; our platform never touches your revenue.
+                                You must provide your own Stripe API keys. Money goes directly into your account.
                                 Keys are stored using AES-256-GCM encryption.
                             </span>
                         </p>
@@ -271,21 +322,21 @@ const StoreSettings: React.FC = () => {
 
                     <div className="space-y-4">
                         <div className="form-group">
-                            <label>Stripe Secret Key (sk_test_... or sk_live_...)</label>
+                            <label>Stripe Secret Key</label>
                             <input
                                 type="password"
                                 className="form-control"
-                                placeholder="Enter new key to update, leave blank to keep existing"
+                                placeholder="Enter to update"
                                 value={formData.stripeApiKey}
                                 onChange={e => setFormData({ ...formData, stripeApiKey: e.target.value })}
                             />
                         </div>
                         <div className="form-group">
-                            <label>Stripe Webhook Secret (whsec_...)</label>
+                            <label>Stripe Webhook Secret</label>
                             <input
                                 type="password"
                                 className="form-control"
-                                placeholder="Enter new secret to update, leave blank to keep existing"
+                                placeholder="whsec_..."
                                 value={formData.stripeWebhookSecret}
                                 onChange={e => setFormData({ ...formData, stripeWebhookSecret: e.target.value })}
                             />
@@ -305,21 +356,15 @@ const StoreSettings: React.FC = () => {
                                     style={{ width: '20px', height: '20px', marginTop: '4px' }}
                                     checked={confirmed}
                                     disabled={confirmed}
-                                    onChange={() => { }} // Controlled by confirmed state
+                                    onChange={() => { }}
                                     onClick={!confirmed ? handleConfirmOwnership : undefined}
                                 />
                                 <label htmlFor="legal-confirm" style={{ fontSize: '0.9rem', cursor: confirmed ? 'default' : 'pointer' }}>
                                     <strong>Legal Responsibility Confirmation</strong><br />
                                     <span style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-                                        I confirm that the Stripe account associated with these keys belongs to me (or my legal entity).
-                                        I accept sole responsibility for all transactions, chargebacks, refunds, taxes, and government
-                                        compliance. The platform provider acts only as a software vendor and is not a financial intermediary.
+                                        I confirm that the Stripe account associated with these keys belongs to me.
+                                        I accept sole responsibility for all transactions.
                                     </span>
-                                    {store?.stripeConfirmedAt && (
-                                        <div style={{ marginTop: '0.5rem', fontSize: '0.75rem', color: 'var(--success)' }}>
-                                            Confirmed on {new Date(store.stripeConfirmedAt).toLocaleString()}
-                                        </div>
-                                    )}
                                 </label>
                             </div>
                         </div>

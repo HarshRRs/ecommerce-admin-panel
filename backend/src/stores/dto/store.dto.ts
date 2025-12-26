@@ -26,9 +26,16 @@ export class CreateStoreDto {
   @IsOptional()
   language?: string;
 
-  @IsEnum(StoreType)
   @IsOptional()
   type?: StoreType;
+
+  @IsString()
+  @IsOptional()
+  primaryColor?: string;
+
+  @IsString()
+  @IsOptional()
+  accentColor?: string;
 
   @IsEnum(StoreStatus)
   @IsOptional()
@@ -83,4 +90,18 @@ export class UpdateStoreDto {
   @IsString()
   @IsOptional()
   websiteUrl?: string;
+
+  @IsString()
+  @IsOptional()
+  primaryColor?: string;
+
+  @IsString()
+  @IsOptional()
+  accentColor?: string;
+
+  @IsOptional()
+  shippingRegions?: any;
+
+  @IsOptional()
+  paymentMethods?: any;
 }

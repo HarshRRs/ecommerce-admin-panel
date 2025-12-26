@@ -29,6 +29,11 @@ export class ShopService {
                 customDomain: true,
                 websiteUrl: true,
                 type: true,
+                status: true,
+                primaryColor: true,
+                accentColor: true,
+                shippingRegions: true,
+                paymentMethods: true,
                 // Don't expose sensitive fields like API keys
             },
         });
@@ -37,7 +42,19 @@ export class ShopService {
             throw new NotFoundException('Store not found');
         }
 
-        return store;
+        return {
+            ...store,
+            theme: {
+                primaryColor: store.primaryColor || '#000000',
+                accentColor: store.accentColor || '#D4AF37',
+                logo: store.logo,
+            },
+            settings: {
+                currency: store.currency,
+                shippingRegions: (store.shippingRegions as string[]) || [],
+                paymentMethods: (store.paymentMethods as any[]) || [],
+            }
+        };
     }
 
     async getProducts(storeId: string, limit = 20, offset = 0, categoryId?: string, featured?: boolean) {
