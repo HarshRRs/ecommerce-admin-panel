@@ -40,17 +40,7 @@ export default async function ShopPage({ params }: { params: Promise<{ slug: str
                         <a href={`/${slug}/products`} className="text-sm font-medium hover:underline">View All</a>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        {products.length > 0 ? (
-                            products.map((product) => (
-                                <ProductCard key={product.id} product={product} storeSlug={slug} />
-                            ))
-                        ) : (
-                            <div className="col-span-full text-center py-12 text-gray-500">
-                                No products found.
-                            </div>
-                        )}
-                    </div>
+                    <ProductGrid products={products} storeSlug={slug} />
                 </section>
             </div>
         );
