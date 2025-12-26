@@ -41,7 +41,12 @@ async function bootstrap() {
   const allowedOriginsEnv = process.env.ALLOWED_ORIGINS;
   const allowedOrigins = allowedOriginsEnv
     ? allowedOriginsEnv.split(',').map((origin) => origin.trim())
-    : ['http://localhost:5173', 'http://localhost:3001'];
+    : [
+      'http://localhost:5173',
+      'http://localhost:3001',
+      'https://ecommerce-admin-panel-eight-lake.vercel.app',
+      'https://lookreal-storefront.vercel.app'
+    ];
 
   console.log('--- CORS Configuration ---');
   console.log('Allowed Origins:', allowedOrigins);
