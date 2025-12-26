@@ -1,6 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CmsController } from './cms.controller';
 import { CmsService } from './cms.service';
+import { HomepageSectionService } from './homepage-section.service';
+import { NavigationMenuService } from './navigation-menu.service';
 
 describe('CmsController', () => {
   let controller: CmsController;
@@ -11,6 +13,14 @@ describe('CmsController', () => {
       providers: [
         {
           provide: CmsService,
+          useValue: {},
+        },
+        {
+          provide: HomepageSectionService,
+          useValue: {},
+        },
+        {
+          provide: NavigationMenuService,
           useValue: {},
         },
       ],
