@@ -13,7 +13,8 @@ import {
     Store,
     ChevronRight,
     Settings,
-    AlertCircle
+    AlertCircle,
+    Image as ImageIcon
 } from 'lucide-react';
 
 const Layout: React.FC = () => {
@@ -27,6 +28,7 @@ const Layout: React.FC = () => {
         { icon: <Users size={20} />, label: 'Customers', path: '/customers' },
         { icon: <BarChart3 size={20} />, label: 'Analytics', path: '/analytics' },
         { icon: <Globe size={20} />, label: 'CMS', path: '/cms' },
+        { icon: <ImageIcon size={20} />, label: 'Banners', path: '/banners' },
         { icon: <Settings size={20} />, label: 'Settings', path: '/settings' },
     ];
 

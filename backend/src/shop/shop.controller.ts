@@ -45,4 +45,13 @@ export class ShopController {
         if (!storeId) throw new NotFoundException('Store ID is required');
         return this.shopService.getProductBySlug(storeId, slug);
     }
+
+    @Get('banners')
+    async getBanners(
+        @Query('storeId') storeId: string,
+        @Query('position') position?: string,
+    ) {
+        if (!storeId) throw new NotFoundException('Store ID is required');
+        return this.shopService.getActiveBanners(storeId, position);
+    }
 }

@@ -17,6 +17,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import TermsPage from './pages/TermsPage';
 import PrivacyPage from './pages/PrivacyPage';
+import Banners from './pages/Banners';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode; roles?: string[] }> = ({ children, roles }) => {
   const { user, loading } = useAuth();
@@ -56,6 +57,7 @@ function App() {
             <Route path="customers" element={<CustomersDirectory />} />
             <Route path="analytics" element={<AnalyticsDashboard />} />
             <Route path="cms" element={<CMSPages />} />
+            <Route path="banners" element={<Banners />} />
 
             <Route path="stores" element={
               <ProtectedRoute roles={['SUPER_ADMIN']}>

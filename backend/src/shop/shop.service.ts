@@ -105,4 +105,33 @@ export class ShopService {
 
         return product;
     }
+
+    async getActiveBanners(storeId: string, position?: string) {
+        const where: any = {
+            storeId,
+            status: 'ACTIVE',
+            OR: [
+                { startDate: null },
+                { startDate: { lte: new Date() } },
+            ],
+        };
+
+        // Check endDate separately
+        const banners = await this.prisma.banner.findMany({
+            where,
+            orderBy: { displayOrder: 'asc' },
+        });
+
+        // Filter out expired banners
+        const activeBanners = banners.filter(banner =>
+            !banner.endDate || banner.endDate >= new Date()
+        );
+
+        // Filter by position if provided
+        if (position) {
+            return activeBanners.filter(b => b.position === position);
+        }
+
+        return activeBanners;
+    }
 }
